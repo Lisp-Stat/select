@@ -1,0 +1,26 @@
+* Release Notes
+
+** Version 1.0
+
+*** Documentation Improvements
+**** Move to HTML based documentation system
+**** Docs now on github.io
+**** Documented selection iteration
+**** Improved examples and explanations
+
+*** Test Improvements
+**** Ported to FiveAM and refactored
+**** Improved test coverage 
+**** Added failure messages to aid debugging
+**** Added tests for selection iteration
+
+*** Enhancements
+**** Renamed to 'cons' to 'range'
+**** Range now handles (range x x) => nil
+**** Selections work identically on sequences; previously differed between lists and vectors
+**** Selections may be specified using a list; previously could only be a vector
+**** Sequence selections now honor fill-pointer (fixes first issue on Papp's issue 3)
+
+*** Bug Fixes
+**** Range now handles END = (length <sequence>)
+**** Selecting from a list no longer drops dimension

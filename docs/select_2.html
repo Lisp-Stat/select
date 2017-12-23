@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright (C) 2017-2018 Steven Nunez
+
+Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided also that the
+section entitled "Copying" is included exactly as in the original.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be translated as well.
+
+ -->
+<!-- Created on December 23, 2017 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>The Select Reference Manual: 1 Introduction</title>
+
+<meta name="description" content="The Select Reference Manual, version 1.0.0.">
+<meta name="keywords" content="The Select Reference Manual: 1 Introduction">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://sirgazil.bitbucket.io/static/docs/css/texinfo/tip/document.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Introduction"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="select_1.html#Copying" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="select_1.html#Copying" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Selection-Specifiers" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="select_3.html#Systems" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="select_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="select_8.html#Indexes" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="select_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Introduction-1"></a>
+<h1 class="chapter">1 Introduction</h1>
+
+<p><tt>Select</tt> is a library for taking slices from array-like objects. The
+most frequently used form is:
+</p><div class="lisp">
+<pre class="lisp">(select object selection1 selection2 ...)
+</pre></div>
+<p>where each <i>selection</i> specifies a subset of subscripts along the
+corresponding axis. The selection specifications are found
+below.
+</p>
+<hr>
+<a name="Selection-Specifiers"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Extensions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="select_3.html#Systems" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="select_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="select_8.html#Indexes" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="select_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">1.1 Selection Specifiers</h2>
+<a name="Selecting-Single-Values"></a>
+<h2 class="heading">Selecting Single Values</h2>
+<p>A non-negative integer selects the corresponding index, while a
+negative integer selects an index counting backwards from the last
+index. For example:
+</p><div class="lisp">
+<pre class="lisp">(select #(0 1 2 3) 1)                  ; =&gt; 1
+(select #(0 1 2 3) -2)                 ; =&gt; 2
+</pre></div>
+<p>These are called <i>singleton</i> slices. Each singleton slice drops the
+dimension: vectors become atoms, matrices become vectors, <i>etc.</i>.
+</p>
+<a name="Selecting-Ranges"></a>
+<h2 class="heading">Selecting Ranges</h2>
+<p><code>(range start end)</code> selects subscripts <i>i</i> where start &lt;= i &lt;=
+end. When end is nil, the last index is included (cf. subseq). Each
+boundary is resolved according to the other rules if applicable, so
+you can use negative integers:
+</p><div class="lisp">
+<pre class="lisp">(select #(0 1 2 3) (range 1 3))         ; =&gt; #(1 2)
+(select #(0 1 2 3) (range 1 -1))        ; =&gt; #(1 2)
+</pre></div>
+
+<a name="Selecting-All-Subscripts-of-a-Dimension"></a>
+<h2 class="heading">Selecting All Subscripts of a Dimension</h2>
+<p><code>t</code> selects all subscripts:
+</p><div class="lisp">
+<pre class="lisp">(select #2A((0 1 2)
+            (3 4 5))
+         t 1)                           ; =&gt; #(1 4)
+</pre></div>
+
+<a name="Selecting-with-a-Sequence"></a>
+<h2 class="heading">Selecting with a Sequence</h2>
+<p>Sequences can be used to make specific selections from the object. For
+example:
+</p><div class="lisp">
+<pre class="lisp">(select #(0 1 2 3 4 5 6 7 8 9)
+	(vector (range 1 3) 6 (range -2 -1))) ; =&gt; #(1 2 3 6 8 9)
+(select #(0 1 2) '(2 2 1 0 0))                ; =&gt; #(2 2 1 0 0)
+</pre></div>
+
+<a name="Using-Bit-Vectors-as-a-Mask"></a>
+<h2 class="heading">Using Bit Vectors as a Mask</h2>
+<p>Bit vectors can be used to select elements of arrays and sequences as
+well:
+</p><div class="lisp">
+<pre class="lisp">(select #(0 1 2 3 4) #*00110)          ; =&gt; #(2 3)
+</pre></div>
+
+<hr>
+<a name="Extensions"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Selection-Specifiers" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Selection-Specifiers" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Select-Semantics" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="select_3.html#Systems" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="select_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="select_8.html#Indexes" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="select_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">1.1.1 Extensions</h3>
+
+<p>Section 1.1 describes the core functionality. The semantics can be
+extended, as you will see in the next section. The extensions in this
+section are provided by the library and prove useful in
+practice. Their implementation provides good examples of extending the
+library.
+</p>
+<p><code>including</code> is convenient if you want the selection to include
+the end of the range:
+</p><div class="lisp">
+<pre class="lisp">(select #(0 1 2 3) (including 1 2))
+                          ; =&gt; #(1 2), cf. (select ... (range 1 3)) 
+</pre></div>
+
+<p><code>nodrop</code> is useful if you do not want to drop dimensions:
+</p><div class="lisp">
+<pre class="lisp">(select #(0 1 2 3) (nodrop 2))
+                          ; =&gt; #(2), cf. (select ... (range 2 3))
+</pre></div>
+
+<p><code>head</code> and <code>tail</code> do the obvious:
+</p><div class="lisp">
+<pre class="lisp">(select #(0 1 2 3) (head 2))            ; =&gt; #(0 1)
+(select #(0 1 2 3) (tail 2))            ; =&gt; #(2 3)
+</pre></div>
+
+<p>All of these are trivial to implement. If there is something you are
+missing, you can easily extend <code>select</code>. Pull request are welcome.
+</p>
+<p><code>ref</code> is a version of <code>select</code> that always returns a single
+element, so it can only be used with singleton slices.
+</p>
+<hr>
+<a name="Select-Semantics"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Extensions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="select_3.html#Systems" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="select_3.html#Systems" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="select_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="select_8.html#Indexes" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="select_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">1.2 Select Semantics</h2>
+<p>Arguments of <code>select</code>, except the first one, are meant to be
+resolved using <code>canonical-representation</code>, in the
+<code>select-dev</code> package. If you want to extend <code>select</code>, you
+should define methods for <code>canonical-representation</code>. See the
+source code for the best examples. Below is a simple example that
+extends the semantics with ordinal numbers.
+</p><div class="lisp">
+<pre class="lisp">(defmacro define-ordinal-selection (number)
+  (check-type number (integer 0))
+  `(defmethod select-dev:canonical-representation
+       ((axis integer)
+	(slice (eql ',(intern (format nil &quot;~:@(~:r~)&quot; number)))))
+     (assert (&lt; ,number axis))
+     (select-dev:canonical-singleton ,number)))
+
+(define-ordinal-selection 1)
+(define-ordinal-selection 2)
+(define-ordinal-selection 3)
+
+(select #(0 1 2 3 4 5) (range 'first 'third)) ; =&gt; #(1 2)
+</pre></div>
+<p>Note the following:
+</p><ul>
+<li>
+The value returned by <code>canonical-representation</code> needs to be
+constructed using <code>canonical-singleton</code>, <code>canonical-range</code>,
+or <code>canonical-sequence</code>. You should not use the internal
+representation directly as it is subject to change.
+</li><li>
+You can assume that <code>axis</code> is an integer: this is the default. An
+object may define a more complex mapping (such as, for example, named
+rows &amp; columns), but unless a method specialized to that is found,
+<code>canonical-representation</code> will just query its dimension (with
+<code>axis-dimension</code>) and try to find a method that works on
+integers.
+</li><li>
+You need to make sure that the subscript is valid, hence the assertion.
+</li></ul>
+
+
+
+<hr>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="select_3.html#Systems" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="select_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="select_8.html#Indexes" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="select_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>December 23, 2017</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
