@@ -17,7 +17,7 @@ A set of utility functions for traversing slices in array-like objects."
   :author "Steven Nunez <steve.nunez@inference.sg>"
   :source-control (:git "git://github.com/Symbolics/select")
   :homepage "http://inference.sg/projects/select/"
-  :license "MIT"
+  :license "Boost 1.0"
   :depends-on ("alexandria"
                "anaphora"
                "let-plus")
@@ -32,7 +32,7 @@ A set of utility functions for traversing slices in array-like objects."
   :description "DSL for array slices in Common Lisp - unit tests."
   :version "1.0.0"
   :author "Steven Nunez <steve.nunez@inference.sg>"
-  :license "MIT"
+  :license "Boost 1.0"
   :depends-on ("select"
                "fiveam")
   :serial t
