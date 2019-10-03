@@ -1,9 +1,9 @@
-;;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-lisp; Package: CL-USER -*-
+;;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: CL-USER -*-
 ;;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
-;;;; Copyright (c) 2018 by Steven Nunez <steve.nunez@inference.sg>
+;;;; Copyright (c) 2018-2019 by Symbolics Pte. Ltd. All rights reserved.
 
 (asdf:defsystem "select"
-  :description "DSL for array slices in Common Lisp."
+  :description "DSL for array slices."
   :long-description "\
 Select is a facility for selecting portions of sequences or arrays. It
 provides:
@@ -13,11 +13,11 @@ An user interface for taking slices (elements selected by the Cartesian product 
 An extensible DSL for selecting a subset of valid subscripts. This is useful if, for example, you want to resolve column names in a data frame in your implementation of slice.
 
 A set of utility functions for traversing slices in array-like objects."
-  :version "1.0.0"
+  :version "1.0.1"
   :author "Steven Nunez <steve.nunez@inference.sg>"
   :source-control (:git "git://github.com/Symbolics/select")
   :homepage "http://inference.sg/projects/select/"
-  :license "Boost 1.0"
+  :license "Boost"
   :depends-on ("alexandria"
                "anaphora"
                "let-plus")
@@ -29,10 +29,10 @@ A set of utility functions for traversing slices in array-like objects."
 
 
 (asdf:defsystem "select/tests"
-  :description "DSL for array slices in Common Lisp - unit tests."
+  :description "DSL for array slices - unit tests."
   :version "1.0.0"
   :author "Steven Nunez <steve.nunez@inference.sg>"
-  :license "Boost 1.0"
+  :license "Boost"
   :depends-on ("select"
                "fiveam")
   :serial t

@@ -15,7 +15,7 @@
 - Added tests for selection iteration
 
 *** Enhancements
-- Renamed to 'cons' to 'range'
+- Renamed 'cons' to 'range'
 - Range now handles (range x x) => nil
 - Selections work identically on sequences; previously differed between lists and vectors
 - Selections may be specified using a list; previously could only be a vector

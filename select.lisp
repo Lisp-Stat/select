@@ -1,12 +1,12 @@
-;;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-COMMON-LISP; Package: SLCT -*-
+;;;; -*- Mode: LISP; Base: 10; Syntax: Ansi-Common-Lisp; Package: SLCT -*-
 ;;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
-;;;; Copyright (c) 2018 by Steven Nunez <steve.nunez@inference.sg>
+;;;; Copyright (c) 2018-2019 by Symbolics Pte. Ltd. All rights reserved.
 
 (in-package "SLCT")
 
-;;;;
-;;;; Public API
-;;;;
+;;;
+;;; Public API
+;;;
 
 (defgeneric ref (object &rest subscripts)
   (:documentation "Return the element of OBJECT specified by SUBSCRIPTS."))
@@ -21,9 +21,9 @@
 (defgeneric (setf select) (value object &rest selections)
   (:documentation "Stores VALUES into the locations given by SELECTIONS."))
 
-;;;;
-;;;; Convenience forms for common selections
-;;;;
+;;;
+;;; Convenience forms for common selections
+;;;
 
 (defstruct including
   "Range, including both ends."
@@ -41,7 +41,7 @@
     (canonical-range start (1+ end))))
 
 
-;;;; These forms largely duplicate CANONICAL-RANGE, but RANGE is more usable
+;;; These forms largely duplicate CANONICAL-RANGE, but RANGE is more usable
 (defstruct range
   "Range, including start, excluding end."
   start end)
@@ -84,9 +84,9 @@
 
 
 
-;;;;
-;;;; Implementation for arrays and vectors
-;;;;
+;;;
+;;; Implementation for arrays and vectors
+;;;
 
 (defmethod select ((array array) &rest selections)
   "Return the SELECTIONS in the given ARRAY."
@@ -129,9 +129,9 @@
     (setf (apply #'aref array representations) value)))
 
 
-;;;;
-;;;; Implementation for lists
-;;;;
+;;;
+;;; Implementation for lists
+;;;
 
 (defmethod select ((lst list) &rest selections)
   "Select from LST the subscripts or range specified in SELECTIONS. SELECTIONS must be a VECTOR, LIST or RANGE."
@@ -149,9 +149,9 @@
 	(car values)
 	(nreverse values))))
 
-;;;;
-;;;; Masks
-;;;;
+;;;
+;;; Masks
+;;;
 
 (defgeneric mask (predicate sequence)
   (:documentation "Map sequence into a simple-bit-vector, using 1 when PREDICATE yields true, 0 otherwise.")

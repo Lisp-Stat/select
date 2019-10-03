@@ -1,5 +1,5 @@
 ;;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: CL-USER -*-
-;;;; Copyright (c) 2018 by Steven Nunez <steve.nunez@inference.sg>
+;;;; Copyright (c) 2019 by Symbolics Pte. Ltd. All rights reserved.
 
 (defpackage "SLCT-T"
   (:use "CL"
