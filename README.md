@@ -33,10 +33,10 @@ Documentation for select can be found at the [Symbolics github.io page](https://
 - Renamed 'cons' to 'range'
 - Range now handles (range x x) => nil
 - Selections work identically on sequences; previously differed between lists and vectors
-- Selections may be specified using a list; previously could only be a vector
-- Sequence selections now honor fill-pointer (fixes first issue on [Papp's issue 3](https://github.com/tpapp/cl-slice/issues/3)
+- Vector selections may be specified using a list; previously could only be a vector. See also [issue #2](https://github.com/Symbolics/select/issues/2)
+- Sequence selections now honor fill-pointer (fixes first issue on [Papp's issue 3](https://github.com/tpapp/cl-slice/issues/3))
 
 ### Bug Fixes
-- Range now handles END = (length <sequence>)
+- Range now handles END = (length SEQUENCE)
 - Selecting from a list no longer drops dimension
 
