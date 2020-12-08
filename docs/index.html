@@ -1,158 +1,2289 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- Copyright (C) 2017-2018 Steven Nunez
-
-Permission is granted to make and distribute verbatim copies of this
-manual provided the copyright notice and this permission notice are
-preserved on all copies.
-
-Permission is granted to copy and distribute modified versions of this
-manual under the conditions for verbatim copying, provided also that the
-section entitled "Copying" is included exactly as in the original.
-
-Permission is granted to copy and distribute translations of this manual
-into another language, under the above conditions for modified versions,
-except that this permission notice may be translated as well.
-
- -->
-<!-- Created on December 23, 2017 by texi2html 5.0
-texi2html was written by: 
-            Lionel Cons <Lionel.Cons@cern.ch> (original author)
-            Karl Berry  <karl@freefriends.org>
-            Olaf Bachmann <obachman@mathematik.uni-kl.de>
-            and many others.
-Maintained by: Many creative people.
-Send bugs and suggestions to <texi2html-bug@nongnu.org>
--->
+<!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>The Select Reference Manual</title>
 
-<meta name="description" content="The Select Reference Manual, version 1.0.0.">
+<meta name="description" content="The Select Reference Manual, version 1.0.">
 <meta name="keywords" content="The Select Reference Manual">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 5.0">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="Generator" content="makeinfo">
+<link href="#Top" rel="start" title="Top">
+<link href="#Indexes" rel="index" title="Indexes">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="dir.html#Top" rel="up" title="(dir)">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
+blockquote.indentedblock {margin-right: 0em}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
 div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
-pre.display {font-family: serif}
-pre.format {font-family: serif}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: serif; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: serif; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.nocodebreak {white-space:pre}
-span.nolinebreak {white-space:pre}
-span.roman {font-family:serif; font-weight:normal}
-span.sansserif {font-family:sans-serif; font-weight:normal}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
 ul.no-bullet {list-style: none}
 -->
 </style>
-<link rel="stylesheet" type="text/css" href="https://sirgazil.bitbucket.io/static/docs/css/texinfo/tip/document.css">
 
 
 </head>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-
-<h1>The Select Reference Manual</h1>
-<h3 align="right">DSL for array slices in Common Lisp, version 1.0.0</h3>
-
-<strong>Steven Nunez &lt;<a href="mailto:steve.nunez@inference.sg">steve.nunez@inference.sg</a>&gt;</strong><br>
+<body lang="en">
+<h1 class="settitle" align="center">The Select Reference Manual</h1>
 
 
-<blockquote>
-<p>Copyright &copy; 2017&ndash;2018 Steven Nunez
-</p>
-<p>Permission is granted to make and distribute verbatim copies of this
-manual provided the copyright notice and this permission notice are
-preserved on all copies.
-</p>
-<p>Permission is granted to copy and distribute modified versions of this
-manual under the conditions for verbatim copying, provided also that the
-section entitled &ldquo;Copying&rdquo; is included exactly as in the original.
-</p>
-<p>Permission is granted to copy and distribute translations of this manual
-into another language, under the above conditions for modified versions,
-except that this permission notice may be translated as well.
-</p></blockquote>
-<hr>
-<a name="Top"></a>
-<table class="header" cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[ &lt; ]</td>
-<td valign="middle" align="left">[<a href="select_1.html#Copying" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="select_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="select_8.html#Indexes" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="select_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
-<a name="The-Select-Reference-Manual"></a>
-<h1 class="top">The Select Reference Manual</h1>
-<p>This is the Select Reference Manual, version 1.0.0,
-generated automatically on Sat Dec 23 14:15:04 2017 GMT+8.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span id="SEC_Contents"></span>
+<h2 class="contents-heading">Table of Contents</h2>
+
+<div class="contents">
+
+<ul class="no-bullet">
+  <li><a id="toc-Introduction-1" href="#Introduction">1 Introduction</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Selection-Specifiers" href="#Selection-Specifiers">1.1 Selection Specifiers</a>
+    <ul class="no-bullet">
+      <li><a id="toc-Extensions" href="#Extensions">1.1.1 Extensions</a></li>
+    </ul></li>
+    <li><a id="toc-Select-Semantics" href="#Select-Semantics">1.2 Select Semantics</a></li>
+  </ul></li>
+  <li><a id="toc-Systems-1" href="#Systems">2 Systems</a>
+  <ul class="no-bullet">
+    <li><a id="toc-select" href="#The-select-system">2.1 <tt>select</tt></a></li>
+  </ul></li>
+  <li><a id="toc-Files-1" href="#Files">3 Files</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Lisp" href="#Lisp-files">3.1 Lisp</a>
+    <ul class="no-bullet">
+      <li><a id="toc-select_002easd" href="#The-select_2024asd-file">3.1.1 <tt>select.asd</tt></a></li>
+      <li><a id="toc-select_002fpackage_002elisp" href="#The-select_002fpackage_2024lisp-file">3.1.2 <tt>select/package.lisp</tt></a></li>
+      <li><a id="toc-select_002fselect_002ddev_002elisp" href="#The-select_002fselect_002ddev_2024lisp-file">3.1.3 <tt>select/select-dev.lisp</tt></a></li>
+      <li><a id="toc-select_002fselect_002elisp" href="#The-select_002fselect_2024lisp-file">3.1.4 <tt>select/select.lisp</tt></a></li>
+    </ul></li>
+  </ul></li>
+  <li><a id="toc-Packages-1" href="#Packages">4 Packages</a>
+  <ul class="no-bullet">
+    <li><a id="toc-slct" href="#The-slct-package">4.1 <tt>slct</tt></a></li>
+  </ul></li>
+  <li><a id="toc-Definitions-1" href="#Definitions">5 Definitions</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Exported-definitions-1" href="#Exported-definitions">5.1 Exported definitions</a>
+    <ul class="no-bullet">
+      <li><a id="toc-Functions" href="#Exported-functions">5.1.1 Functions</a></li>
+      <li><a id="toc-Generic-functions" href="#Exported-generic-functions">5.1.2 Generic functions</a></li>
+      <li><a id="toc-Structures" href="#Exported-structures">5.1.3 Structures</a></li>
+    </ul></li>
+    <li><a id="toc-Internal-definitions-1" href="#Internal-definitions">5.2 Internal definitions</a>
+    <ul class="no-bullet">
+      <li><a id="toc-Macros" href="#Internal-macros">5.2.1 Macros</a></li>
+      <li><a id="toc-Functions-1" href="#Internal-functions">5.2.2 Functions</a></li>
+      <li><a id="toc-Generic-functions-1" href="#Internal-generic-functions">5.2.3 Generic functions</a></li>
+      <li><a id="toc-Structures-1" href="#Internal-structures">5.2.4 Structures</a></li>
+    </ul></li>
+  </ul></li>
+  <li><a id="toc-Conclusion-1" href="#Conclusion">6 Conclusion</a></li>
+  <li><a id="toc-Indexes-1" href="#Indexes">Appendix A Indexes</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Concepts" href="#Concept-index" rel="index">A.1 Concepts</a></li>
+    <li><a id="toc-Functions-2" href="#Function-index" rel="index">A.2 Functions</a></li>
+    <li><a id="toc-Variables" href="#Variable-index" rel="index">A.3 Variables</a></li>
+    <li><a id="toc-Data-types" href="#Data-type-index" rel="index">A.4 Data types</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+<span id="Top"></span><div class="header">
+<p>
+Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a>, Previous: <a href="dir.html#Top" accesskey="p" rel="prev">(dir)</a>, Up: <a href="dir.html#Top" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="The-Select-Reference-Manual"></span><h1 class="top">The Select Reference Manual</h1>
+<p>This is the Select Reference Manual, version 1.0.
 </p>
 <table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="select_1.html#Copying">Copying</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> Boost Software License - Version 1.0
+<tr><td align="left" valign="top">&bull; <a href="#Introduction" accesskey="1">Introduction</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">What Select is all about
 </td></tr>
-<tr><td align="left" valign="top"><a href="select_2.html#Introduction">1 Introduction</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> What Select is all about
+<tr><td align="left" valign="top">&bull; <a href="#Systems" accesskey="2">Systems</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The systems documentation
 </td></tr>
-<tr><td align="left" valign="top"><a href="select_3.html#Systems">2 Systems</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> The systems documentation
+<tr><td align="left" valign="top">&bull; <a href="#Files" accesskey="3">Files</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The files documentation
 </td></tr>
-<tr><td align="left" valign="top"><a href="select_4.html#Files">3 Files</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> The files documentation
+<tr><td align="left" valign="top">&bull; <a href="#Packages" accesskey="4">Packages</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The packages documentation
 </td></tr>
-<tr><td align="left" valign="top"><a href="select_5.html#Packages">4 Packages</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> The packages documentation
+<tr><td align="left" valign="top">&bull; <a href="#Definitions" accesskey="5">Definitions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The symbols documentation
 </td></tr>
-<tr><td align="left" valign="top"><a href="select_6.html#Definitions">5 Definitions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> The symbols documentation
+<tr><td align="left" valign="top">&bull; <a href="#Conclusion" accesskey="6">Conclusion</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Time to go
 </td></tr>
-<tr><td align="left" valign="top"><a href="select_7.html#Change-Log">6 Change Log</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> Version release notes
-</td></tr>
-<tr><td align="left" valign="top"><a href="select_8.html#Indexes">Appendix A Indexes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> Concepts, functions, variables and data types
+<tr><td align="left" valign="top">&bull; <a href="#Indexes" accesskey="7">Indexes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Concepts, functions, variables and data types
 </td></tr>
 </table>
 
-<blockquote>
-<p>Copyright &copy; 2017&ndash;2018 Steven Nunez
+
+
+<hr>
+<span id="Introduction"></span><div class="header">
+<p>
+Next: <a href="#Systems" accesskey="n" rel="next">Systems</a>, Previous: <a href="#Top" accesskey="p" rel="prev">Top</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Introduction-1"></span><h2 class="chapter">1 Introduction</h2>
+
+<p><tt>Select</tt> is a library for taking slices from array-like objects. The
+most frequently used form is:
+</p><div class="lisp">
+<pre class="lisp">(select object selection1 selection2 ...)
+</pre></div>
+<p>where each <i>selection</i> specifies a set of subscripts along the
+corresponding axis. The selection specifications are found
+below.
 </p>
-<p>Permission is granted to make and distribute verbatim copies of this
-manual provided the copyright notice and this permission notice are
-preserved on all copies.
+<span id="Selection-Specifiers"></span><h3 class="section">1.1 Selection Specifiers</h3>
+<span id="Selecting-Single-Values"></span><h3 class="heading">Selecting Single Values</h3>
+<p>A non-negative integer selects the corresponding index, while a
+negative integer selects an index counting backwards from the last
+index. For example:
+</p><div class="lisp">
+<pre class="lisp">(select #(0 1 2 3) 1)                  ; =&gt; 1
+(select #(0 1 2 3) -2)                 ; =&gt; 2
+</pre></div>
+<p>These are called <i>singleton</i> slices. Each singleton slice drops the
+dimension: vectors become atoms, matrices become vectors, <i>etc.</i>.
 </p>
-<p>Permission is granted to copy and distribute modified versions of this
-manual under the conditions for verbatim copying, provided also that the
-section entitled &ldquo;Copying&rdquo; is included exactly as in the original.
+<span id="Selecting-Ranges"></span><h3 class="heading">Selecting Ranges</h3>
+<p><code>(range start end)</code> selects subscripts <i>i</i> where start &lt;= i &lt;
+end. When end is nil, the last index is included (cf. subseq). Each
+boundary is resolved according to the other rules if applicable, so
+you can use negative integers:
+</p><div class="lisp">
+<pre class="lisp">(select #(0 1 2 3) (range 1 3))         ; =&gt; #(1 2)
+(select #(0 1 2 3) (range 1 -1))        ; =&gt; #(1 2)
+</pre></div>
+
+<span id="Selecting-All-Subscripts-of-a-Dimension"></span><h3 class="heading">Selecting All Subscripts of a Dimension</h3>
+<p><code>t</code> selects all subscripts:
+</p><div class="lisp">
+<pre class="lisp">(select #2A((0 1 2)
+            (3 4 5))
+         t 1)                           ; =&gt; #(1 4)
+</pre></div>
+
+<span id="Selecting-with-a-Sequence"></span><h3 class="heading">Selecting with a Sequence</h3>
+<p>Sequences can be used to make specific selections from the object. For
+example:
+</p><div class="lisp">
+<pre class="lisp">(select #(0 1 2 3 4 5 6 7 8 9)
+	(vector (range 1 3) 6 (range -2 -1))) ; =&gt; #(1 2 3 6 8 9)
+(select #(0 1 2) '(2 2 1 0 0))                ; =&gt; #(2 2 1 0 0)
+</pre></div>
+
+<span id="Using-Bit-Vectors-as-a-Mask"></span><h3 class="heading">Using Bit Vectors as a Mask</h3>
+<p>Bit vectors can be used to select elements of arrays and sequences as
+well:
+</p><div class="lisp">
+<pre class="lisp">(select #(0 1 2 3 4) #*00110)          ; =&gt; #(2 3)
+</pre></div>
+
+<span id="Extensions"></span><h4 class="subsection">1.1.1 Extensions</h4>
+
+<p>Section 1.1 describes the core functionality. The semantics can be
+extended, as you will see in the next section. The extensions in this
+section are provided by the library and prove useful in
+practice. Their implementation provides good examples of extending the
+library.
 </p>
-<p>Permission is granted to copy and distribute translations of this manual
-into another language, under the above conditions for modified versions,
-except that this permission notice may be translated as well.
-</p></blockquote>
+<p><code>including</code> is convenient if you want the selection to include
+the end of the range:
+</p><div class="lisp">
+<pre class="lisp">(select #(0 1 2 3) (including 1 2))
+                          ; =&gt; #(1 2), cf. (select ... (range 1 3))
+</pre></div>
+
+<p><code>nodrop</code> is useful if you do not want to drop dimensions:
+</p><div class="lisp">
+<pre class="lisp">(select #(0 1 2 3) (nodrop 2))
+                          ; =&gt; #(2), cf. (select ... (range 2 3))
+</pre></div>
+
+<p><code>head</code> and <code>tail</code> do the obvious:
+</p><div class="lisp">
+<pre class="lisp">(select #(0 1 2 3) (head 2))            ; =&gt; #(0 1)
+(select #(0 1 2 3) (tail 2))            ; =&gt; #(2 3)
+</pre></div>
+
+<p>All of these are trivial to implement. If there is something you are
+missing, you can easily extend <code>select</code>. Pull request are welcome.
+</p>
+<p><code>ref</code> is a version of <code>select</code> that always returns a single
+element, so it can only be used with singleton slices.
+</p>
+<span id="Select-Semantics"></span><h3 class="section">1.2 Select Semantics</h3>
+<p>Arguments of <code>select</code>, except the first one, are meant to be
+resolved using <code>canonical-representation</code>, in the
+<code>select-dev</code> package. If you want to extend <code>select</code>, you
+should define methods for <code>canonical-representation</code>. See the
+source code for the best examples. Below is a simple example that
+extends the semantics with ordinal numbers.
+</p><div class="lisp">
+<pre class="lisp">(defmacro define-ordinal-selection (number)
+  (check-type number (integer 0))
+  `(defmethod select-dev:canonical-representation
+       ((axis integer)
+	(slice (eql ',(intern (format nil &quot;~:@(~:r~)&quot; number)))))
+     (assert (&lt; ,number axis))
+     (select-dev:canonical-singleton ,number)))
+
+(define-ordinal-selection 1)
+(define-ordinal-selection 2)
+(define-ordinal-selection 3)
+
+(select #(0 1 2 3 4 5) (range 'first 'third)) ; =&gt; #(1 2)
+</pre></div>
+<p>Note the following:
+</p><ul>
+<li> The value returned by <code>canonical-representation</code> needs to be
+constructed using <code>canonical-singleton</code>, <code>canonical-range</code>,
+or <code>canonical-sequence</code>. You should not use the internal
+representation directly as it is subject to change.
+</li><li> You can assume that <code>axis</code> is an integer: this is the default. An
+object may define a more complex mapping (such as, for example, named
+rows &amp; columns), but unless a method specialized to that is found,
+<code>canonical-representation</code> will just query its dimension (with
+<code>axis-dimension</code>) and try to find a method that works on
+integers.
+</li><li> You need to make sure that the subscript is valid, hence the assertion.
+</li></ul>
 
 
 
 <hr>
-<table class="header" cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[ &lt; ]</td>
-<td valign="middle" align="left">[<a href="select_1.html#Copying" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="select_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="select_8.html#Indexes" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="select_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
+<span id="Systems"></span><div class="header">
 <p>
- <font size="-1">
-  This document was generated on <i>December 23, 2017</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
- </font>
- <br>
-
+Next: <a href="#Files" accesskey="n" rel="next">Files</a>, Previous: <a href="#Introduction" accesskey="p" rel="prev">Introduction</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Systems-1"></span><h2 class="chapter">2 Systems</h2>
+<p>The main system appears first, followed by any subsystem dependency.
 </p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#The-select-system" accesskey="1">The select system</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr>
+<span id="The-select-system"></span><div class="header">
+<p>
+Previous: <a href="#Systems" accesskey="p" rel="prev">Systems</a>, Up: <a href="#Systems" accesskey="u" rel="up">Systems</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="select"></span><h3 class="section">2.1 <tt>select</tt></h3>
+<span id="go-to-the-select-system"></span><span id="index-select-3"></span>
+<span id="index-System_002c-select"></span>
+<dl compact="compact">
+<dt><strong>Author</strong></dt>
+<dd><p>Steve Nunez
+</p></dd>
+<dt><strong>Home Page</strong></dt>
+<dd><p><a href="https://symbolics.github.io/select/">https://symbolics.github.io/select/</a>
+</p></dd>
+<dt><strong>Source Control</strong></dt>
+<dd><p><tt>(:git &quot;git://github.com/symbolics/select&quot;)</tt>
+</p></dd>
+<dt><strong>Bug Tracker</strong></dt>
+<dd><p><a href="https://github.com/Symbolics/select/issues/">https://github.com/Symbolics/select/issues/</a>
+</p></dd>
+<dt><strong>License</strong></dt>
+<dd><p>MS-PL
+</p></dd>
+<dt><strong>Description</strong></dt>
+<dd><p>DSL for array slices.
+</p></dd>
+<dt><strong>Long Description</strong></dt>
+<dd>
+<p>Select is a facility for selecting portions of sequences or arrays. It<br>
+provides:<br>
+</p>
+<p>An API for taking slices (elements selected by the Cartesian product of vectors of subscripts for each axis) of array-like objects. The most important function is &lsquo;select&lsquo;. Unless you want to define additional methods for &lsquo;select&lsquo;, this is pretty much all you need from this library. See the documentation at https://symbolics.github.io/select/ for a tutorial.
+</p>
+<p>An extensible DSL for selecting a subset of valid subscripts. This is useful if, for example, you want to resolve column names in a data frame in your implementation of slice.<br>
+</p>
+<p>A set of utility functions for traversing slices in array-like objects.
+</p></dd>
+<dt><strong>Version</strong></dt>
+<dd><p>1.0
+</p></dd>
+<dt><strong>Dependencies</strong></dt>
+<dd><ul>
+<li> <tt>alexandria</tt>
+</li><li> <tt>anaphora</tt>
+</li><li> <tt>let-plus</tt>
+</li></ul>
+</dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_2024asd-file"><tt>select.asd</tt></a> (file)
+</p></dd>
+<dt><strong>Directory</strong></dt>
+<dd><p><a href="file://s:/src/select/"><tt>s:/src/select/</tt></a>
+</p></dd>
+<dt><strong>Components</strong></dt>
+<dd><ul>
+<li> <a href="#go-to-the-select_002fpackage_2024lisp-file"><tt>package.lisp</tt></a> (file)
+</li><li> <a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</li><li> <a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</li></ul>
+</dd>
+</dl>
+
+
+
+<hr>
+<span id="Files"></span><div class="header">
+<p>
+Next: <a href="#Packages" accesskey="n" rel="next">Packages</a>, Previous: <a href="#Systems" accesskey="p" rel="prev">Systems</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Files-1"></span><h2 class="chapter">3 Files</h2>
+<p>Files are sorted by type and then listed depth-first from the systems
+components trees.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#Lisp-files" accesskey="1">Lisp files</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr>
+<span id="Lisp-files"></span><div class="header">
+<p>
+Previous: <a href="#Files" accesskey="p" rel="prev">Files</a>, Up: <a href="#Files" accesskey="u" rel="up">Files</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Lisp"></span><h3 class="section">3.1 Lisp</h3>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#The-select_2024asd-file" accesskey="1">The select.asd file</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#The-select_002fpackage_2024lisp-file" accesskey="2">The select/package.lisp file</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#The-select_002fselect_002ddev_2024lisp-file" accesskey="3">The select/select-dev.lisp file</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#The-select_002fselect_2024lisp-file" accesskey="4">The select/select.lisp file</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<span id="The-select_2024asd-file"></span><div class="header">
+<p>
+Next: <a href="#The-select_002fpackage_2024lisp-file" accesskey="n" rel="next">The select/package․lisp file</a>, Previous: <a href="#Lisp-files" accesskey="p" rel="prev">Lisp files</a>, Up: <a href="#Lisp-files" accesskey="u" rel="up">Lisp files</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="select_002easd"></span><h4 class="subsection">3.1.1 <tt>select.asd</tt></h4>
+<span id="go-to-the-select_2024asd-file"></span><span id="index-select_002easd"></span>
+<span id="index-Lisp-File_002c-select_002easd"></span>
+<span id="index-File_002c-Lisp_002c-select_002easd"></span>
+<dl compact="compact">
+<dt><strong>Location</strong></dt>
+<dd><p><a href="file://s:/src/select/select.asd"><tt>select.asd</tt></a>
+</p></dd>
+<dt><strong>Systems</strong></dt>
+<dd><p><a href="#go-to-the-select-system"><tt>select</tt></a> (system)
+</p></dd>
+</dl>
+
+<hr>
+<span id="The-select_002fpackage_2024lisp-file"></span><div class="header">
+<p>
+Next: <a href="#The-select_002fselect_002ddev_2024lisp-file" accesskey="n" rel="next">The select/select-dev․lisp file</a>, Previous: <a href="#The-select_2024asd-file" accesskey="p" rel="prev">The select․asd file</a>, Up: <a href="#Lisp-files" accesskey="u" rel="up">Lisp files</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="select_002fpackage_002elisp"></span><h4 class="subsection">3.1.2 <tt>select/package.lisp</tt></h4>
+<span id="go-to-the-select_002fpackage_2024lisp-file"></span><span id="index-select_002fpackage_002elisp"></span>
+<span id="index-Lisp-File_002c-select_002fpackage_002elisp"></span>
+<span id="index-File_002c-Lisp_002c-select_002fpackage_002elisp"></span>
+<dl compact="compact">
+<dt><strong>Parent</strong></dt>
+<dd><p><a href="#go-to-the-select-system"><tt>select</tt></a> (system)
+</p></dd>
+<dt><strong>Location</strong></dt>
+<dd><p><a href="file://s:/src/select/package.lisp"><tt>package.lisp</tt></a>
+</p></dd>
+<dt><strong>Packages</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+</dl>
+
+<hr>
+<span id="The-select_002fselect_002ddev_2024lisp-file"></span><div class="header">
+<p>
+Next: <a href="#The-select_002fselect_2024lisp-file" accesskey="n" rel="next">The select/select․lisp file</a>, Previous: <a href="#The-select_002fpackage_2024lisp-file" accesskey="p" rel="prev">The select/package․lisp file</a>, Up: <a href="#Lisp-files" accesskey="u" rel="up">Lisp files</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="select_002fselect_002ddev_002elisp"></span><h4 class="subsection">3.1.3 <tt>select/select-dev.lisp</tt></h4>
+<span id="go-to-the-select_002fselect_002ddev_2024lisp-file"></span><span id="index-select_002fselect_002ddev_002elisp"></span>
+<span id="index-Lisp-File_002c-select_002fselect_002ddev_002elisp"></span>
+<span id="index-File_002c-Lisp_002c-select_002fselect_002ddev_002elisp"></span>
+<dl compact="compact">
+<dt><strong>Dependency</strong></dt>
+<dd><p><a href="#go-to-the-select_002fpackage_2024lisp-file"><tt>package.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Parent</strong></dt>
+<dd><p><a href="#go-to-the-select-system"><tt>select</tt></a> (system)
+</p></dd>
+<dt><strong>Location</strong></dt>
+<dd><p><a href="file://s:/src/select/select-dev.lisp"><tt>select-dev.lisp</tt></a>
+</p></dd>
+<dt><strong>Exported Definitions</strong></dt>
+<dd><ul>
+<li> <a href="#go-to-the-SLCT_2236_2236SELECT_002dRESERVED_002dSYMBOL_003f-function"><tt>select-reserved-symbol?</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236SINGLETON_002dREPRESENTATION_003f-function"><tt>singleton-representation?</tt></a> (function)
+</li></ul>
+</dd>
+<dt><strong>Internal Definitions</strong></dt>
+<dd><ul>
+<li> <a href="#go-to-the-SLCT_2236_2236ALL_002dSINGLETON_002dREPRESENTATIONS_003f-function"><tt>all-singleton-representations?</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236AXIS_002dDIMENSION-generic-function"><tt>axis-dimension</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dRANGE-function"><tt>canonical-range</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dRANGE-structure"><tt>canonical-range</tt></a> (structure)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dRANGE_002dEND-function"><tt>canonical-range-end</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-CANONICAL_002dRANGE_002dEND_2769-function"><tt>(setf canonical-range-end)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dRANGE_002dP-function"><tt>canonical-range-p</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dRANGE_002dSTART-function"><tt>canonical-range-start</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-CANONICAL_002dRANGE_002dSTART_2769-function"><tt>(setf canonical-range-start)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-generic-function"><tt>canonical-representation</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236T-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236CANONICAL_002dRANGE-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236CANONICAL_002dSEQUENCE-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236INTEGER-COMMON_002dLISP_2236_2236NULL-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236INTEGER-COMMON_002dLISP_2236_2236INTEGER-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236SEQUENCE-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236INTEGER-_2768eql-COMMON_002dLISP_2236_2236T_2769-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236BIT_002dVECTOR-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATIONS-function"><tt>canonical-representations</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dSEQUENCE-function"><tt>canonical-sequence</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dSEQUENCE-structure"><tt>canonical-sequence</tt></a> (structure)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dSEQUENCE_002dP-function"><tt>canonical-sequence-p</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dSEQUENCE_002dVECTOR-function"><tt>canonical-sequence-vector</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-CANONICAL_002dSEQUENCE_002dVECTOR_2769-function"><tt>(setf canonical-sequence-vector)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dSINGLETON-function"><tt>canonical-singleton</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236COLUMN_002dMAJOR_002dSETUP-function"><tt>column-major-setup</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236COPY_002dCANONICAL_002dRANGE-function"><tt>copy-canonical-range</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236COPY_002dCANONICAL_002dSEQUENCE-function"><tt>copy-canonical-sequence</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236MAKE_002dCANONICAL_002dRANGE-function"><tt>make-canonical-range</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236MAKE_002dCANONICAL_002dSEQUENCE-function"><tt>make-canonical-sequence</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236REPRESENTATION_002dDIMENSION-function"><tt>representation-dimension</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236REPRESENTATION_002dDIMENSIONS-function"><tt>representation-dimensions</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236REPRESENTATION_002dINITIAL_002dVALUE-function"><tt>representation-initial-value</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236REPRESENTATION_002dITERATOR-function"><tt>representation-iterator</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236ROW_002dMAJOR_002dSETUP-function"><tt>row-major-setup</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236TRAVERSE_002dREPRESENTATIONS-macro"><tt>traverse-representations</tt></a> (macro)
+</li></ul>
+</dd>
+</dl>
+
+<hr>
+<span id="The-select_002fselect_2024lisp-file"></span><div class="header">
+<p>
+Previous: <a href="#The-select_002fselect_002ddev_2024lisp-file" accesskey="p" rel="prev">The select/select-dev․lisp file</a>, Up: <a href="#Lisp-files" accesskey="u" rel="up">Lisp files</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="select_002fselect_002elisp"></span><h4 class="subsection">3.1.4 <tt>select/select.lisp</tt></h4>
+<span id="go-to-the-select_002fselect_2024lisp-file"></span><span id="index-select_002fselect_002elisp"></span>
+<span id="index-Lisp-File_002c-select_002fselect_002elisp"></span>
+<span id="index-File_002c-Lisp_002c-select_002fselect_002elisp"></span>
+<dl compact="compact">
+<dt><strong>Dependency</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Parent</strong></dt>
+<dd><p><a href="#go-to-the-select-system"><tt>select</tt></a> (system)
+</p></dd>
+<dt><strong>Location</strong></dt>
+<dd><p><a href="file://s:/src/select/select.lisp"><tt>select.lisp</tt></a>
+</p></dd>
+<dt><strong>Exported Definitions</strong></dt>
+<dd><ul>
+<li> <a href="#go-to-the-SLCT_2236_2236HEAD-function"><tt>head</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236INCLUDING-function"><tt>including</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236INCLUDING-structure"><tt>including</tt></a> (structure)
+</li><li> <a href="#go-to-the-SLCT_2236_2236MASK-generic-function"><tt>mask</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236MASK-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236SEQUENCE-method"><tt>mask</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236NODROP-function"><tt>nodrop</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236NODROP-structure"><tt>nodrop</tt></a> (structure)
+</li><li> <a href="#go-to-the-SLCT_2236_2236RANGE-function"><tt>range</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236RANGE-structure"><tt>range</tt></a> (structure)
+</li><li> <a href="#go-to-the-SLCT_2236_2236REF-generic-function"><tt>ref</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236REF-COMMON_002dLISP_2236_2236ARRAY-method"><tt>ref</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-REF_2769-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236ARRAY-method"><tt>(setf ref)</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-REF_2769-generic-function"><tt>(setf ref)</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236SELECT-generic-function"><tt>select</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236SELECT-COMMON_002dLISP_2236_2236LIST-method"><tt>select</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236SELECT-COMMON_002dLISP_2236_2236ARRAY-method"><tt>select</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-SELECT_2769-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236ARRAY-method"><tt>(setf select)</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-SELECT_2769-generic-function"><tt>(setf select)</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236TAIL-function"><tt>tail</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236WHICH-generic-function"><tt>which</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236WHICH-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236SEQUENCE-method"><tt>which</tt></a> (method)
+</li></ul>
+</dd>
+<dt><strong>Internal Definitions</strong></dt>
+<dd><ul>
+<li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236NODROP-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236RANGE-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236INCLUDING-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236COPY_002dINCLUDING-function"><tt>copy-including</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236COPY_002dNODROP-function"><tt>copy-nodrop</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236COPY_002dRANGE-function"><tt>copy-range</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236INCLUDING_002dEND-function"><tt>including-end</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-INCLUDING_002dEND_2769-function"><tt>(setf including-end)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236INCLUDING_002dP-function"><tt>including-p</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236INCLUDING_002dSTART-function"><tt>including-start</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-INCLUDING_002dSTART_2769-function"><tt>(setf including-start)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236MAKE_002dINCLUDING-function"><tt>make-including</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236MAKE_002dNODROP-function"><tt>make-nodrop</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236MAKE_002dRANGE-function"><tt>make-range</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236NODROP_002dINDEX-function"><tt>nodrop-index</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-NODROP_002dINDEX_2769-function"><tt>(setf nodrop-index)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236NODROP_002dP-function"><tt>nodrop-p</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236RANGE_002dEND-function"><tt>range-end</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-RANGE_002dEND_2769-function"><tt>(setf range-end)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236RANGE_002dP-function"><tt>range-p</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236RANGE_002dSTART-function"><tt>range-start</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-RANGE_002dSTART_2769-function"><tt>(setf range-start)</tt></a> (function)
+</li></ul>
+</dd>
+</dl>
+
+
+
+<hr>
+<span id="Packages"></span><div class="header">
+<p>
+Next: <a href="#Definitions" accesskey="n" rel="next">Definitions</a>, Previous: <a href="#Files" accesskey="p" rel="prev">Files</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Packages-1"></span><h2 class="chapter">4 Packages</h2>
+<p>Packages are listed by definition order.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#The-slct-package" accesskey="1">The slct package</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr>
+<span id="The-slct-package"></span><div class="header">
+<p>
+Previous: <a href="#Packages" accesskey="p" rel="prev">Packages</a>, Up: <a href="#Packages" accesskey="u" rel="up">Packages</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="slct"></span><h3 class="section">4.1 <tt>slct</tt></h3>
+<span id="go-to-the-SLCT-package"></span><span id="index-slct"></span>
+<span id="index-Package_002c-slct"></span>
+<p>SELECT is a facility for selecting portions of sequences or arrays.
+</p><dl compact="compact">
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fpackage_2024lisp-file"><tt>package.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Nickname</strong></dt>
+<dd><p><tt>select</tt>
+</p></dd>
+<dt><strong>Use List</strong></dt>
+<dd><ul>
+<li> <tt>let-plus</tt>
+</li><li> <tt>anaphora</tt>
+</li><li> <tt>alexandria.1.0.0</tt>
+</li><li> <tt>common-lisp</tt>
+</li></ul>
+</dd>
+<dt><strong>Exported Definitions</strong></dt>
+<dd><ul>
+<li> <a href="#go-to-the-SLCT_2236_2236HEAD-function"><tt>head</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236INCLUDING-function"><tt>including</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236INCLUDING-structure"><tt>including</tt></a> (structure)
+</li><li> <a href="#go-to-the-SLCT_2236_2236MASK-generic-function"><tt>mask</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236MASK-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236SEQUENCE-method"><tt>mask</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236NODROP-function"><tt>nodrop</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236NODROP-structure"><tt>nodrop</tt></a> (structure)
+</li><li> <a href="#go-to-the-SLCT_2236_2236RANGE-function"><tt>range</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236RANGE-structure"><tt>range</tt></a> (structure)
+</li><li> <a href="#go-to-the-SLCT_2236_2236REF-generic-function"><tt>ref</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236REF-COMMON_002dLISP_2236_2236ARRAY-method"><tt>ref</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-REF_2769-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236ARRAY-method"><tt>(setf ref)</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-REF_2769-generic-function"><tt>(setf ref)</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236SELECT-generic-function"><tt>select</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236SELECT-COMMON_002dLISP_2236_2236LIST-method"><tt>select</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236SELECT-COMMON_002dLISP_2236_2236ARRAY-method"><tt>select</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-SELECT_2769-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236ARRAY-method"><tt>(setf select)</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-SELECT_2769-generic-function"><tt>(setf select)</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236SELECT_002dRESERVED_002dSYMBOL_003f-function"><tt>select-reserved-symbol?</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236SINGLETON_002dREPRESENTATION_003f-function"><tt>singleton-representation?</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236TAIL-function"><tt>tail</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236WHICH-generic-function"><tt>which</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236WHICH-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236SEQUENCE-method"><tt>which</tt></a> (method)
+</li></ul>
+</dd>
+<dt><strong>Internal Definitions</strong></dt>
+<dd><ul>
+<li> <a href="#go-to-the-SLCT_2236_2236ALL_002dSINGLETON_002dREPRESENTATIONS_003f-function"><tt>all-singleton-representations?</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236AXIS_002dDIMENSION-generic-function"><tt>axis-dimension</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dRANGE-function"><tt>canonical-range</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dRANGE-structure"><tt>canonical-range</tt></a> (structure)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dRANGE_002dEND-function"><tt>canonical-range-end</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-CANONICAL_002dRANGE_002dEND_2769-function"><tt>(setf canonical-range-end)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dRANGE_002dP-function"><tt>canonical-range-p</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dRANGE_002dSTART-function"><tt>canonical-range-start</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-CANONICAL_002dRANGE_002dSTART_2769-function"><tt>(setf canonical-range-start)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-generic-function"><tt>canonical-representation</tt></a> (generic function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236NODROP-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236RANGE-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236INCLUDING-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236T-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236CANONICAL_002dRANGE-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236CANONICAL_002dSEQUENCE-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236INTEGER-COMMON_002dLISP_2236_2236NULL-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236INTEGER-COMMON_002dLISP_2236_2236INTEGER-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236SEQUENCE-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236INTEGER-_2768eql-COMMON_002dLISP_2236_2236T_2769-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236BIT_002dVECTOR-method"><tt>canonical-representation</tt></a> (method)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATIONS-function"><tt>canonical-representations</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dSEQUENCE-function"><tt>canonical-sequence</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dSEQUENCE-structure"><tt>canonical-sequence</tt></a> (structure)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dSEQUENCE_002dP-function"><tt>canonical-sequence-p</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dSEQUENCE_002dVECTOR-function"><tt>canonical-sequence-vector</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-CANONICAL_002dSEQUENCE_002dVECTOR_2769-function"><tt>(setf canonical-sequence-vector)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236CANONICAL_002dSINGLETON-function"><tt>canonical-singleton</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236COLUMN_002dMAJOR_002dSETUP-function"><tt>column-major-setup</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236COPY_002dCANONICAL_002dRANGE-function"><tt>copy-canonical-range</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236COPY_002dCANONICAL_002dSEQUENCE-function"><tt>copy-canonical-sequence</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236COPY_002dINCLUDING-function"><tt>copy-including</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236COPY_002dNODROP-function"><tt>copy-nodrop</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236COPY_002dRANGE-function"><tt>copy-range</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236INCLUDING_002dEND-function"><tt>including-end</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-INCLUDING_002dEND_2769-function"><tt>(setf including-end)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236INCLUDING_002dP-function"><tt>including-p</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236INCLUDING_002dSTART-function"><tt>including-start</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-INCLUDING_002dSTART_2769-function"><tt>(setf including-start)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236MAKE_002dCANONICAL_002dRANGE-function"><tt>make-canonical-range</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236MAKE_002dCANONICAL_002dSEQUENCE-function"><tt>make-canonical-sequence</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236MAKE_002dINCLUDING-function"><tt>make-including</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236MAKE_002dNODROP-function"><tt>make-nodrop</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236MAKE_002dRANGE-function"><tt>make-range</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236NODROP_002dINDEX-function"><tt>nodrop-index</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-NODROP_002dINDEX_2769-function"><tt>(setf nodrop-index)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236NODROP_002dP-function"><tt>nodrop-p</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236RANGE_002dEND-function"><tt>range-end</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-RANGE_002dEND_2769-function"><tt>(setf range-end)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236RANGE_002dP-function"><tt>range-p</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236RANGE_002dSTART-function"><tt>range-start</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236_2768SETF-RANGE_002dSTART_2769-function"><tt>(setf range-start)</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236REPRESENTATION_002dDIMENSION-function"><tt>representation-dimension</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236REPRESENTATION_002dDIMENSIONS-function"><tt>representation-dimensions</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236REPRESENTATION_002dINITIAL_002dVALUE-function"><tt>representation-initial-value</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236REPRESENTATION_002dITERATOR-function"><tt>representation-iterator</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236ROW_002dMAJOR_002dSETUP-function"><tt>row-major-setup</tt></a> (function)
+</li><li> <a href="#go-to-the-SLCT_2236_2236TRAVERSE_002dREPRESENTATIONS-macro"><tt>traverse-representations</tt></a> (macro)
+</li></ul>
+</dd>
+</dl>
+
+
+
+<hr>
+<span id="Definitions"></span><div class="header">
+<p>
+Next: <a href="#Conclusion" accesskey="n" rel="next">Conclusion</a>, Previous: <a href="#Packages" accesskey="p" rel="prev">Packages</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Definitions-1"></span><h2 class="chapter">5 Definitions</h2>
+<p>Definitions are sorted by export status, category, package, and then by
+lexicographic order.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#Exported-definitions" accesskey="1">Exported definitions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Internal-definitions" accesskey="2">Internal definitions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr>
+<span id="Exported-definitions"></span><div class="header">
+<p>
+Next: <a href="#Internal-definitions" accesskey="n" rel="next">Internal definitions</a>, Previous: <a href="#Definitions" accesskey="p" rel="prev">Definitions</a>, Up: <a href="#Definitions" accesskey="u" rel="up">Definitions</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Exported-definitions-1"></span><h3 class="section">5.1 Exported definitions</h3>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#Exported-functions" accesskey="1">Exported functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Exported-generic-functions" accesskey="2">Exported generic functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Exported-structures" accesskey="3">Exported structures</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<span id="Exported-functions"></span><div class="header">
+<p>
+Next: <a href="#Exported-generic-functions" accesskey="n" rel="next">Exported generic functions</a>, Previous: <a href="#Exported-definitions" accesskey="p" rel="prev">Exported definitions</a>, Up: <a href="#Exported-definitions" accesskey="u" rel="up">Exported definitions</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Functions"></span><h4 class="subsection">5.1.1 Functions</h4>
+<dl>
+<dt id="index-head">Function: <strong>head</strong> <em>COUNT</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236HEAD-function"></span><span id="index-Function_002c-head"></span>
+<p>First COUNT indexes.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-including">Function: <strong>including</strong> <em>START END</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236INCLUDING-function"></span><span id="index-Function_002c-including"></span>
+<p>Range, including both ends.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-nodrop">Function: <strong>nodrop</strong> <em>INDEX</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236NODROP-function"></span><span id="index-Function_002c-nodrop"></span>
+<p>Select a single index, but do not drop a dimension.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-range">Function: <strong>range</strong> <em>START END</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236RANGE-function"></span><span id="index-Function_002c-range"></span>
+<p>Range, including START, excluding END.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-select_002dreserved_002dsymbol_003f">Function: <strong>select-reserved-symbol?</strong> <em>SYMBOL</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236SELECT_002dRESERVED_002dSYMBOL_003f-function"></span><span id="index-Function_002c-select_002dreserved_002dsymbol_003f"></span>
+<p>Test if SYMBOL has special semantics for SELECTION.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-singleton_002drepresentation_003f">Function: <strong>singleton-representation?</strong> <em>REPRESENTATION</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236SINGLETON_002dREPRESENTATION_003f-function"></span><span id="index-Function_002c-singleton_002drepresentation_003f"></span>
+<p>Test if a canonical REPRESENTATION is a singleton.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-tail">Function: <strong>tail</strong> <em>COUNT</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236TAIL-function"></span><span id="index-Function_002c-tail"></span>
+<p>Last COUNT indexes.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+
+<hr>
+<span id="Exported-generic-functions"></span><div class="header">
+<p>
+Next: <a href="#Exported-structures" accesskey="n" rel="next">Exported structures</a>, Previous: <a href="#Exported-functions" accesskey="p" rel="prev">Exported functions</a>, Up: <a href="#Exported-definitions" accesskey="u" rel="up">Exported definitions</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Generic-functions"></span><h4 class="subsection">5.1.2 Generic functions</h4>
+<dl>
+<dt id="index-mask">Generic Function: <strong>mask</strong> <em>PREDICATE SEQUENCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236MASK-generic-function"></span><span id="index-Generic-Function_002c-mask"></span>
+<p>Map sequence into a simple-bit-vector, using 1 when PREDICATE yields true, 0 otherwise.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Methods</strong></dt>
+<dd><dl>
+<dt id="index-mask-1">Method: <strong>mask</strong> <em>PREDICATE (SEQUENCE <tt>sequence</tt>)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236MASK-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236SEQUENCE-method"></span><span id="index-Method_002c-mask"></span>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-ref">Generic Function: <strong>ref</strong> <em>OBJECT &amp;rest SUBSCRIPTS</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236REF-generic-function"></span><span id="index-Generic-Function_002c-ref"></span>
+<p>Return the element of OBJECT specified by SUBSCRIPTS.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Writer</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236_2768SETF-REF_2769-generic-function"><tt>(setf ref)</tt></a> (generic function)
+</p></dd>
+<dt><strong>Methods</strong></dt>
+<dd><dl>
+<dt id="index-ref-1">Method: <strong>ref</strong> <em>(ARRAY <tt>array</tt>) &amp;rest SUBSCRIPTS</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236REF-COMMON_002dLISP_2236_2236ARRAY-method"></span><span id="index-Method_002c-ref"></span>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-_0028setf-ref_0029">Generic Function: <strong>(setf ref)</strong> <em>VALUE OBJECT &amp;rest SUBSCRIPTS</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236_2768SETF-REF_2769-generic-function"></span><span id="index-Generic-Function_002c-_0028setf-ref_0029"></span>
+<p>Stores VALUE into the place specified by SUBSCRIPTS.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Reader</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236REF-generic-function"><tt>ref</tt></a> (generic function)
+</p></dd>
+<dt><strong>Methods</strong></dt>
+<dd><dl>
+<dt id="index-_0028setf-ref_0029-1">Method: <strong>(setf ref)</strong> <em>VALUE (ARRAY <tt>array</tt>) &amp;rest SUBSCRIPTS</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236_2768SETF-REF_2769-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236ARRAY-method"></span><span id="index-Method_002c-_0028setf-ref_0029"></span>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-select">Generic Function: <strong>select</strong> <em>OBJECT &amp;rest SELECTIONS</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236SELECT-generic-function"></span><span id="index-Generic-Function_002c-select"></span>
+<p>Return the slices of OBJECT specified by SELECTIONS.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Writer</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236_2768SETF-SELECT_2769-generic-function"><tt>(setf select)</tt></a> (generic function)
+</p></dd>
+<dt><strong>Methods</strong></dt>
+<dd><dl>
+<dt id="index-select-1">Method: <strong>select</strong> <em>(LST <tt>list</tt>) &amp;rest SELECTIONS</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236SELECT-COMMON_002dLISP_2236_2236LIST-method"></span><span id="index-Method_002c-select"></span>
+<p>Select from LST the subscripts or range specified in SELECTIONS. SELECTIONS must be a VECTOR, LIST or RANGE.
+</p></dd></dl>
+<dl>
+<dt id="index-select-2">Method: <strong>select</strong> <em>(ARRAY <tt>array</tt>) &amp;rest SELECTIONS</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236SELECT-COMMON_002dLISP_2236_2236ARRAY-method"></span><span id="index-Method_002c-select-1"></span>
+<p>Return the SELECTIONS in the given ARRAY.
+</p></dd></dl>
+</dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-_0028setf-select_0029">Generic Function: <strong>(setf select)</strong> <em>VALUE OBJECT &amp;rest SELECTIONS</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236_2768SETF-SELECT_2769-generic-function"></span><span id="index-Generic-Function_002c-_0028setf-select_0029"></span>
+<p>Stores VALUES into the locations given by SELECTIONS.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Reader</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236SELECT-generic-function"><tt>select</tt></a> (generic function)
+</p></dd>
+<dt><strong>Methods</strong></dt>
+<dd><dl>
+<dt id="index-_0028setf-select_0029-1">Method: <strong>(setf select)</strong> <em>VALUE (ARRAY <tt>array</tt>) &amp;rest SELECTIONS</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236_2768SETF-SELECT_2769-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236ARRAY-method"></span><span id="index-Method_002c-_0028setf-select_0029"></span>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-which">Generic Function: <strong>which</strong> <em>PREDICATE SEQUENCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236WHICH-generic-function"></span><span id="index-Generic-Function_002c-which"></span>
+<p>Return an index of the positions in SEQUENCE which satisfy PREDICATE.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Methods</strong></dt>
+<dd><dl>
+<dt id="index-which-1">Method: <strong>which</strong> <em>PREDICATE (SEQUENCE <tt>sequence</tt>)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236WHICH-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236SEQUENCE-method"></span><span id="index-Method_002c-which"></span>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+
+<hr>
+<span id="Exported-structures"></span><div class="header">
+<p>
+Previous: <a href="#Exported-generic-functions" accesskey="p" rel="prev">Exported generic functions</a>, Up: <a href="#Exported-definitions" accesskey="u" rel="up">Exported definitions</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Structures"></span><h4 class="subsection">5.1.3 Structures</h4>
+<dl>
+<dt id="index-including-1">Structure: <strong>including</strong> <em>()</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236INCLUDING-structure"></span><span id="index-Structure_002c-including"></span>
+<p>Range, including both ends.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Direct superclasses</strong></dt>
+<dd><p><tt>structure-object</tt> (structure)
+</p></dd>
+<dt><strong>Direct methods</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236INCLUDING-method"><tt>canonical-representation</tt></a> (method)
+</p></dd>
+<dt><strong>Direct slots</strong></dt>
+<dd><dl>
+<dt id="index-start">Slot: <strong>start</strong></dt>
+<dd><span id="index-Slot_002c-start"></span>
+<dl compact="compact">
+<dt><strong>Readers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236INCLUDING_002dSTART-function"><tt>including-start</tt></a> (function)
+</p></dd>
+<dt><strong>Writers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236_2768SETF-INCLUDING_002dSTART_2769-function"><tt>(setf including-start)</tt></a> (function)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-end">Slot: <strong>end</strong></dt>
+<dd><span id="index-Slot_002c-end"></span>
+<dl compact="compact">
+<dt><strong>Readers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236INCLUDING_002dEND-function"><tt>including-end</tt></a> (function)
+</p></dd>
+<dt><strong>Writers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236_2768SETF-INCLUDING_002dEND_2769-function"><tt>(setf including-end)</tt></a> (function)
+</p></dd>
+</dl>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-nodrop-1">Structure: <strong>nodrop</strong> <em>()</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236NODROP-structure"></span><span id="index-Structure_002c-nodrop"></span>
+<p>Select a single index, but don&rsquo;t drop a dimension.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Direct superclasses</strong></dt>
+<dd><p><tt>structure-object</tt> (structure)
+</p></dd>
+<dt><strong>Direct methods</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236NODROP-method"><tt>canonical-representation</tt></a> (method)
+</p></dd>
+<dt><strong>Direct slots</strong></dt>
+<dd><dl>
+<dt id="index-index">Slot: <strong>index</strong></dt>
+<dd><span id="index-Slot_002c-index"></span>
+<dl compact="compact">
+<dt><strong>Readers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236NODROP_002dINDEX-function"><tt>nodrop-index</tt></a> (function)
+</p></dd>
+<dt><strong>Writers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236_2768SETF-NODROP_002dINDEX_2769-function"><tt>(setf nodrop-index)</tt></a> (function)
+</p></dd>
+</dl>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-range-1">Structure: <strong>range</strong> <em>()</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236RANGE-structure"></span><span id="index-Structure_002c-range"></span>
+<p>Range, including start, excluding end.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Direct superclasses</strong></dt>
+<dd><p><tt>structure-object</tt> (structure)
+</p></dd>
+<dt><strong>Direct methods</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236RANGE-method"><tt>canonical-representation</tt></a> (method)
+</p></dd>
+<dt><strong>Direct slots</strong></dt>
+<dd><dl>
+<dt id="index-start-1">Slot: <strong>start</strong></dt>
+<dd><span id="index-Slot_002c-start-1"></span>
+<dl compact="compact">
+<dt><strong>Readers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236RANGE_002dSTART-function"><tt>range-start</tt></a> (function)
+</p></dd>
+<dt><strong>Writers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236_2768SETF-RANGE_002dSTART_2769-function"><tt>(setf range-start)</tt></a> (function)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-end-1">Slot: <strong>end</strong></dt>
+<dd><span id="index-Slot_002c-end-1"></span>
+<dl compact="compact">
+<dt><strong>Readers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236RANGE_002dEND-function"><tt>range-end</tt></a> (function)
+</p></dd>
+<dt><strong>Writers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236_2768SETF-RANGE_002dEND_2769-function"><tt>(setf range-end)</tt></a> (function)
+</p></dd>
+</dl>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+
+
+<hr>
+<span id="Internal-definitions"></span><div class="header">
+<p>
+Previous: <a href="#Exported-definitions" accesskey="p" rel="prev">Exported definitions</a>, Up: <a href="#Definitions" accesskey="u" rel="up">Definitions</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Internal-definitions-1"></span><h3 class="section">5.2 Internal definitions</h3>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#Internal-macros" accesskey="1">Internal macros</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Internal-functions" accesskey="2">Internal functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Internal-generic-functions" accesskey="3">Internal generic functions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Internal-structures" accesskey="4">Internal structures</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<span id="Internal-macros"></span><div class="header">
+<p>
+Next: <a href="#Internal-functions" accesskey="n" rel="next">Internal functions</a>, Previous: <a href="#Internal-definitions" accesskey="p" rel="prev">Internal definitions</a>, Up: <a href="#Internal-definitions" accesskey="u" rel="up">Internal definitions</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Macros"></span><h4 class="subsection">5.2.1 Macros</h4>
+<dl>
+<dt id="index-traverse_002drepresentations">Macro: <strong>traverse-representations</strong> <em>(SUBSCRIPTS REPRESENTATIONS &amp;key INDEX SETUP) &amp;body BODY</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236TRAVERSE_002dREPRESENTATIONS-macro"></span><span id="index-Macro_002c-traverse_002drepresentations"></span>
+<p>Loops over all possible subscripts in REPRESENTAITONS, making them available in SUBSCRIPTS during the execution of BODY.  The iterator is constructed using the function SETUP (see for example ROW-MAJOR-SETUP).  When INDEX is given, a variable with that name is provided, containing an index that counts iterations.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+
+<hr>
+<span id="Internal-functions"></span><div class="header">
+<p>
+Next: <a href="#Internal-generic-functions" accesskey="n" rel="next">Internal generic functions</a>, Previous: <a href="#Internal-macros" accesskey="p" rel="prev">Internal macros</a>, Up: <a href="#Internal-definitions" accesskey="u" rel="up">Internal definitions</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Functions-1"></span><h4 class="subsection">5.2.2 Functions</h4>
+<dl>
+<dt id="index-all_002dsingleton_002drepresentations_003f">Function: <strong>all-singleton-representations?</strong> <em>REPRESENTATIONS</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236ALL_002dSINGLETON_002dREPRESENTATIONS_003f-function"></span><span id="index-Function_002c-all_002dsingleton_002drepresentations_003f"></span>
+<p>Test if all canonical representations are singletons.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drange">Function: <strong>canonical-range</strong> <em>START END</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dRANGE-function"></span><span id="index-Function_002c-canonical_002drange"></span>
+<p>Canonical representation of a contiguous set of array indices from START (inclusive) to END (exclusive).
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drange_002dend">Function: <strong>canonical-range-end</strong> <em>INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dRANGE_002dEND-function"></span><span id="index-Function_002c-canonical_002drange_002dend"></span>
+</dd><dt id="index-_0028setf-canonical_002drange_002dend_0029">Function: <strong>(setf canonical-range-end)</strong> <em>VALUE INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236_2768SETF-CANONICAL_002dRANGE_002dEND_2769-function"></span><span id="index-Function_002c-_0028setf-canonical_002drange_002dend_0029"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drange_002dp">Function: <strong>canonical-range-p</strong> <em>OBJECT</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dRANGE_002dP-function"></span><span id="index-Function_002c-canonical_002drange_002dp"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drange_002dstart">Function: <strong>canonical-range-start</strong> <em>INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dRANGE_002dSTART-function"></span><span id="index-Function_002c-canonical_002drange_002dstart"></span>
+</dd><dt id="index-_0028setf-canonical_002drange_002dstart_0029">Function: <strong>(setf canonical-range-start)</strong> <em>VALUE INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236_2768SETF-CANONICAL_002dRANGE_002dSTART_2769-function"></span><span id="index-Function_002c-_0028setf-canonical_002drange_002dstart_0029"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drepresentations">Function: <strong>canonical-representations</strong> <em>AXES SELECTIONS</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATIONS-function"></span><span id="index-Function_002c-canonical_002drepresentations"></span>
+<p>Return the canonical representations of SELECTIONS given the corresponding AXES, checking for matching length.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002dsequence">Function: <strong>canonical-sequence</strong> <em>SEQUENCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dSEQUENCE-function"></span><span id="index-Function_002c-canonical_002dsequence"></span>
+<p>Canonical representation of array indexes from canonical-sequence SEQUENCE.<br>
+</p>
+<p>May share structure. Vectors of the upgraded type of (SIMPLE-ARRAY ARRAY-INDEX (*)) are preferred
+for efficiency, otherwise they are coerced.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002dsequence_002dp">Function: <strong>canonical-sequence-p</strong> <em>OBJECT</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dSEQUENCE_002dP-function"></span><span id="index-Function_002c-canonical_002dsequence_002dp"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002dsequence_002dvector">Function: <strong>canonical-sequence-vector</strong> <em>INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dSEQUENCE_002dVECTOR-function"></span><span id="index-Function_002c-canonical_002dsequence_002dvector"></span>
+</dd><dt id="index-_0028setf-canonical_002dsequence_002dvector_0029">Function: <strong>(setf canonical-sequence-vector)</strong> <em>VALUE INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236_2768SETF-CANONICAL_002dSEQUENCE_002dVECTOR_2769-function"></span><span id="index-Function_002c-_0028setf-canonical_002dsequence_002dvector_0029"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002dsingleton">Function: <strong>canonical-singleton</strong> <em>INDEX</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dSINGLETON-function"></span><span id="index-Function_002c-canonical_002dsingleton"></span>
+<p>Canonical representation of a singleton index (a nonnegative integer, which is a valid array index).
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-column_002dmajor_002dsetup">Function: <strong>column-major-setup</strong> <em>REPRESENTATIONS TERMINATOR</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236COLUMN_002dMAJOR_002dSETUP-function"></span><span id="index-Function_002c-column_002dmajor_002dsetup"></span>
+<p>Return SUBSCRIPTS (a list) and ITERATOR (a closure, no arguments) that increments the contents of SUBSCRIPTS in column-major order.  TERMINATOR is called when all subscripts have been visited.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-copy_002dcanonical_002drange">Function: <strong>copy-canonical-range</strong> <em>INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236COPY_002dCANONICAL_002dRANGE-function"></span><span id="index-Function_002c-copy_002dcanonical_002drange"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-copy_002dcanonical_002dsequence">Function: <strong>copy-canonical-sequence</strong> <em>INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236COPY_002dCANONICAL_002dSEQUENCE-function"></span><span id="index-Function_002c-copy_002dcanonical_002dsequence"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-copy_002dincluding">Function: <strong>copy-including</strong> <em>INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236COPY_002dINCLUDING-function"></span><span id="index-Function_002c-copy_002dincluding"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-copy_002dnodrop">Function: <strong>copy-nodrop</strong> <em>INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236COPY_002dNODROP-function"></span><span id="index-Function_002c-copy_002dnodrop"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-copy_002drange">Function: <strong>copy-range</strong> <em>INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236COPY_002dRANGE-function"></span><span id="index-Function_002c-copy_002drange"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-including_002dend">Function: <strong>including-end</strong> <em>INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236INCLUDING_002dEND-function"></span><span id="index-Function_002c-including_002dend"></span>
+</dd><dt id="index-_0028setf-including_002dend_0029">Function: <strong>(setf including-end)</strong> <em>VALUE INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236_2768SETF-INCLUDING_002dEND_2769-function"></span><span id="index-Function_002c-_0028setf-including_002dend_0029"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-including_002dp">Function: <strong>including-p</strong> <em>OBJECT</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236INCLUDING_002dP-function"></span><span id="index-Function_002c-including_002dp"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-including_002dstart">Function: <strong>including-start</strong> <em>INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236INCLUDING_002dSTART-function"></span><span id="index-Function_002c-including_002dstart"></span>
+</dd><dt id="index-_0028setf-including_002dstart_0029">Function: <strong>(setf including-start)</strong> <em>VALUE INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236_2768SETF-INCLUDING_002dSTART_2769-function"></span><span id="index-Function_002c-_0028setf-including_002dstart_0029"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-make_002dcanonical_002drange">Function: <strong>make-canonical-range</strong> <em>&amp;key (START START) (END END)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236MAKE_002dCANONICAL_002dRANGE-function"></span><span id="index-Function_002c-make_002dcanonical_002drange"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-make_002dcanonical_002dsequence">Function: <strong>make-canonical-sequence</strong> <em>&amp;key (VECTOR VECTOR)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236MAKE_002dCANONICAL_002dSEQUENCE-function"></span><span id="index-Function_002c-make_002dcanonical_002dsequence"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-make_002dincluding">Function: <strong>make-including</strong> <em>&amp;key (START START) (END END)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236MAKE_002dINCLUDING-function"></span><span id="index-Function_002c-make_002dincluding"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-make_002dnodrop">Function: <strong>make-nodrop</strong> <em>&amp;key (INDEX INDEX)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236MAKE_002dNODROP-function"></span><span id="index-Function_002c-make_002dnodrop"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-make_002drange">Function: <strong>make-range</strong> <em>&amp;key (START START) (END END)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236MAKE_002dRANGE-function"></span><span id="index-Function_002c-make_002drange"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-nodrop_002dindex">Function: <strong>nodrop-index</strong> <em>INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236NODROP_002dINDEX-function"></span><span id="index-Function_002c-nodrop_002dindex"></span>
+</dd><dt id="index-_0028setf-nodrop_002dindex_0029">Function: <strong>(setf nodrop-index)</strong> <em>VALUE INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236_2768SETF-NODROP_002dINDEX_2769-function"></span><span id="index-Function_002c-_0028setf-nodrop_002dindex_0029"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-nodrop_002dp">Function: <strong>nodrop-p</strong> <em>OBJECT</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236NODROP_002dP-function"></span><span id="index-Function_002c-nodrop_002dp"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-range_002dend">Function: <strong>range-end</strong> <em>INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236RANGE_002dEND-function"></span><span id="index-Function_002c-range_002dend"></span>
+</dd><dt id="index-_0028setf-range_002dend_0029">Function: <strong>(setf range-end)</strong> <em>VALUE INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236_2768SETF-RANGE_002dEND_2769-function"></span><span id="index-Function_002c-_0028setf-range_002dend_0029"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-range_002dp">Function: <strong>range-p</strong> <em>OBJECT</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236RANGE_002dP-function"></span><span id="index-Function_002c-range_002dp"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-range_002dstart">Function: <strong>range-start</strong> <em>INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236RANGE_002dSTART-function"></span><span id="index-Function_002c-range_002dstart"></span>
+</dd><dt id="index-_0028setf-range_002dstart_0029">Function: <strong>(setf range-start)</strong> <em>VALUE INSTANCE</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236_2768SETF-RANGE_002dSTART_2769-function"></span><span id="index-Function_002c-_0028setf-range_002dstart_0029"></span>
+<dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-representation_002ddimension">Function: <strong>representation-dimension</strong> <em>REPRESENTATION</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236REPRESENTATION_002dDIMENSION-function"></span><span id="index-Function_002c-representation_002ddimension"></span>
+<p>Return the dimension of a canonical-representation, or NIL for singleton selections (they are dropped).
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-representation_002ddimensions">Function: <strong>representation-dimensions</strong> <em>REPRESENTATIONS</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236REPRESENTATION_002dDIMENSIONS-function"></span><span id="index-Function_002c-representation_002ddimensions"></span>
+<p>Return a list for the dimensions of canonical representations, dropping singletons.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-representation_002dinitial_002dvalue">Function: <strong>representation-initial-value</strong> <em>REPRESENTATION</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236REPRESENTATION_002dINITIAL_002dVALUE-function"></span><span id="index-Function_002c-representation_002dinitial_002dvalue"></span>
+<p>Initial value for iteration.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-representation_002diterator">Function: <strong>representation-iterator</strong> <em>REPRESENTATION CARRY CONS</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236REPRESENTATION_002dITERATOR-function"></span><span id="index-Function_002c-representation_002diterator"></span>
+<p>Return a closure that sets the car of CONS to the next value each time it is called, resetting and calling CARRY when it reaches the end of its range.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-row_002dmajor_002dsetup">Function: <strong>row-major-setup</strong> <em>REPRESENTATIONS TERMINATOR</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236ROW_002dMAJOR_002dSETUP-function"></span><span id="index-Function_002c-row_002dmajor_002dsetup"></span>
+<p>Return SUBSCRIPTS (a list) and ITERATOR (a closure, no arguments) that increments the contents of SUBSCRIPTS in row-major order.  TERMINATOR is called when all subscripts have been visited.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+
+<hr>
+<span id="Internal-generic-functions"></span><div class="header">
+<p>
+Next: <a href="#Internal-structures" accesskey="n" rel="next">Internal structures</a>, Previous: <a href="#Internal-functions" accesskey="p" rel="prev">Internal functions</a>, Up: <a href="#Internal-definitions" accesskey="u" rel="up">Internal definitions</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Generic-functions-1"></span><h4 class="subsection">5.2.3 Generic functions</h4>
+<dl>
+<dt id="index-axis_002ddimension">Generic Function: <strong>axis-dimension</strong> <em>AXIS</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236AXIS_002dDIMENSION-generic-function"></span><span id="index-Generic-Function_002c-axis_002ddimension"></span>
+<p>Return the dimension of axis.  Needs to be defined for non-integer axes.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drepresentation">Generic Function: <strong>canonical-representation</strong> <em>AXIS SELECTION</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-generic-function"></span><span id="index-Generic-Function_002c-canonical_002drepresentation"></span>
+<p>Canonical representation of SELECTION, given information in AXIS. The default methods use dimensions as AXIS.<br>
+</p>
+<p>Each selection needs to be resolved into a canonical representation, which is either a singleton, a range, or a sequence of subscripts.  They should only be constructed with the corresponding CANONICAL-SINGLETION, CANONICAL-RANGE and CANONICAL-SEQUENCE functions.
+</p>
+<p>@c(CANONICAL-REPRESENTATION) needs to ensure that the represented subscripts are valid for the axis.<br>
+</p>
+<p>Unless a specialized method is found, the dimension of the axis is queried with AXIS-DIMENSION and resolution is attempted using the latter.  Methods that resolve symbols should test them with SELECT-RESERVED-SYMBOL? and use CALL-NEXT-METHOD.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Methods</strong></dt>
+<dd><dl>
+<dt id="index-canonical_002drepresentation-1">Method: <strong>canonical-representation</strong> <em>AXIS (SELECTION <tt>nodrop</tt>)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236NODROP-method"></span><span id="index-Method_002c-canonical_002drepresentation"></span>
+<p>The canonical representation for NODROP.
+</p><dl compact="compact">
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drepresentation-2">Method: <strong>canonical-representation</strong> <em>AXIS (SELECTION <tt>range</tt>)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236RANGE-method"></span><span id="index-Method_002c-canonical_002drepresentation-1"></span>
+<p>The canonical representation for RANGE.
+</p><dl compact="compact">
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drepresentation-3">Method: <strong>canonical-representation</strong> <em>AXIS (SELECTION <tt>including</tt>)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236INCLUDING-method"></span><span id="index-Method_002c-canonical_002drepresentation-2"></span>
+<p>The canonical representation for INCLUDING.
+</p><dl compact="compact">
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_2024lisp-file"><tt>select.lisp</tt></a> (file)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drepresentation-4">Method: <strong>canonical-representation</strong> <em>AXIS SELECTION</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236T-method"></span><span id="index-Method_002c-canonical_002drepresentation-3"></span>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drepresentation-5">Method: <strong>canonical-representation</strong> <em>AXIS (CANONICAL-RANGE <tt>canonical-range</tt>)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236CANONICAL_002dRANGE-method"></span><span id="index-Method_002c-canonical_002drepresentation-4"></span>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drepresentation-6">Method: <strong>canonical-representation</strong> <em>AXIS (CANONICAL-SEQUENCE <tt>canonical-sequence</tt>)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236CANONICAL_002dSEQUENCE-method"></span><span id="index-Method_002c-canonical_002drepresentation-5"></span>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drepresentation-7">Method: <strong>canonical-representation</strong> <em>(AXIS <tt>integer</tt>) (SLICE <tt>null</tt>)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236INTEGER-COMMON_002dLISP_2236_2236NULL-method"></span><span id="index-Method_002c-canonical_002drepresentation-6"></span>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drepresentation-8">Method: <strong>canonical-representation</strong> <em>(AXIS <tt>integer</tt>) (SELECTION <tt>integer</tt>)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236INTEGER-COMMON_002dLISP_2236_2236INTEGER-method"></span><span id="index-Method_002c-canonical_002drepresentation-7"></span>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drepresentation-9">Method: <strong>canonical-representation</strong> <em>AXIS (SELECTION <tt>sequence</tt>)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236SEQUENCE-method"></span><span id="index-Method_002c-canonical_002drepresentation-8"></span>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drepresentation-10">Method: <strong>canonical-representation</strong> <em>(AXIS <tt>integer</tt>) (SELECTION <tt>(eql t)</tt>)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236INTEGER-_2768eql-COMMON_002dLISP_2236_2236T_2769-method"></span><span id="index-Method_002c-canonical_002drepresentation-9"></span>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002drepresentation-11">Method: <strong>canonical-representation</strong> <em>AXIS (SELECTION <tt>bit-vector</tt>)</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-COMMON_002dLISP_2236_2236BIT_002dVECTOR-method"></span><span id="index-Method_002c-canonical_002drepresentation-10"></span>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+
+<hr>
+<span id="Internal-structures"></span><div class="header">
+<p>
+Previous: <a href="#Internal-generic-functions" accesskey="p" rel="prev">Internal generic functions</a>, Up: <a href="#Internal-definitions" accesskey="u" rel="up">Internal definitions</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Structures-1"></span><h4 class="subsection">5.2.4 Structures</h4>
+<dl>
+<dt id="index-canonical_002drange-1">Structure: <strong>canonical-range</strong> <em>()</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dRANGE-structure"></span><span id="index-Structure_002c-canonical_002drange"></span>
+<p>Canonical representation of a contiguous set of array indices from START (inclusive) to END (exclusive).
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Direct superclasses</strong></dt>
+<dd><p><tt>structure-object</tt> (structure)
+</p></dd>
+<dt><strong>Direct methods</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236CANONICAL_002dRANGE-method"><tt>canonical-representation</tt></a> (method)
+</p></dd>
+<dt><strong>Direct slots</strong></dt>
+<dd><dl>
+<dt id="index-start-2">Slot: <strong>start</strong></dt>
+<dd><span id="index-Slot_002c-start-2"></span>
+<dl compact="compact">
+<dt><strong>Type</strong></dt>
+<dd><p><tt>alexandria.1.0.0:array-index</tt>
+</p></dd>
+<dt><strong>Readers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236CANONICAL_002dRANGE_002dSTART-function"><tt>canonical-range-start</tt></a> (function)
+</p></dd>
+<dt><strong>Writers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236_2768SETF-CANONICAL_002dRANGE_002dSTART_2769-function"><tt>(setf canonical-range-start)</tt></a> (function)
+</p></dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-end-2">Slot: <strong>end</strong></dt>
+<dd><span id="index-Slot_002c-end-2"></span>
+<dl compact="compact">
+<dt><strong>Type</strong></dt>
+<dd><p><tt>alexandria.1.0.0:array-index</tt>
+</p></dd>
+<dt><strong>Readers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236CANONICAL_002dRANGE_002dEND-function"><tt>canonical-range-end</tt></a> (function)
+</p></dd>
+<dt><strong>Writers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236_2768SETF-CANONICAL_002dRANGE_002dEND_2769-function"><tt>(setf canonical-range-end)</tt></a> (function)
+</p></dd>
+</dl>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+<dl>
+<dt id="index-canonical_002dsequence-1">Structure: <strong>canonical-sequence</strong> <em>()</em></dt>
+<dd><span id="go-to-the-SLCT_2236_2236CANONICAL_002dSEQUENCE-structure"></span><span id="index-Structure_002c-canonical_002dsequence"></span>
+<p>Canonical representation of a sequence of array indexes.
+</p><dl compact="compact">
+<dt><strong>Package</strong></dt>
+<dd><p><a href="#go-to-the-SLCT-package"><tt>slct</tt></a>
+</p></dd>
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-select_002fselect_002ddev_2024lisp-file"><tt>select-dev.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Direct superclasses</strong></dt>
+<dd><p><tt>structure-object</tt> (structure)
+</p></dd>
+<dt><strong>Direct methods</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236CANONICAL_002dREPRESENTATION-COMMON_002dLISP_2236_2236T-SLCT_2236_2236CANONICAL_002dSEQUENCE-method"><tt>canonical-representation</tt></a> (method)
+</p></dd>
+<dt><strong>Direct slots</strong></dt>
+<dd><dl>
+<dt id="index-vector">Slot: <strong>vector</strong></dt>
+<dd><span id="index-Slot_002c-vector"></span>
+<dl compact="compact">
+<dt><strong>Type</strong></dt>
+<dd><p><tt>(simple-array alexandria.1.0.0:array-index (*))</tt>
+</p></dd>
+<dt><strong>Readers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236CANONICAL_002dSEQUENCE_002dVECTOR-function"><tt>canonical-sequence-vector</tt></a> (function)
+</p></dd>
+<dt><strong>Writers</strong></dt>
+<dd><p><a href="#go-to-the-SLCT_2236_2236_2768SETF-CANONICAL_002dSEQUENCE_002dVECTOR_2769-function"><tt>(setf canonical-sequence-vector)</tt></a> (function)
+</p></dd>
+</dl>
+</dd></dl>
+</dd>
+</dl>
+</dd></dl>
+
+
+
+<hr>
+<span id="Conclusion"></span><div class="header">
+<p>
+Next: <a href="#Indexes" accesskey="n" rel="next">Indexes</a>, Previous: <a href="#Definitions" accesskey="p" rel="prev">Definitions</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Conclusion-1"></span><h2 class="chapter">6 Conclusion</h2>
+<p><tt>Select</tt> was originally called
+<a href="https://github.com/tpapp/cl-slice">slice</a> and written by Tamas
+K. Papp. Since it was
+<a href="https://tpapp.github.io/post/orphaned-lisp-libraries/">abandoned
+in 2017</a>, I have taken it over to be part of a rebooted Common Lisp
+statistics library. Changes in this version include:
+</p>
+<span id="Documentation-Improvements"></span><h3 class="heading">Documentation Improvements</h3>
+<ul>
+<li> Move to HTML based documentation system
+</li><li> Docs now on github.io
+</li></ul>
+
+<span id="Test-Improvements"></span><h3 class="heading">Test Improvements</h3>
+<ul>
+<li> Ported to FiveAM and refactored
+</li><li> Improved test coverage 
+</li><li> Added failure messages to aid debugging
+</li><li> Added tests for selection iteration
+</li></ul>
+
+<span id="Enhancements"></span><h3 class="heading">Enhancements</h3>
+<ul>
+<li> Renamed to &rsquo;cons&rsquo; to &rsquo;range&rsquo;
+</li><li> Range now handles (range x x) =&gt; nil
+</li><li> Selections work identically on sequences; previously differed between lists and vectors
+</li><li> Selections may be specified using a list; previously could only be a vector
+</li><li> Sequence selections now honor fill-pointer, if any
+</li></ul>
+
+<span id="Bug-Fixes"></span><h3 class="heading">Bug Fixes</h3>
+<ul>
+<li> Range now handles END = (length &lt;sequence&gt;)
+</li><li> Selecting from a list no longer drops dimension
+</li></ul>
+
+
+
+<hr>
+<span id="Indexes"></span><div class="header">
+<p>
+Previous: <a href="#Conclusion" accesskey="p" rel="prev">Conclusion</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Indexes-1"></span><h2 class="appendix">Appendix A Indexes</h2>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="#Concept-index" rel="index" accesskey="1">Concept index</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Function-index" rel="index" accesskey="2">Function index</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Variable-index" rel="index" accesskey="3">Variable index</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#Data-type-index" rel="index" accesskey="4">Data type index</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+<hr>
+<span id="Concept-index"></span><div class="header">
+<p>
+Next: <a href="#Function-index" accesskey="n" rel="next">Function index</a>, Previous: <a href="#Indexes" accesskey="p" rel="prev">Indexes</a>, Up: <a href="#Indexes" accesskey="u" rel="up">Indexes</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Concepts"></span><h3 class="appendixsec">A.1 Concepts</h3>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Concept-index_cp_letter-F"><b>F</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-L"><b>L</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-S"><b>S</b></a>
+ &nbsp; 
+</td></tr></table>
+<table class="index-cp" border="0">
+<tr><td></td><th align="left">Index Entry</th><td>&nbsp;</td><th align="left"> Section</th></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Concept-index_cp_letter-F">F</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-File_002c-Lisp_002c-select_002easd">File, Lisp, <tt>select.asd</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-select_2024asd-file">The select․asd file</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-File_002c-Lisp_002c-select_002fpackage_002elisp">File, Lisp, <tt>select/package.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-select_002fpackage_2024lisp-file">The select/package․lisp file</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-File_002c-Lisp_002c-select_002fselect_002ddev_002elisp">File, Lisp, <tt>select/select-dev.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-select_002fselect_002ddev_2024lisp-file">The select/select-dev․lisp file</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-File_002c-Lisp_002c-select_002fselect_002elisp">File, Lisp, <tt>select/select.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-select_002fselect_2024lisp-file">The select/select․lisp file</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Concept-index_cp_letter-L">L</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Lisp-File_002c-select_002easd">Lisp File, <tt>select.asd</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-select_2024asd-file">The select․asd file</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Lisp-File_002c-select_002fpackage_002elisp">Lisp File, <tt>select/package.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-select_002fpackage_2024lisp-file">The select/package․lisp file</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Lisp-File_002c-select_002fselect_002ddev_002elisp">Lisp File, <tt>select/select-dev.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-select_002fselect_002ddev_2024lisp-file">The select/select-dev․lisp file</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Lisp-File_002c-select_002fselect_002elisp">Lisp File, <tt>select/select.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-select_002fselect_2024lisp-file">The select/select․lisp file</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Concept-index_cp_letter-S">S</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-select_002easd"><tt>select.asd</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-select_2024asd-file">The select․asd file</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-select_002fpackage_002elisp"><tt>select/package.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-select_002fpackage_2024lisp-file">The select/package․lisp file</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-select_002fselect_002ddev_002elisp"><tt>select/select-dev.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-select_002fselect_002ddev_2024lisp-file">The select/select-dev․lisp file</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-select_002fselect_002elisp"><tt>select/select.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-select_002fselect_2024lisp-file">The select/select․lisp file</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Concept-index_cp_letter-F"><b>F</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-L"><b>L</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Concept-index_cp_letter-S"><b>S</b></a>
+ &nbsp; 
+</td></tr></table>
+
+
+
+<hr>
+<span id="Function-index"></span><div class="header">
+<p>
+Next: <a href="#Variable-index" accesskey="n" rel="next">Variable index</a>, Previous: <a href="#Concept-index" accesskey="p" rel="prev">Concept index</a>, Up: <a href="#Indexes" accesskey="u" rel="up">Indexes</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Functions-2"></span><h3 class="appendixsec">A.2 Functions</h3>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Function-index_fn_symbol-1"><b>(</b></a>
+ &nbsp; 
+<br>
+<a class="summary-letter" href="#Function-index_fn_letter-A"><b>A</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-C"><b>C</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-F"><b>F</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-G"><b>G</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-H"><b>H</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-I"><b>I</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-M"><b>M</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-N"><b>N</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-R"><b>R</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-S"><b>S</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-T"><b>T</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-W"><b>W</b></a>
+ &nbsp; 
+</td></tr></table>
+<table class="index-fn" border="0">
+<tr><td></td><th align="left">Index Entry</th><td>&nbsp;</td><th align="left"> Section</th></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Function-index_fn_symbol-1">(</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_0028setf-canonical_002drange_002dend_0029"><code>(setf canonical-range-end)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_0028setf-canonical_002drange_002dstart_0029"><code>(setf canonical-range-start)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_0028setf-canonical_002dsequence_002dvector_0029"><code>(setf canonical-sequence-vector)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_0028setf-including_002dend_0029"><code>(setf including-end)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_0028setf-including_002dstart_0029"><code>(setf including-start)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_0028setf-nodrop_002dindex_0029"><code>(setf nodrop-index)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_0028setf-range_002dend_0029"><code>(setf range-end)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_0028setf-range_002dstart_0029"><code>(setf range-start)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_0028setf-ref_0029"><code>(setf ref)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_0028setf-ref_0029-1"><code>(setf ref)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_0028setf-select_0029"><code>(setf select)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_0028setf-select_0029-1"><code>(setf select)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Function-index_fn_letter-A">A</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-all_002dsingleton_002drepresentations_003f"><code>all-singleton-representations?</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-axis_002ddimension"><code>axis-dimension</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Function-index_fn_letter-C">C</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drange"><code>canonical-range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drange_002dend"><code>canonical-range-end</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drange_002dp"><code>canonical-range-p</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drange_002dstart"><code>canonical-range-start</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drepresentation"><code>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drepresentation-1"><code>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drepresentation-2"><code>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drepresentation-3"><code>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drepresentation-4"><code>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drepresentation-5"><code>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drepresentation-6"><code>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drepresentation-7"><code>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drepresentation-8"><code>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drepresentation-9"><code>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drepresentation-10"><code>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drepresentation-11"><code>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drepresentations"><code>canonical-representations</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002dsequence"><code>canonical-sequence</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002dsequence_002dp"><code>canonical-sequence-p</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002dsequence_002dvector"><code>canonical-sequence-vector</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002dsingleton"><code>canonical-singleton</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-column_002dmajor_002dsetup"><code>column-major-setup</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-copy_002dcanonical_002drange"><code>copy-canonical-range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-copy_002dcanonical_002dsequence"><code>copy-canonical-sequence</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-copy_002dincluding"><code>copy-including</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-copy_002dnodrop"><code>copy-nodrop</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-copy_002drange"><code>copy-range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Function-index_fn_letter-F">F</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-_0028setf-canonical_002drange_002dend_0029"><code><span class="roman">Function, </span>(setf canonical-range-end)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-_0028setf-canonical_002drange_002dstart_0029"><code><span class="roman">Function, </span>(setf canonical-range-start)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-_0028setf-canonical_002dsequence_002dvector_0029"><code><span class="roman">Function, </span>(setf canonical-sequence-vector)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-_0028setf-including_002dend_0029"><code><span class="roman">Function, </span>(setf including-end)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-_0028setf-including_002dstart_0029"><code><span class="roman">Function, </span>(setf including-start)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-_0028setf-nodrop_002dindex_0029"><code><span class="roman">Function, </span>(setf nodrop-index)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-_0028setf-range_002dend_0029"><code><span class="roman">Function, </span>(setf range-end)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-_0028setf-range_002dstart_0029"><code><span class="roman">Function, </span>(setf range-start)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-all_002dsingleton_002drepresentations_003f"><code><span class="roman">Function, </span>all-singleton-representations?</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-canonical_002drange"><code><span class="roman">Function, </span>canonical-range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-canonical_002drange_002dend"><code><span class="roman">Function, </span>canonical-range-end</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-canonical_002drange_002dp"><code><span class="roman">Function, </span>canonical-range-p</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-canonical_002drange_002dstart"><code><span class="roman">Function, </span>canonical-range-start</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-canonical_002drepresentations"><code><span class="roman">Function, </span>canonical-representations</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-canonical_002dsequence"><code><span class="roman">Function, </span>canonical-sequence</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-canonical_002dsequence_002dp"><code><span class="roman">Function, </span>canonical-sequence-p</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-canonical_002dsequence_002dvector"><code><span class="roman">Function, </span>canonical-sequence-vector</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-canonical_002dsingleton"><code><span class="roman">Function, </span>canonical-singleton</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-column_002dmajor_002dsetup"><code><span class="roman">Function, </span>column-major-setup</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-copy_002dcanonical_002drange"><code><span class="roman">Function, </span>copy-canonical-range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-copy_002dcanonical_002dsequence"><code><span class="roman">Function, </span>copy-canonical-sequence</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-copy_002dincluding"><code><span class="roman">Function, </span>copy-including</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-copy_002dnodrop"><code><span class="roman">Function, </span>copy-nodrop</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-copy_002drange"><code><span class="roman">Function, </span>copy-range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-head"><code><span class="roman">Function, </span>head</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-functions">Exported functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-including"><code><span class="roman">Function, </span>including</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-functions">Exported functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-including_002dend"><code><span class="roman">Function, </span>including-end</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-including_002dp"><code><span class="roman">Function, </span>including-p</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-including_002dstart"><code><span class="roman">Function, </span>including-start</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-make_002dcanonical_002drange"><code><span class="roman">Function, </span>make-canonical-range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-make_002dcanonical_002dsequence"><code><span class="roman">Function, </span>make-canonical-sequence</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-make_002dincluding"><code><span class="roman">Function, </span>make-including</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-make_002dnodrop"><code><span class="roman">Function, </span>make-nodrop</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-make_002drange"><code><span class="roman">Function, </span>make-range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-nodrop"><code><span class="roman">Function, </span>nodrop</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-functions">Exported functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-nodrop_002dindex"><code><span class="roman">Function, </span>nodrop-index</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-nodrop_002dp"><code><span class="roman">Function, </span>nodrop-p</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-range"><code><span class="roman">Function, </span>range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-functions">Exported functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-range_002dend"><code><span class="roman">Function, </span>range-end</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-range_002dp"><code><span class="roman">Function, </span>range-p</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-range_002dstart"><code><span class="roman">Function, </span>range-start</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-representation_002ddimension"><code><span class="roman">Function, </span>representation-dimension</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-representation_002ddimensions"><code><span class="roman">Function, </span>representation-dimensions</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-representation_002dinitial_002dvalue"><code><span class="roman">Function, </span>representation-initial-value</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-representation_002diterator"><code><span class="roman">Function, </span>representation-iterator</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-row_002dmajor_002dsetup"><code><span class="roman">Function, </span>row-major-setup</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-select_002dreserved_002dsymbol_003f"><code><span class="roman">Function, </span>select-reserved-symbol?</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-functions">Exported functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-singleton_002drepresentation_003f"><code><span class="roman">Function, </span>singleton-representation?</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-functions">Exported functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Function_002c-tail"><code><span class="roman">Function, </span>tail</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-functions">Exported functions</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Function-index_fn_letter-G">G</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Generic-Function_002c-_0028setf-ref_0029"><code><span class="roman">Generic Function, </span>(setf ref)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Generic-Function_002c-_0028setf-select_0029"><code><span class="roman">Generic Function, </span>(setf select)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Generic-Function_002c-axis_002ddimension"><code><span class="roman">Generic Function, </span>axis-dimension</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Generic-Function_002c-canonical_002drepresentation"><code><span class="roman">Generic Function, </span>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Generic-Function_002c-mask"><code><span class="roman">Generic Function, </span>mask</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Generic-Function_002c-ref"><code><span class="roman">Generic Function, </span>ref</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Generic-Function_002c-select"><code><span class="roman">Generic Function, </span>select</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Generic-Function_002c-which"><code><span class="roman">Generic Function, </span>which</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Function-index_fn_letter-H">H</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-head"><code>head</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-functions">Exported functions</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Function-index_fn_letter-I">I</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-including"><code>including</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-functions">Exported functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-including_002dend"><code>including-end</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-including_002dp"><code>including-p</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-including_002dstart"><code>including-start</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Function-index_fn_letter-M">M</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Macro_002c-traverse_002drepresentations"><code><span class="roman">Macro, </span>traverse-representations</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-macros">Internal macros</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-make_002dcanonical_002drange"><code>make-canonical-range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-make_002dcanonical_002dsequence"><code>make-canonical-sequence</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-make_002dincluding"><code>make-including</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-make_002dnodrop"><code>make-nodrop</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-make_002drange"><code>make-range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-mask"><code>mask</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-mask-1"><code>mask</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-_0028setf-ref_0029"><code><span class="roman">Method, </span>(setf ref)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-_0028setf-select_0029"><code><span class="roman">Method, </span>(setf select)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-canonical_002drepresentation"><code><span class="roman">Method, </span>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-canonical_002drepresentation-1"><code><span class="roman">Method, </span>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-canonical_002drepresentation-2"><code><span class="roman">Method, </span>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-canonical_002drepresentation-3"><code><span class="roman">Method, </span>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-canonical_002drepresentation-4"><code><span class="roman">Method, </span>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-canonical_002drepresentation-5"><code><span class="roman">Method, </span>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-canonical_002drepresentation-6"><code><span class="roman">Method, </span>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-canonical_002drepresentation-7"><code><span class="roman">Method, </span>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-canonical_002drepresentation-8"><code><span class="roman">Method, </span>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-canonical_002drepresentation-9"><code><span class="roman">Method, </span>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-canonical_002drepresentation-10"><code><span class="roman">Method, </span>canonical-representation</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-generic-functions">Internal generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-mask"><code><span class="roman">Method, </span>mask</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-ref"><code><span class="roman">Method, </span>ref</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-select"><code><span class="roman">Method, </span>select</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-select-1"><code><span class="roman">Method, </span>select</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Method_002c-which"><code><span class="roman">Method, </span>which</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Function-index_fn_letter-N">N</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-nodrop"><code>nodrop</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-functions">Exported functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-nodrop_002dindex"><code>nodrop-index</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-nodrop_002dp"><code>nodrop-p</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Function-index_fn_letter-R">R</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-range"><code>range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-functions">Exported functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-range_002dend"><code>range-end</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-range_002dp"><code>range-p</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-range_002dstart"><code>range-start</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-ref"><code>ref</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-ref-1"><code>ref</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-representation_002ddimension"><code>representation-dimension</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-representation_002ddimensions"><code>representation-dimensions</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-representation_002dinitial_002dvalue"><code>representation-initial-value</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-representation_002diterator"><code>representation-iterator</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-row_002dmajor_002dsetup"><code>row-major-setup</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-functions">Internal functions</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Function-index_fn_letter-S">S</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-select"><code>select</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-select-1"><code>select</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-select-2"><code>select</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-select_002dreserved_002dsymbol_003f"><code>select-reserved-symbol?</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-functions">Exported functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-singleton_002drepresentation_003f"><code>singleton-representation?</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-functions">Exported functions</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Function-index_fn_letter-T">T</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-tail"><code>tail</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-functions">Exported functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-traverse_002drepresentations"><code>traverse-representations</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-macros">Internal macros</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Function-index_fn_letter-W">W</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-which"><code>which</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-which-1"><code>which</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-generic-functions">Exported generic functions</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Function-index_fn_symbol-1"><b>(</b></a>
+ &nbsp; 
+<br>
+<a class="summary-letter" href="#Function-index_fn_letter-A"><b>A</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-C"><b>C</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-F"><b>F</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-G"><b>G</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-H"><b>H</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-I"><b>I</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-M"><b>M</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-N"><b>N</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-R"><b>R</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-S"><b>S</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-T"><b>T</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Function-index_fn_letter-W"><b>W</b></a>
+ &nbsp; 
+</td></tr></table>
+
+
+
+<hr>
+<span id="Variable-index"></span><div class="header">
+<p>
+Next: <a href="#Data-type-index" accesskey="n" rel="next">Data type index</a>, Previous: <a href="#Function-index" accesskey="p" rel="prev">Function index</a>, Up: <a href="#Indexes" accesskey="u" rel="up">Indexes</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Variables"></span><h3 class="appendixsec">A.3 Variables</h3>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Variable-index_vr_letter-E"><b>E</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Variable-index_vr_letter-I"><b>I</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Variable-index_vr_letter-S"><b>S</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Variable-index_vr_letter-V"><b>V</b></a>
+ &nbsp; 
+</td></tr></table>
+<table class="index-vr" border="0">
+<tr><td></td><th align="left">Index Entry</th><td>&nbsp;</td><th align="left"> Section</th></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Variable-index_vr_letter-E">E</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-end"><code>end</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-end-1"><code>end</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-end-2"><code>end</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-structures">Internal structures</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Variable-index_vr_letter-I">I</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-index"><code>index</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Variable-index_vr_letter-S">S</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Slot_002c-end"><code><span class="roman">Slot, </span>end</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Slot_002c-end-1"><code><span class="roman">Slot, </span>end</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Slot_002c-end-2"><code><span class="roman">Slot, </span>end</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-structures">Internal structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Slot_002c-index"><code><span class="roman">Slot, </span>index</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Slot_002c-start"><code><span class="roman">Slot, </span>start</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Slot_002c-start-1"><code><span class="roman">Slot, </span>start</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Slot_002c-start-2"><code><span class="roman">Slot, </span>start</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-structures">Internal structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Slot_002c-vector"><code><span class="roman">Slot, </span>vector</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-structures">Internal structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-start"><code>start</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-start-1"><code>start</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-start-2"><code>start</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-structures">Internal structures</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Variable-index_vr_letter-V">V</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-vector"><code>vector</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-structures">Internal structures</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Variable-index_vr_letter-E"><b>E</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Variable-index_vr_letter-I"><b>I</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Variable-index_vr_letter-S"><b>S</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Variable-index_vr_letter-V"><b>V</b></a>
+ &nbsp; 
+</td></tr></table>
+
+
+
+<hr>
+<span id="Data-type-index"></span><div class="header">
+<p>
+Previous: <a href="#Variable-index" accesskey="p" rel="prev">Variable index</a>, Up: <a href="#Indexes" accesskey="u" rel="up">Indexes</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="Data-types"></span><h3 class="appendixsec">A.4 Data types</h3>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Data-type-index_tp_letter-C"><b>C</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Data-type-index_tp_letter-I"><b>I</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Data-type-index_tp_letter-N"><b>N</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Data-type-index_tp_letter-P"><b>P</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Data-type-index_tp_letter-R"><b>R</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Data-type-index_tp_letter-S"><b>S</b></a>
+ &nbsp; 
+</td></tr></table>
+<table class="index-tp" border="0">
+<tr><td></td><th align="left">Index Entry</th><td>&nbsp;</td><th align="left"> Section</th></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Data-type-index_tp_letter-C">C</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002drange-1"><code>canonical-range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-structures">Internal structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-canonical_002dsequence-1"><code>canonical-sequence</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-structures">Internal structures</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Data-type-index_tp_letter-I">I</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-including-1"><code>including</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Data-type-index_tp_letter-N">N</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-nodrop-1"><code>nodrop</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Data-type-index_tp_letter-P">P</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Package_002c-slct"><code><span class="roman">Package, </span>slct</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-slct-package">The slct package</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Data-type-index_tp_letter-R">R</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-range-1"><code>range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th id="Data-type-index_tp_letter-S">S</th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-select-3"><code>select</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-select-system">The select system</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-slct"><code>slct</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-slct-package">The slct package</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Structure_002c-canonical_002drange"><code><span class="roman">Structure, </span>canonical-range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-structures">Internal structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Structure_002c-canonical_002dsequence"><code><span class="roman">Structure, </span>canonical-sequence</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Internal-structures">Internal structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Structure_002c-including"><code><span class="roman">Structure, </span>including</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Structure_002c-nodrop"><code><span class="roman">Structure, </span>nodrop</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Structure_002c-range"><code><span class="roman">Structure, </span>range</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Exported-structures">Exported structures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-System_002c-select"><code><span class="roman">System, </span>select</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-select-system">The select system</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+</table>
+<table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Data-type-index_tp_letter-C"><b>C</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Data-type-index_tp_letter-I"><b>I</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Data-type-index_tp_letter-N"><b>N</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Data-type-index_tp_letter-P"><b>P</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Data-type-index_tp_letter-R"><b>R</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Data-type-index_tp_letter-S"><b>S</b></a>
+ &nbsp; 
+</td></tr></table>
+
+<hr>
+
+
+
 </body>
 </html>

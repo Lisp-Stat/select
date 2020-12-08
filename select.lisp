@@ -1,8 +1,8 @@
-;;;; -*- Mode: LISP; Base: 10; Syntax: Ansi-Common-Lisp; Package: SLCT -*-
-;;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
-;;;; Copyright (c) 2018-2019 by Symbolics Pte. Ltd. All rights reserved.
+;;; -*- Mode: LISP; Base: 10; Syntax: Ansi-Common-Lisp; Package: SLCT -*-
+;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
+;;; Copyright (c) 2018-2020 by Symbolics Pte. Ltd. All rights reserved.
 
-(in-package "SLCT")
+(in-package #:slct)
 
 ;;;
 ;;; Public API
@@ -90,7 +90,8 @@
 
 (defmethod select ((array array) &rest selections)
   "Return the SELECTIONS in the given ARRAY."
-  (let* ((representations (canonical-representations (if (array-has-fill-pointer-p array) (list (length array))
+  (let* ((representations (canonical-representations (if (array-has-fill-pointer-p array)
+							 (list (length array))
 							 (array-dimensions array))
                                                      selections))
          (dimensions (representation-dimensions representations)))
@@ -99,7 +100,7 @@
           (traverse-representations (subscripts representations :index index)
             (setf (row-major-aref it index)
                   (apply #'aref array subscripts))))
-        (apply #'aref array representations))))	     
+        (apply #'aref array representations))))
 
 (defmethod (setf select) ((value array) (array array) &rest selections)
   (let ((representations (canonical-representations (array-dimensions array)

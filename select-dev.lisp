@@ -1,8 +1,8 @@
-;;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: SLCT -*-
-;;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
-;;;; Copyright (c) 2018-2019 by Symbolics Pte. Ltd. All rights reserved.
+;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: SLCT -*-
+;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
+;;; Copyright (c) 2018-2020 by Symbolics Pte. Ltd. All rights reserved.
 
-(in-package "SLCT")
+(in-package #:slct)
 
 ;;;;
 ;;;; Resolve selections into canonical representations
@@ -64,7 +64,7 @@ Unless a specialized method is found, the dimension of the axis is queried with 
   (:method (axis selection)
     ;; fallback: try to get dimension and proceed based that
     (canonical-representation (axis-dimension axis) selection))
-  
+
   ;;; TODO: Should canonical representations resolve to themselves unchecked?
   (:method (axis (canonical-range canonical-range))
    (declare (ignore axis))			; Silence compiler warnings
@@ -94,7 +94,7 @@ Unless a specialized method is found, the dimension of the axis is queried with 
             do (aetypecase (canonical-representation axis s)
                  (array-index
                   (collect it))
-                 (canonical-range		
+                 (canonical-range
                   (loop for index
                         from (canonical-range-start it)
                         below (canonical-range-end it)
@@ -104,7 +104,7 @@ Unless a specialized method is found, the dimension of the axis is queried with 
       (canonical-sequence (nreverse subscripts))))
 
 
-  (:method ((axis integer) (selection (eql t)))	
+  (:method ((axis integer) (selection (eql t)))
     (canonical-range 0 axis))
 
   (:method (axis (selection bit-vector))

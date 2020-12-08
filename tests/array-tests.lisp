@@ -1,7 +1,7 @@
-;;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: SLCT-T  -*-
-;;;; Copyright (c) 2019 by Symbolics Pte. Ltd. All rights reserved.
+;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: SLCT-T  -*-
+;;; Copyright (c) 2019 by Symbolics Pte. Ltd. All rights reserved.
 
-(in-package "SLCT-T")
+(in-package #:slct-t)
 
 #+genera (setf *print-array* t)
 

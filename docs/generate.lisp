@@ -1,10 +1,37 @@
-;;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-lisp; Package: CL-USER -*-
-;;;; Copyright (c) 2010-2013, 2015-2017 Didier Verna
-;;;; Copyright (c) 2017-2018 by Steven Nunez <steve.nunez@inference.sg>
+;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: CL-USER -*-
+;;; Copyright (c) 2010-2013, 2015-2017 Didier Verna
+;;; Copyright (c) 2017-2020 by Symbolics Pte. Ltd. All rights reserved.
 
-(require "asdf")
+;;; Hack to help with generating documentation. It's ugly, but docs
+;;; are generated infrequently. 
 
-(defconstant +copyright-years+ "2017--2018")
+#|
+
+Generating a PDF on Windows seems more trouble than it's worth. If
+generating HTML, use this:
+
+makeinfo --html --no-split select.texi
+
+to generate the HTML documentation file for github.
+
+If you want to install MiKTeX and associated program from MSYS2, you
+can generate a PDF file on MS Windows with:
+
+makeinfo --pdf select.texi
+
+Make certain the MiKTeX executable, tex.exe, is on the PATH. Remove
+the intermediate files before checking in.
+
+FreeBSD users probably want to investigate texi2html, a more flexible
+alternative.
+
+The contents of this file need to be written in texinfo format.
+
+|#
+
+(require :asdf)
+
+(defconstant +copyright-years+ "2017--2020")
 
 (defconstant +introduction+
   "@macro select
@@ -22,7 +49,7 @@ most frequently used form is:
 @lisp
 (select object selection1 selection2 ...)
 @end lisp
-where each @i{selection} specifies a subset of subscripts along the
+where each @i{selection} specifies a set of subscripts along the
 corresponding axis. The selection specifications are found
 below.
 
@@ -39,7 +66,7 @@ These are called @i{singleton} slices. Each singleton slice drops the
 dimension: vectors become atoms, matrices become vectors, @etc{}.
 
 @heading Selecting Ranges
-@code{(range start end)} selects subscripts @i{i} where start <= i <=
+@code{(range start end)} selects subscripts @i{i} where start <= i <
 end. When end is nil, the last index is included (cf. subseq). Each
 boundary is resolved according to the other rules if applicable, so
 you can use negative integers:
@@ -84,7 +111,7 @@ library.
 the end of the range:
 @lisp
 (select #(0 1 2 3) (including 1 2))
-                          ; => #(1 2), cf. (select ... (range 1 3)) 
+                          ; => #(1 2), cf. (select ... (range 1 3))
 @end lisp
 
 @code{nodrop} is useful if you do not want to drop dimensions:
@@ -188,12 +215,12 @@ statistics library. Changes in this version include:
 (net.didierverna.declt:nickname-package)
 
 (declt:declt :select
-	     :library "Select"
-	     :copyright +copyright-years+
-	     :license :boost
+	     :library-name "Select"
+	     :copyright-years +copyright-years+
+;	     :license :boost
 	     :declt-notice nil
 	     :introduction +introduction+
 	     :conclusion +change-log+
-	     :texi-file "select.texi"
+;	     :texi-file "select.texi"
 	     :hyperlinks t)
 (uiop:quit)

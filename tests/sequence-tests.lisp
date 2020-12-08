@@ -1,7 +1,7 @@
-;;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: SLCT-T  -*-
-;;;; Copyright (c) 2019 by Symbolics Pte. Ltd. All rights reserved.
+;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: SLCT-T  -*-
+;;; Copyright (c) 2019-2020 by Symbolics Pte. Ltd. All rights reserved.
 
-(in-package "SLCT-T")
+(in-package #:slct-t)
 
 #+genera (setf *print-array* t)
 
@@ -37,12 +37,11 @@
   (is (equalp '(7 8)   (select lst10 (range 7 -1)))  "RANGE must handle negative subscripts.")
   (is (equalp #(8 9)   (select vec10 (range 8 10)))  "Expected #(8 9) but got ~A." (select vec10 (range 8 10)))
   (is (equalp '(8 9)   (select lst10 (range 8 10)))  "Expected '(8 9) but got ~A." (select lst10 (range 8 10)))
-  (signals error            (select vec10 (range 1 1))    "(range 1 1) => nil and must signal error.")
-  (signals error            (select vec10 (range 5 4))    "If START > END for a RANGE an error must be signaled."))
+  (signals error       (select vec10 (range 1 1))    "(range 1 1) => nil and must signal error.")
+  (signals error       (select vec10 (range 5 4))    "If START > END for a RANGE an error must be signaled."))
 
 (test representations
   :description "Test representations."
-
   ;; Vector source, vector selector
   (is (equalp #(2 3 5)   (select vec10 #(2 3 5)))     "Expected #(2 3 5) from (select vec10 #(2 3 5)) but got ~A." (select vec10 #(2 3 5)))
   (is (equalp #(2 3 3 7) (select vec10 #(2 3 3 -3)))  "Expected #(2 3 3 7) from (select vec10 #(2 3 3 -3)) but got ~A." (select vec10 #(2 3 3 -3)))
