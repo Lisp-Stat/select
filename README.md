@@ -7,7 +7,7 @@ This library provides:
 3. A set of utility functions for traversing slices in array-like objects.
 
 # Documentation
-Documentation for select can be found at the [Symbolics github.io page](https://symbolics.github.io/select/).
+Documentation for select can be found at the [Symbolics github.io page](https://symbolics.github.io/select/). A [PDF version](https://symbolics.github.io/select/select.pdf)  is also available.
 
 # Known Issues
 
