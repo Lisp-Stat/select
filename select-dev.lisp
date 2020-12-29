@@ -2,11 +2,11 @@
 ;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
 ;;; Copyright (c) 2018-2020 by Symbolics Pte. Ltd. All rights reserved.
 
-(in-package #:slct)
+(in-package #:select-dev)
 
-;;;;
-;;;; Resolve selections into canonical representations
-;;;;
+;;;
+;;; Resolve selections into canonical representations
+;;;
 
 (defun canonical-singleton (index)
   "Canonical representation of a singleton index (a nonnegative integer, which is a valid array index)."
@@ -120,9 +120,9 @@ Unless a specialized method is found, the dimension of the axis is queried with 
 
 
 
-;;;;
-;;;; Iterating over selections
-;;;;
+;;;
+;;; Iterating over selections
+;;;
 
 (defun singleton-representation? (representation)
   "Test if a canonical REPRESENTATION is a singleton."
