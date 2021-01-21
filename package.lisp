@@ -18,6 +18,7 @@
    #:all-singleton-representations?
    #:representation-dimensions
    #:row-major-setup
+   #:column-major-setup
    #:traverse-representations)
   (:documentation "SELECT-DEV is used to implement SELECT operations on data structures other than arrays."))
 

@@ -1,8 +1,8 @@
-;;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: SLCT-T  -*-
-;;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
-;;;; Copyright (c) 2019 by Symbolics Pte. Ltd. All rights reserved.
+;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: SLCT-T  -*-
+;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
+;;; Copyright (c) 2019-2021 by Symbolics Pte. Ltd. All rights reserved.
 
-(in-package "SLCT-T")
+(in-package #:slct-t)
 
 (def-suite all-tests
     :description "The master suite of all select tests.")
