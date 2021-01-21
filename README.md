@@ -3,8 +3,8 @@
 This library provides:
 
 1. An API for taking slices (elements selected by the Cartesian product of vectors of subscripts for each axis) of array-like objects. The most important function is `select`. Unless you want to define additional methods for `select`, this is pretty much all you need from this library. See the [documentation](https://symbolics.github.io/select/) for a tutorial.
-2. An extensible DSL for selecting a subset of valid subscripts. This is useful if, for example, you want to resolve column names in a data frame in your implementation of slice.
-3. A set of utility functions for traversing slices in array-like objects.
+2. An extensible DSL for selecting a subset of valid subscripts. This is useful if, for example, you want to resolve column names in a data frame in your implementation of select.
+3. A set of utility functions for traversing selections in array-like objects.
 
 # Documentation
 Documentation for select can be found at the [Symbolics github.io page](https://symbolics.github.io/select/). A [PDF version](https://symbolics.github.io/select/select.pdf)  is also available.

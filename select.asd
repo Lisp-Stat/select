@@ -17,7 +17,7 @@ A set of utility functions for traversing slices in array-like objects."
   :homepage       "https://symbolics.github.io/select/"
   :source-control (:git "git://github.com/Symbolics/select")
   :bug-tracker    "https://github.com/Symbolics/select/issues/"
-  :license "MS-PL"
+  :license        :MS-PL
   :depends-on (#:alexandria
                #:anaphora
                #:let-plus)
@@ -32,7 +32,7 @@ A set of utility functions for traversing slices in array-like objects."
   :description "DSL for array slices - unit tests."
   :version     (:read-file-form #:version.sexp)
   :author      "Steven Nunez"
-  :license     "MS-PL"
+  :license     :MS-PL
   :depends-on (#:select
                #:fiveam)
   :serial t
