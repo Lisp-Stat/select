@@ -1,8 +1,8 @@
 ;;; -*- Mode: LISP; Base: 10; Syntax: Ansi-Common-Lisp; Package: SLCT -*-
 ;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
-;;; Copyright (c) 2018-2020 by Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2018-2021 by Symbolics Pte. Ltd. All rights reserved.
 
-(in-package #:slct)
+(in-package :slct)
 
 ;;;
 ;;; Public API
@@ -154,18 +154,18 @@
 ;;; Masks
 ;;;
 
-(defgeneric mask (predicate sequence)
+(defgeneric mask (sequence predicate)
   (:documentation "Map sequence into a simple-bit-vector, using 1 when PREDICATE yields true, 0 otherwise.")
-  (:method (predicate (sequence sequence))
+  (:method ((sequence sequence) predicate)
     (map 'bit-vector (lambda (element)
                        (if (funcall predicate element)
                            1
                            0))
          sequence)))
 
-(defgeneric which (predicate sequence)
-  (:documentation "Return an index of the positions in SEQUENCE which satisfy PREDICATE.")
-  (:method (predicate (sequence sequence))
+(defgeneric which (sequence &key predicate)
+  (:documentation "Return an index of the positions in SEQUENCE which satisfy PREDICATE. Defaults to return non-NIL indices.")
+  (:method ((sequence sequence) &key (predicate #'identity))
     (let ((index 0)
           positions)
       (map nil (lambda (element)
