@@ -1,22 +1,22 @@
 ;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: CL-USER -*-
 ;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
-;;; Copyright (c) 2018-2020 by Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2018-2021 by Symbolics Pte. Ltd. All rights reserved.
 
-(asdf:defsystem #:select
+(asdf:defsystem :select
   :description "DSL for array slices."
   :long-description "\
-Select is a facility for selecting portions of sequences or arrays. It provides:
+Select is a facility for selecting portions of sequences, arrays or data-frames. It provides:
 
-An API for taking slices (elements selected by the Cartesian product of vectors of subscripts for each axis) of array-like objects. The most important function is `select`. Unless you want to define additional methods for `select`, this is pretty much all you need from this library. See the documentation at https://symbolics.github.io/select/ for a tutorial.
+An API for taking slices (elements selected by the Cartesian product of vectors of subscripts for each axis) of array-like objects.  The most important function is `select`. Unless you want to define additional methods for `select`, this is pretty much all you need from this library.  See the documentation at https://lisp-stat.github.io/select/ for a tutorial.
 
 An extensible DSL for selecting a subset of valid subscripts. This is useful if, for example, you want to resolve column names in a data frame in your implementation of slice.
 
 A set of utility functions for traversing slices in array-like objects."
   :version        (:read-file-form #:version.sexp)
   :author         "Steve Nunez"
-  :homepage       "https://symbolics.github.io/select/"
-  :source-control (:git "git://github.com/Symbolics/select")
-  :bug-tracker    "https://github.com/Symbolics/select/issues/"
+  :homepage       "https://lisp-stat.github.io/select/"
+  :source-control (:git "git://github.com/Lisp-Stat/select")
+  :bug-tracker    "https://github.com/Lisp-Stat/select/issues/"
   :license        :MS-PL
   :depends-on (#:alexandria
                #:anaphora
