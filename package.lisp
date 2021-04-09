@@ -29,8 +29,8 @@
 	   #:ref
 	   #:including
 	   #:nodrop
-	   #:head
-	   #:tail
+	   ;; #:head
+	   ;; #:tail
 	   #:range
 	   #:mask
 	   #:which)

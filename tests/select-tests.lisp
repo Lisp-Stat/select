@@ -2,7 +2,7 @@
 ;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
 ;;; Copyright (c) 2019-2021 by Symbolics Pte. Ltd. All rights reserved.
 
-(in-package #:slct-t)
+(in-package :slct-t)
 
 (def-suite all-tests
     :description "The master suite of all select tests.")
@@ -92,11 +92,11 @@
 	(setf answer (select vec10 (including 3 5)))
 	(is (equalp #(3 4 5) answer) "Expected #(3 4 5) from (select vec10 (including 3 5)) but got ~A." answer)
 	(setf answer (select vec10 (nodrop 5)))
-	(is (equalp #(5) answer) "Expected #(5) from (select vec10 (nodrop 5)) but got ~A." answer)
-	(setf answer (select vec10 (head 3)))
-	(is (equalp #(0 1 2) answer) "Expected #(0 1 2) from (select vec10 (head 3)) but got ~A." answer)
-	(setf answer (select vec10 (tail 3)))
-	(is (equalp #(7 8 9) answer) "Expected #(7 8 9) from (select vec10 (tail 3)) but got ~A." answer))
+	(is (equalp #(5) answer) "Expected #(5) from (select vec10 (nodrop 5)) but got ~A." answer))
+	;; (setf answer (select vec10 (head 3)))
+	;; (is (equalp #(0 1 2) answer) "Expected #(0 1 2) from (select vec10 (head 3)) but got ~A." answer)
+	;; (setf answer (select vec10 (tail 3)))
+	;; (is (equalp #(7 8 9) answer) "Expected #(7 8 9) from (select vec10 (tail 3)) but got ~A." answer))
 
   ;; List forms
   (let ((answer (select lst10 (range 3 5))))
@@ -104,11 +104,11 @@
 	(setf answer (select lst10 (including 3 5)))
 	(is (equalp '(3 4 5) answer) "Expected '(3 4 5) from (select lst10 (including 3 5)) but got ~A." answer)
 	(setf answer (select lst10 (nodrop 5)))
-	(is (equalp '(5) answer) "Expected '(5) from (select lst10 (nodrop 5)) but got ~A." answer)
-	(setf answer (select lst10 (head 3)))
-	(is (equalp '(0 1 2) answer) "Expected '(0 1 2) from (select lst10 (head 3)) but got ~A." answer)
-	(setf answer (select lst10 (tail 3)))
-	(is (equalp '(7 8 9) answer) "Expected '(7 8 9) from (select lst10 (tail 3)) but got ~A." answer)))
+	(is (equalp '(5) answer) "Expected '(5) from (select lst10 (nodrop 5)) but got ~A." answer)))
+	;; (setf answer (select lst10 (head 3)))
+	;; (is (equalp '(0 1 2) answer) "Expected '(0 1 2) from (select lst10 (head 3)) but got ~A." answer)
+	;; (setf answer (select lst10 (tail 3)))
+	;; (is (equalp '(7 8 9) answer) "Expected '(7 8 9) from (select lst10 (tail 3)) but got ~A." answer)))
 
 
 ;;;;

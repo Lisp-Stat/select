@@ -70,13 +70,12 @@
   "The canonical representation for NODROP."
   (let ((start (canonical-representation axis (nodrop-index selection))))
     (canonical-range start (1+ start))))
-
-
+#+nil
 (defun head (count)
   "First COUNT indexes."
   (check-type count alexandria:array-index)
   (range 0 count))
-
+#+nil
 (defun tail (count)
   "Last COUNT indexes."
   (check-type count alexandria:array-index)
