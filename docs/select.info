@@ -1,30 +1,197 @@
-This is select.info, produced by makeinfo version 6.7 from select.texi.
+This is select.info, produced by makeinfo version 6.8 from select.texi.
 
-INFO-DIR-SECTION Common Lisp
+     Copyright © 2019-2022 Steve Nunez
+
+     Permission is granted to make and distribute verbatim copies of
+     this manual provided the copyright notice and this permission
+     notice are preserved on all copies.
+
+     Permission is granted to copy and distribute modified versions of
+     this manual under the conditions for verbatim copying, provided
+     also that the section entitled “Copying” is included exactly as in
+     the original.
+
+     Permission is granted to copy and distribute translations of this
+     manual into another language, under the above conditions for
+     modified versions, except that this permission notice may be
+     translated as well.
+INFO-DIR-SECTION Lisp-Stat
 START-INFO-DIR-ENTRY
-* Select Reference: (select). The Select Reference Manual.
+* Select Reference Manual: (select). The Select Reference Manual.
 END-INFO-DIR-ENTRY
 
 
-File: select.info,  Node: Top,  Next: Systems,  Prev: (dir),  Up: (dir)
+File: select.info,  Node: Top,  Next: Copying,  Prev: (dir),  Up: (dir)
 
 The Select Reference Manual
 ***************************
 
-This is the Select Reference Manual, version 1.2.
+This is the Select Reference Manual, version 1.0.0, generated
+automatically by Declt version 4.0b2.
 
 * Menu:
 
+* Copying:: The Microsoft Public License
+* Introduction:: What Select is all about
 * Systems:: The systems documentation
 * Files:: The files documentation
 * Packages:: The packages documentation
 * Definitions:: The symbols documentation
+* Conclusion:: Time to go
 * Indexes:: Concepts, functions, variables and data types
 
-
-File: select.info,  Node: Systems,  Next: Files,  Prev: Top,  Up: Top
+     Copyright © 2019-2022 Steve Nunez
 
-1 Systems
+     Permission is granted to make and distribute verbatim copies of
+     this manual provided the copyright notice and this permission
+     notice are preserved on all copies.
+
+     Permission is granted to copy and distribute modified versions of
+     this manual under the conditions for verbatim copying, provided
+     also that the section entitled “Copying” is included exactly as in
+     the original.
+
+     Permission is granted to copy and distribute translations of this
+     manual into another language, under the above conditions for
+     modified versions, except that this permission notice may be
+     translated as well.
+
+
+File: select.info,  Node: Copying,  Next: Introduction,  Prev: Top,  Up: Top
+
+Copying
+*******
+
+     This program is distributed under the terms of the Microsoft Public
+     License.
+
+
+File: select.info,  Node: Introduction,  Next: Systems,  Prev: Copying,  Up: Top
+
+1 Introduction
+**************
+
+Select is a library for taking slices from array-like objects.  The most
+frequently used form is:
+     (select object selection1 selection2 ...)
+   where each selection specifies a set of subscripts along the
+corresponding axis.  The selection specifications are found below.
+
+1.1 Selection Specifiers
+========================
+
+Selecting Single Values
+=======================
+
+A non-negative integer selects the corresponding index, while a negative
+integer selects an index counting backwards from the last index.  For
+example:
+     (select #(0 1 2 3) 1)                  ; => 1
+     (select #(0 1 2 3) -2)                 ; => 2
+   These are called singleton slices.  Each singleton slice drops the
+dimension: vectors become atoms, matrices become vectors, etc..
+
+Selecting Ranges
+================
+
+‘(range start end)’ selects subscripts i where start <= i < end.  When
+end is nil, the last index is included (cf.  subseq).  Each boundary is
+resolved according to the other rules if applicable, so you can use
+negative integers:
+     (select #(0 1 2 3) (range 1 3))         ; => #(1 2)
+     (select #(0 1 2 3) (range 1 -1))        ; => #(1 2)
+
+Selecting All Subscripts of a Dimension
+=======================================
+
+‘t’ selects all subscripts:
+     (select #2A((0 1 2)
+                 (3 4 5))
+              t 1)                           ; => #(1 4)
+
+Selecting with a Sequence
+=========================
+
+Sequences can be used to make specific selections from the object.  For
+example:
+     (select #(0 1 2 3 4 5 6 7 8 9)
+     	(vector (range 1 3) 6 (range -2 -1))) ; => #(1 2 3 6 8 9)
+     (select #(0 1 2) '(2 2 1 0 0))                ; => #(2 2 1 0 0)
+
+Using Bit Vectors as a Mask
+===========================
+
+Bit vectors can be used to select elements of arrays and sequences as
+well:
+     (select #(0 1 2 3 4) #*00110)          ; => #(2 3)
+
+1.1.1 Extensions
+----------------
+
+Section 1.1 describes the core functionality.  The semantics can be
+extended, as you will see in the next section.  The extensions in this
+section are provided by the library and prove useful in practice.  Their
+implementation provides good examples of extending the library.
+
+   ‘including’ is convenient if you want the selection to include the
+end of the range:
+     (select #(0 1 2 3) (including 1 2))
+                               ; => #(1 2), cf. (select ... (range 1 3))
+
+   ‘nodrop’ is useful if you do not want to drop dimensions:
+     (select #(0 1 2 3) (nodrop 2))
+                               ; => #(2), cf. (select ... (range 2 3))
+
+   ‘head’ and ‘tail’ do the obvious:
+     (select #(0 1 2 3) (head 2))            ; => #(0 1)
+     (select #(0 1 2 3) (tail 2))            ; => #(2 3)
+
+   All of these are trivial to implement.  If there is something you are
+missing, you can easily extend ‘select’.  Pull request are welcome.
+
+   ‘ref’ is a version of ‘select’ that always returns a single element,
+so it can only be used with singleton slices.
+
+1.2 Select Semantics
+====================
+
+Arguments of ‘select’, except the first one, are meant to be resolved
+using ‘canonical-representation’, in the ‘select-dev’ package.  If you
+want to extend ‘select’, you should define methods for
+‘canonical-representation’.  See the source code for the best examples.
+Below is a simple example that extends the semantics with ordinal
+numbers.
+     (defmacro define-ordinal-selection (number)
+       (check-type number (integer 0))
+       `(defmethod select-dev:canonical-representation
+            ((axis integer)
+     	(slice (eql ',(intern (format nil \"~:@(~:r~)\" number)))))
+          (assert (< ,number axis))
+          (select-dev:canonical-singleton ,number)))
+
+     (define-ordinal-selection 1)
+     (define-ordinal-selection 2)
+     (define-ordinal-selection 3)
+
+     (select #(0 1 2 3 4 5) (range 'first 'third)) ; => #(1 2)
+   Note the following:
+   • The value returned by ‘canonical-representation’ needs to be
+     constructed using ‘canonical-singleton’, ‘canonical-range’, or
+     ‘canonical-sequence’.  You should not use the internal
+     representation directly as it is subject to change.
+   • You can assume that ‘axis’ is an integer: this is the default.  An
+     object may define a more complex mapping (such as, for example,
+     named rows & columns), but unless a method specialized to that is
+     found, ‘canonical-representation’ will just query its dimension
+     (with ‘axis-dimension’) and try to find a method that works on
+     integers.
+   • You need to make sure that the subscript is valid, hence the
+     assertion.
+
+
+File: select.info,  Node: Systems,  Next: Files,  Prev: Introduction,  Up: Top
+
+2 Systems
 *********
 
 The main system appears first, followed by any subsystem dependency.
@@ -36,32 +203,32 @@ The main system appears first, followed by any subsystem dependency.
 
 File: select.info,  Node: The select system,  Prev: Systems,  Up: Systems
 
-1.1 select
+2.1 select
 ==========
 
+DSL for array and data-frame slices
+*Long Name*
+     Slicing for Data Frames
 *Author*
-     Steve Nunez
+     Steve Nunez <<steve@symbolics.tech>>
 *Home Page*
-     <https://symbolics.github.io/select/>
+     <https://lisp-stat.dev/docs/manuals/select>
 *Source Control*
-     (:git "git://github.com/symbolics/select")
+     (GIT git://github.com/Lisp-Stat/select)
 *Bug Tracker*
-     <https://github.com/Symbolics/select/issues/>
+     <https://github.com/Lisp-Stat/select/issues/>
 *License*
      MS-PL
-*Description*
-     DSL for array slices.
 *Long Description*
-
-     Select is a facility for selecting portions of sequences or arrays.
-     It provides:
+     Select is a facility for selecting portions of sequences, arrays or
+     data-frames.  It provides:
 
      An API for taking slices (elements selected by the Cartesian
      product of vectors of subscripts for each axis) of array-like
      objects.  The most important function is ‘select‘.  Unless you want
      to define additional methods for ‘select‘, this is pretty much all
      you need from this library.  See the documentation at
-     https://symbolics.github.io/select/ for a tutorial.
+     https://lisp-stat.github.io/select/ for a tutorial.
 
      An extensible DSL for selecting a subset of valid subscripts.  This
      is useful if, for example, you want to resolve column names in a
@@ -70,25 +237,22 @@ File: select.info,  Node: The select system,  Prev: Systems,  Up: Systems
      A set of utility functions for traversing slices in array-like
      objects.
 *Version*
-     1.2
+     1.0.0
 *Dependencies*
-        • alexandria
-        • anaphora
-        • let-plus
+        • alexandria (system).
+        • anaphora (system).
+        • let-plus (system).
 *Source*
-     *note select.asd: go to the select․asd file. (file)
-*Directory*
-     s:/src/select/
-*Components*
-        • *note package.lisp: go to the select/package․lisp file. (file)
-        • *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
-        • *note select.lisp: go to the select/select․lisp file. (file)
+     *note select.asd: ❨2❩.
+*Child Components*
+        • *note package.lisp: ❨3❩. (file).
+        • *note select-dev.lisp: ❨4❩. (file).
+        • *note select.lisp: ❨5❩. (file).
 
 
 File: select.info,  Node: Files,  Next: Packages,  Prev: Systems,  Up: Top
 
-2 Files
+3 Files
 *******
 
 Files are sorted by type and then listed depth-first from the systems
@@ -101,490 +265,260 @@ components trees.
 
 File: select.info,  Node: Lisp files,  Prev: Files,  Up: Files
 
-2.1 Lisp
+3.1 Lisp
 ========
 
 * Menu:
 
-* The select.asd file: The select․asd file.
-* The select/package.lisp file: The select/package․lisp file.
-* The select/select-dev.lisp file: The select/select-dev․lisp file.
-* The select/select.lisp file: The select/select․lisp file.
+* The select/select․asd file::
+* The select/package․lisp file::
+* The select/select-dev․lisp file::
+* The select/select․lisp file::
 
 
-File: select.info,  Node: The select․asd file,  Next: The select/package․lisp file,  Prev: Lisp files,  Up: Lisp files
+File: select.info,  Node: The select/select․asd file,  Next: The select/package․lisp file,  Prev: Lisp files,  Up: Lisp files
 
-2.1.1 select.asd
-----------------
+3.1.1 select/select.asd
+-----------------------
 
-*Location*
-     select.asd
-*Systems*
-     *note select: go to the select system. (system)
+*Source*
+     *note select.asd: ❨2❩.
+*Parent Component*
+     *note select: ❨1❩. (system).
+*ASDF Systems*
+     *note select: ❨1❩.
 
 
-File: select.info,  Node: The select/package․lisp file,  Next: The select/select-dev․lisp file,  Prev: The select․asd file,  Up: Lisp files
+File: select.info,  Node: The select/package․lisp file,  Next: The select/select-dev․lisp file,  Prev: The select/select․asd file,  Up: Lisp files
 
-2.1.2 select/package.lisp
+3.1.2 select/package.lisp
 -------------------------
 
-*Parent*
-     *note select: go to the select system. (system)
-*Location*
-     package.lisp
+*Source*
+     *note select.asd: ❨2❩.
+*Parent Component*
+     *note select: ❨1❩. (system).
 *Packages*
-        • *note select-dev: go to the SELECT-DEV package.
-        • *note select: go to the SELECT package.
+        • *note select: ❨6❩.
+        • *note select-dev: ❨7❩.
 
 
 File: select.info,  Node: The select/select-dev․lisp file,  Next: The select/select․lisp file,  Prev: The select/package․lisp file,  Up: Lisp files
 
-2.1.3 select/select-dev.lisp
+3.1.3 select/select-dev.lisp
 ----------------------------
 
 *Dependency*
-     *note package.lisp: go to the select/package․lisp file. (file)
-*Parent*
-     *note select: go to the select system. (system)
-*Location*
-     select-dev.lisp
-*Exported Definitions*
-        • *note all-singleton-representations?: go to the
-          SELECT-DEV∶∶ALL-SINGLETON-REPRESENTATIONS? function.
-          (function)
-        • *note axis-dimension: go to the SELECT-DEV∶∶AXIS-DIMENSION
-          generic function. (generic function)
-        • *note canonical-range: go to the SELECT-DEV∶∶CANONICAL-RANGE
-          function. (function)
-        • *note canonical-range: go to the SELECT-DEV∶∶CANONICAL-RANGE
-          structure. (structure)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION generic function.
-          (generic function)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          COMMON-LISP∶∶T method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT-DEV∶∶CANONICAL-RANGE method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT-DEV∶∶CANONICAL-SEQUENCE method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶INTEGER
-          COMMON-LISP∶∶NULL method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶INTEGER
-          COMMON-LISP∶∶INTEGER method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          COMMON-LISP∶∶SEQUENCE method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶INTEGER ❨eql
-          COMMON-LISP∶∶T❩ method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          COMMON-LISP∶∶BIT-VECTOR method. (method)
-        • *note canonical-representations: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATIONS function. (function)
-        • *note canonical-sequence: go to the
-          SELECT-DEV∶∶CANONICAL-SEQUENCE function. (function)
-        • *note canonical-sequence: go to the
-          SELECT-DEV∶∶CANONICAL-SEQUENCE structure. (structure)
-        • *note canonical-singleton: go to the
-          SELECT-DEV∶∶CANONICAL-SINGLETON function. (function)
-        • *note column-major-setup: go to the
-          SELECT-DEV∶∶COLUMN-MAJOR-SETUP function. (function)
-        • *note representation-dimensions: go to the
-          SELECT-DEV∶∶REPRESENTATION-DIMENSIONS function. (function)
-        • *note row-major-setup: go to the SELECT-DEV∶∶ROW-MAJOR-SETUP
-          function. (function)
-        • *note select-reserved-symbol?: go to the
-          SELECT-DEV∶∶SELECT-RESERVED-SYMBOL? function. (function)
-        • *note singleton-representation?: go to the
-          SELECT-DEV∶∶SINGLETON-REPRESENTATION? function. (function)
-        • *note traverse-representations: go to the
-          SELECT-DEV∶∶TRAVERSE-REPRESENTATIONS macro. (macro)
-*Internal Definitions*
-        • *note canonical-range-end: go to the
-          SELECT-DEV∶∶CANONICAL-RANGE-END function. (function)
-        • *note (setf canonical-range-end): go to the SELECT-DEV∶∶❨SETF
-          CANONICAL-RANGE-END❩ function. (function)
-        • *note canonical-range-p: go to the
-          SELECT-DEV∶∶CANONICAL-RANGE-P function. (function)
-        • *note canonical-range-start: go to the
-          SELECT-DEV∶∶CANONICAL-RANGE-START function. (function)
-        • *note (setf canonical-range-start): go to the
-          SELECT-DEV∶∶❨SETF CANONICAL-RANGE-START❩ function. (function)
-        • *note canonical-sequence-p: go to the
-          SELECT-DEV∶∶CANONICAL-SEQUENCE-P function. (function)
-        • *note canonical-sequence-vector: go to the
-          SELECT-DEV∶∶CANONICAL-SEQUENCE-VECTOR function. (function)
-        • *note (setf canonical-sequence-vector): go to the
-          SELECT-DEV∶∶❨SETF CANONICAL-SEQUENCE-VECTOR❩ function.
-          (function)
-        • *note copy-canonical-range: go to the
-          SELECT-DEV∶∶COPY-CANONICAL-RANGE function. (function)
-        • *note copy-canonical-sequence: go to the
-          SELECT-DEV∶∶COPY-CANONICAL-SEQUENCE function. (function)
-        • *note make-canonical-range: go to the
-          SELECT-DEV∶∶MAKE-CANONICAL-RANGE function. (function)
-        • *note make-canonical-sequence: go to the
-          SELECT-DEV∶∶MAKE-CANONICAL-SEQUENCE function. (function)
-        • *note representation-dimension: go to the
-          SELECT-DEV∶∶REPRESENTATION-DIMENSION function. (function)
-        • *note representation-initial-value: go to the
-          SELECT-DEV∶∶REPRESENTATION-INITIAL-VALUE function. (function)
-        • *note representation-iterator: go to the
-          SELECT-DEV∶∶REPRESENTATION-ITERATOR function. (function)
+     *note package.lisp: ❨3❩. (file).
+*Source*
+     *note select.asd: ❨2❩.
+*Parent Component*
+     *note select: ❨1❩. (system).
+*Public Interface*
+        • *note all-singleton-representations?: ❨60❩. (function).
+        • *note axis-dimension: ❨66❩. (generic function).
+        • *note canonical-range: ❨52❩. (function).
+        • *note canonical-range: ❨53❩. (structure).
+        • *note canonical-representation: ❨67❩. (generic function).
+        • *note canonical-representations: ❨59❩. (function).
+        • *note canonical-sequence: ❨62❩. (function).
+        • *note canonical-sequence: ❨63❩. (structure).
+        • *note canonical-singleton: ❨65❩. (function).
+        • *note column-major-setup: ❨58❩. (function).
+        • *note representation-dimensions: ❨80❩. (function).
+        • *note row-major-setup: ❨79❩. (function).
+        • *note select-reserved-symbol?: ❨57❩. (function).
+        • *note singleton-representation?: ❨61❩. (function).
+        • *note traverse-representations: ❨56❩. (macro).
+*Internals*
+        • *note canonical-range-end: ❨89❩. (reader).
+        • *note (setf canonical-range-end): ❨90❩. (writer).
+        • *note canonical-range-p: ❨85❩. (function).
+        • *note canonical-range-start: ❨94❩. (reader).
+        • *note (setf canonical-range-start): ❨95❩. (writer).
+        • *note canonical-sequence-p: ❨81❩. (function).
+        • *note canonical-sequence-vector: ❨86❩. (reader).
+        • *note (setf canonical-sequence-vector): ❨87❩. (writer).
+        • *note copy-canonical-range: ❨83❩. (function).
+        • *note copy-canonical-sequence: ❨93❩. (function).
+        • *note make-canonical-range: ❨82❩. (function).
+        • *note make-canonical-sequence: ❨91❩. (function).
+        • *note representation-dimension: ❨92❩. (function).
+        • *note representation-initial-value: ❨88❩. (function).
+        • *note representation-iterator: ❨84❩. (function).
 
 
 File: select.info,  Node: The select/select․lisp file,  Prev: The select/select-dev․lisp file,  Up: Lisp files
 
-2.1.4 select/select.lisp
+3.1.4 select/select.lisp
 ------------------------
 
 *Dependency*
-     *note select-dev.lisp: go to the select/select-dev․lisp file.
-     (file)
-*Parent*
-     *note select: go to the select system. (system)
-*Location*
-     select.lisp
-*Exported Definitions*
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT∶∶NODROP method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT∶∶RANGE method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT∶∶INCLUDING method. (method)
-        • *note head: go to the SELECT∶∶HEAD function. (function)
-        • *note including: go to the SELECT∶∶INCLUDING function.
-          (function)
-        • *note including: go to the SELECT∶∶INCLUDING structure.
-          (structure)
-        • *note mask: go to the SELECT∶∶MASK generic function. (generic
-          function)
-        • *note mask: go to the SELECT∶∶MASK COMMON-LISP∶∶SEQUENCE
-          COMMON-LISP∶∶T method. (method)
-        • *note nodrop: go to the SELECT∶∶NODROP function. (function)
-        • *note nodrop: go to the SELECT∶∶NODROP structure. (structure)
-        • *note range: go to the SELECT∶∶RANGE function. (function)
-        • *note range: go to the SELECT∶∶RANGE structure. (structure)
-        • *note ref: go to the SELECT∶∶REF generic function. (generic
-          function)
-        • *note ref: go to the SELECT∶∶REF COMMON-LISP∶∶ARRAY method.
-          (method)
-        • *note (setf ref): go to the SELECT∶∶❨SETF REF❩ COMMON-LISP∶∶T
-          COMMON-LISP∶∶ARRAY method. (method)
-        • *note (setf ref): go to the SELECT∶∶❨SETF REF❩ generic
-          function. (generic function)
-        • *note select: go to the SELECT∶∶SELECT generic function.
-          (generic function)
-        • *note select: go to the SELECT∶∶SELECT COMMON-LISP∶∶LIST
-          method. (method)
-        • *note select: go to the SELECT∶∶SELECT COMMON-LISP∶∶ARRAY
-          method. (method)
-        • *note (setf select): go to the SELECT∶∶❨SETF SELECT❩
-          COMMON-LISP∶∶T COMMON-LISP∶∶ARRAY method. (method)
-        • *note (setf select): go to the SELECT∶∶❨SETF SELECT❩ generic
-          function. (generic function)
-        • *note tail: go to the SELECT∶∶TAIL function. (function)
-        • *note which: go to the SELECT∶∶WHICH generic function.
-          (generic function)
-        • *note which: go to the SELECT∶∶WHICH COMMON-LISP∶∶SEQUENCE
-          method. (method)
-*Internal Definitions*
-        • *note copy-including: go to the SELECT∶∶COPY-INCLUDING
-          function. (function)
-        • *note copy-nodrop: go to the SELECT∶∶COPY-NODROP function.
-          (function)
-        • *note copy-range: go to the SELECT∶∶COPY-RANGE function.
-          (function)
-        • *note including-end: go to the SELECT∶∶INCLUDING-END function.
-          (function)
-        • *note (setf including-end): go to the SELECT∶∶❨SETF
-          INCLUDING-END❩ function. (function)
-        • *note including-p: go to the SELECT∶∶INCLUDING-P function.
-          (function)
-        • *note including-start: go to the SELECT∶∶INCLUDING-START
-          function. (function)
-        • *note (setf including-start): go to the SELECT∶∶❨SETF
-          INCLUDING-START❩ function. (function)
-        • *note make-including: go to the SELECT∶∶MAKE-INCLUDING
-          function. (function)
-        • *note make-nodrop: go to the SELECT∶∶MAKE-NODROP function.
-          (function)
-        • *note make-range: go to the SELECT∶∶MAKE-RANGE function.
-          (function)
-        • *note nodrop-index: go to the SELECT∶∶NODROP-INDEX function.
-          (function)
-        • *note (setf nodrop-index): go to the SELECT∶∶❨SETF
-          NODROP-INDEX❩ function. (function)
-        • *note nodrop-p: go to the SELECT∶∶NODROP-P function.
-          (function)
-        • *note range-end: go to the SELECT∶∶RANGE-END function.
-          (function)
-        • *note (setf range-end): go to the SELECT∶∶❨SETF RANGE-END❩
-          function. (function)
-        • *note range-p: go to the SELECT∶∶RANGE-P function. (function)
-        • *note range-start: go to the SELECT∶∶RANGE-START function.
-          (function)
-        • *note (setf range-start): go to the SELECT∶∶❨SETF RANGE-START❩
-          function. (function)
+     *note select-dev.lisp: ❨4❩. (file).
+*Source*
+     *note select.asd: ❨2❩.
+*Parent Component*
+     *note select: ❨1❩. (system).
+*Public Interface*
+        • *note canonical-representation: ❨68❩. (method).
+        • *note canonical-representation: ❨69❩. (method).
+        • *note canonical-representation: ❨70❩. (method).
+        • *note including: ❨21❩. (function).
+        • *note including: ❨22❩. (structure).
+        • *note mask: ❨31❩. (generic function).
+        • *note nodrop: ❨18❩. (function).
+        • *note nodrop: ❨19❩. (structure).
+        • *note range: ❨25❩. (function).
+        • *note range: ❨26❩. (structure).
+        • *note ref: ❨8❩. (generic function).
+        • *note (setf ref): ❨10❩. (generic function).
+        • *note select: ❨12❩. (generic function).
+        • *note (setf select): ❨15❩. (generic function).
+        • *note which: ❨29❩. (generic function).
+*Internals*
+        • *note copy-including: ❨38❩. (function).
+        • *note copy-nodrop: ❨45❩. (function).
+        • *note copy-range: ❨46❩. (function).
+        • *note including-end: ❨42❩. (reader).
+        • *note (setf including-end): ❨43❩. (writer).
+        • *note including-p: ❨33❩. (function).
+        • *note including-start: ❨50❩. (reader).
+        • *note (setf including-start): ❨51❩. (writer).
+        • *note make-including: ❨47❩. (function).
+        • *note make-nodrop: ❨48❩. (function).
+        • *note make-range: ❨39❩. (function).
+        • *note nodrop-index: ❨40❩. (reader).
+        • *note (setf nodrop-index): ❨41❩. (writer).
+        • *note nodrop-p: ❨49❩. (function).
+        • *note range-end: ❨36❩. (reader).
+        • *note (setf range-end): ❨37❩. (writer).
+        • *note range-p: ❨44❩. (function).
+        • *note range-start: ❨34❩. (reader).
+        • *note (setf range-start): ❨35❩. (writer).
 
 
 File: select.info,  Node: Packages,  Next: Definitions,  Prev: Files,  Up: Top
 
-3 Packages
+4 Packages
 **********
 
 Packages are listed by definition order.
 
 * Menu:
 
-* The select-dev package::
 * The select package::
+* The select-dev package::
 
 
-File: select.info,  Node: The select-dev package,  Next: The select package,  Prev: Packages,  Up: Packages
+File: select.info,  Node: The select package,  Next: The select-dev package,  Prev: Packages,  Up: Packages
 
-3.1 select-dev
+4.1 select
+==========
+
+SELECT is a facility for selecting portions of sequences or arrays.
+*Source*
+     *note package.lisp: ❨3❩.
+*Nickname*
+     slct
+*Use List*
+        • alexandria.
+        • anaphora.
+        • common-lisp.
+        • let-plus.
+        • *note select-dev: ❨7❩.
+*Used By List*
+        • data-frame.
+        • lisp-stat.
+        • num-utils.matrix.
+*Public Interface*
+        • *note including: ❨21❩. (function).
+        • *note including: ❨22❩. (structure).
+        • *note mask: ❨31❩. (generic function).
+        • *note nodrop: ❨18❩. (function).
+        • *note nodrop: ❨19❩. (structure).
+        • *note range: ❨25❩. (function).
+        • *note range: ❨26❩. (structure).
+        • *note ref: ❨8❩. (generic function).
+        • *note (setf ref): ❨10❩. (generic function).
+        • *note select: ❨12❩. (generic function).
+        • *note (setf select): ❨15❩. (generic function).
+        • *note which: ❨29❩. (generic function).
+*Internals*
+        • *note copy-including: ❨38❩. (function).
+        • *note copy-nodrop: ❨45❩. (function).
+        • *note copy-range: ❨46❩. (function).
+        • *note including-end: ❨42❩. (reader).
+        • *note (setf including-end): ❨43❩. (writer).
+        • *note including-p: ❨33❩. (function).
+        • *note including-start: ❨50❩. (reader).
+        • *note (setf including-start): ❨51❩. (writer).
+        • *note make-including: ❨47❩. (function).
+        • *note make-nodrop: ❨48❩. (function).
+        • *note make-range: ❨39❩. (function).
+        • *note nodrop-index: ❨40❩. (reader).
+        • *note (setf nodrop-index): ❨41❩. (writer).
+        • *note nodrop-p: ❨49❩. (function).
+        • *note range-end: ❨36❩. (reader).
+        • *note (setf range-end): ❨37❩. (writer).
+        • *note range-p: ❨44❩. (function).
+        • *note range-start: ❨34❩. (reader).
+        • *note (setf range-start): ❨35❩. (writer).
+
+
+File: select.info,  Node: The select-dev package,  Prev: The select package,  Up: Packages
+
+4.2 select-dev
 ==============
 
 SELECT-DEV is used to implement SELECT operations on data structures
 other than arrays.
 *Source*
-     *note package.lisp: go to the select/package․lisp file. (file)
+     *note package.lisp: ❨3❩.
 *Use List*
-        • let-plus
-        • anaphora
-        • alexandria
-        • common-lisp
+        • alexandria.
+        • anaphora.
+        • common-lisp.
+        • let-plus.
 *Used By List*
-        • data-frame
-        • *note select: go to the SELECT package.
-*Exported Definitions*
-        • *note all-singleton-representations?: go to the
-          SELECT-DEV∶∶ALL-SINGLETON-REPRESENTATIONS? function.
-          (function)
-        • *note axis-dimension: go to the SELECT-DEV∶∶AXIS-DIMENSION
-          generic function. (generic function)
-        • *note axis-dimension: go to the SELECT-DEV∶∶AXIS-DIMENSION
-          DATA-FRAME∶∶ORDERED-KEYS method. (method)
-        • *note canonical-range: go to the SELECT-DEV∶∶CANONICAL-RANGE
-          function. (function)
-        • *note canonical-range: go to the SELECT-DEV∶∶CANONICAL-RANGE
-          structure. (structure)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION generic function.
-          (generic function)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION DATA-FRAME∶∶ORDERED-KEYS
-          COMMON-LISP∶∶SYMBOL method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT∶∶NODROP method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT∶∶RANGE method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT∶∶INCLUDING method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          COMMON-LISP∶∶T method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT-DEV∶∶CANONICAL-RANGE method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT-DEV∶∶CANONICAL-SEQUENCE method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶INTEGER
-          COMMON-LISP∶∶NULL method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶INTEGER
-          COMMON-LISP∶∶INTEGER method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          COMMON-LISP∶∶SEQUENCE method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶INTEGER ❨eql
-          COMMON-LISP∶∶T❩ method. (method)
-        • *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          COMMON-LISP∶∶BIT-VECTOR method. (method)
-        • *note canonical-representations: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATIONS function. (function)
-        • *note canonical-sequence: go to the
-          SELECT-DEV∶∶CANONICAL-SEQUENCE function. (function)
-        • *note canonical-sequence: go to the
-          SELECT-DEV∶∶CANONICAL-SEQUENCE structure. (structure)
-        • *note canonical-singleton: go to the
-          SELECT-DEV∶∶CANONICAL-SINGLETON function. (function)
-        • *note column-major-setup: go to the
-          SELECT-DEV∶∶COLUMN-MAJOR-SETUP function. (function)
-        • *note representation-dimensions: go to the
-          SELECT-DEV∶∶REPRESENTATION-DIMENSIONS function. (function)
-        • *note row-major-setup: go to the SELECT-DEV∶∶ROW-MAJOR-SETUP
-          function. (function)
-        • *note select-reserved-symbol?: go to the
-          SELECT-DEV∶∶SELECT-RESERVED-SYMBOL? function. (function)
-        • *note singleton-representation?: go to the
-          SELECT-DEV∶∶SINGLETON-REPRESENTATION? function. (function)
-        • *note traverse-representations: go to the
-          SELECT-DEV∶∶TRAVERSE-REPRESENTATIONS macro. (macro)
-*Internal Definitions*
-        • *note canonical-range-end: go to the
-          SELECT-DEV∶∶CANONICAL-RANGE-END function. (function)
-        • *note (setf canonical-range-end): go to the SELECT-DEV∶∶❨SETF
-          CANONICAL-RANGE-END❩ function. (function)
-        • *note canonical-range-p: go to the
-          SELECT-DEV∶∶CANONICAL-RANGE-P function. (function)
-        • *note canonical-range-start: go to the
-          SELECT-DEV∶∶CANONICAL-RANGE-START function. (function)
-        • *note (setf canonical-range-start): go to the
-          SELECT-DEV∶∶❨SETF CANONICAL-RANGE-START❩ function. (function)
-        • *note canonical-sequence-p: go to the
-          SELECT-DEV∶∶CANONICAL-SEQUENCE-P function. (function)
-        • *note canonical-sequence-vector: go to the
-          SELECT-DEV∶∶CANONICAL-SEQUENCE-VECTOR function. (function)
-        • *note (setf canonical-sequence-vector): go to the
-          SELECT-DEV∶∶❨SETF CANONICAL-SEQUENCE-VECTOR❩ function.
-          (function)
-        • *note copy-canonical-range: go to the
-          SELECT-DEV∶∶COPY-CANONICAL-RANGE function. (function)
-        • *note copy-canonical-sequence: go to the
-          SELECT-DEV∶∶COPY-CANONICAL-SEQUENCE function. (function)
-        • *note make-canonical-range: go to the
-          SELECT-DEV∶∶MAKE-CANONICAL-RANGE function. (function)
-        • *note make-canonical-sequence: go to the
-          SELECT-DEV∶∶MAKE-CANONICAL-SEQUENCE function. (function)
-        • *note representation-dimension: go to the
-          SELECT-DEV∶∶REPRESENTATION-DIMENSION function. (function)
-        • *note representation-initial-value: go to the
-          SELECT-DEV∶∶REPRESENTATION-INITIAL-VALUE function. (function)
-        • *note representation-iterator: go to the
-          SELECT-DEV∶∶REPRESENTATION-ITERATOR function. (function)
+        • data-frame.
+        • *note select: ❨6❩.
+*Public Interface*
+        • *note all-singleton-representations?: ❨60❩. (function).
+        • *note axis-dimension: ❨66❩. (generic function).
+        • *note canonical-range: ❨52❩. (function).
+        • *note canonical-range: ❨53❩. (structure).
+        • *note canonical-representation: ❨67❩. (generic function).
+        • *note canonical-representations: ❨59❩. (function).
+        • *note canonical-sequence: ❨62❩. (function).
+        • *note canonical-sequence: ❨63❩. (structure).
+        • *note canonical-singleton: ❨65❩. (function).
+        • *note column-major-setup: ❨58❩. (function).
+        • *note representation-dimensions: ❨80❩. (function).
+        • *note row-major-setup: ❨79❩. (function).
+        • *note select-reserved-symbol?: ❨57❩. (function).
+        • *note singleton-representation?: ❨61❩. (function).
+        • *note traverse-representations: ❨56❩. (macro).
+*Internals*
+        • *note canonical-range-end: ❨89❩. (reader).
+        • *note (setf canonical-range-end): ❨90❩. (writer).
+        • *note canonical-range-p: ❨85❩. (function).
+        • *note canonical-range-start: ❨94❩. (reader).
+        • *note (setf canonical-range-start): ❨95❩. (writer).
+        • *note canonical-sequence-p: ❨81❩. (function).
+        • *note canonical-sequence-vector: ❨86❩. (reader).
+        • *note (setf canonical-sequence-vector): ❨87❩. (writer).
+        • *note copy-canonical-range: ❨83❩. (function).
+        • *note copy-canonical-sequence: ❨93❩. (function).
+        • *note make-canonical-range: ❨82❩. (function).
+        • *note make-canonical-sequence: ❨91❩. (function).
+        • *note representation-dimension: ❨92❩. (function).
+        • *note representation-initial-value: ❨88❩. (function).
+        • *note representation-iterator: ❨84❩. (function).
 
 
-File: select.info,  Node: The select package,  Prev: The select-dev package,  Up: Packages
+File: select.info,  Node: Definitions,  Next: Conclusion,  Prev: Packages,  Up: Top
 
-3.2 select
-==========
-
-SELECT is a facility for selecting portions of sequences or arrays.
-*Source*
-     *note package.lisp: go to the select/package․lisp file. (file)
-*Nickname*
-     slct
-*Use List*
-        • let-plus
-        • *note select-dev: go to the SELECT-DEV package.
-        • anaphora
-        • alexandria
-        • common-lisp
-*Used By List*
-        • vglt
-        • lisp-stat
-        • data-frame
-        • num-utils.matrix
-*Exported Definitions*
-        • *note head: go to the SELECT∶∶HEAD function. (function)
-        • *note including: go to the SELECT∶∶INCLUDING function.
-          (function)
-        • *note including: go to the SELECT∶∶INCLUDING structure.
-          (structure)
-        • *note mask: go to the SELECT∶∶MASK generic function. (generic
-          function)
-        • *note mask: go to the SELECT∶∶MASK COMMON-LISP∶∶SEQUENCE
-          COMMON-LISP∶∶T method. (method)
-        • *note nodrop: go to the SELECT∶∶NODROP function. (function)
-        • *note nodrop: go to the SELECT∶∶NODROP structure. (structure)
-        • *note range: go to the SELECT∶∶RANGE function. (function)
-        • *note range: go to the SELECT∶∶RANGE structure. (structure)
-        • *note ref: go to the SELECT∶∶REF generic function. (generic
-          function)
-        • *note ref: go to the SELECT∶∶REF COMMON-LISP∶∶ARRAY method.
-          (method)
-        • *note (setf ref): go to the SELECT∶∶❨SETF REF❩ COMMON-LISP∶∶T
-          COMMON-LISP∶∶ARRAY method. (method)
-        • *note (setf ref): go to the SELECT∶∶❨SETF REF❩ generic
-          function. (generic function)
-        • *note select: go to the SELECT∶∶SELECT generic function.
-          (generic function)
-        • *note select: go to the SELECT∶∶SELECT DATA-FRAME∶∶DATA-FRAME
-          method. (method)
-        • *note select: go to the SELECT∶∶SELECT DATA-FRAME∶∶DATA-VECTOR
-          method. (method)
-        • *note select: go to the SELECT∶∶SELECT
-          DATA-FRAME∶∶ORDERED-KEYS method. (method)
-        • *note select: go to the SELECT∶∶SELECT
-          NUM-UTILS․MATRIX∶∶HERMITIAN-MATRIX method. (method)
-        • *note select: go to the SELECT∶∶SELECT
-          NUM-UTILS․MATRIX∶∶UPPER-TRIANGULAR-MATRIX method. (method)
-        • *note select: go to the SELECT∶∶SELECT
-          NUM-UTILS․MATRIX∶∶LOWER-TRIANGULAR-MATRIX method. (method)
-        • *note select: go to the SELECT∶∶SELECT COMMON-LISP∶∶LIST
-          method. (method)
-        • *note select: go to the SELECT∶∶SELECT COMMON-LISP∶∶ARRAY
-          method. (method)
-        • *note (setf select): go to the SELECT∶∶❨SETF SELECT❩
-          COMMON-LISP∶∶T COMMON-LISP∶∶ARRAY method. (method)
-        • *note (setf select): go to the SELECT∶∶❨SETF SELECT❩ generic
-          function. (generic function)
-        • *note tail: go to the SELECT∶∶TAIL function. (function)
-        • *note which: go to the SELECT∶∶WHICH generic function.
-          (generic function)
-        • *note which: go to the SELECT∶∶WHICH COMMON-LISP∶∶SEQUENCE
-          method. (method)
-*Internal Definitions*
-        • *note copy-including: go to the SELECT∶∶COPY-INCLUDING
-          function. (function)
-        • *note copy-nodrop: go to the SELECT∶∶COPY-NODROP function.
-          (function)
-        • *note copy-range: go to the SELECT∶∶COPY-RANGE function.
-          (function)
-        • *note including-end: go to the SELECT∶∶INCLUDING-END function.
-          (function)
-        • *note (setf including-end): go to the SELECT∶∶❨SETF
-          INCLUDING-END❩ function. (function)
-        • *note including-p: go to the SELECT∶∶INCLUDING-P function.
-          (function)
-        • *note including-start: go to the SELECT∶∶INCLUDING-START
-          function. (function)
-        • *note (setf including-start): go to the SELECT∶∶❨SETF
-          INCLUDING-START❩ function. (function)
-        • *note make-including: go to the SELECT∶∶MAKE-INCLUDING
-          function. (function)
-        • *note make-nodrop: go to the SELECT∶∶MAKE-NODROP function.
-          (function)
-        • *note make-range: go to the SELECT∶∶MAKE-RANGE function.
-          (function)
-        • *note nodrop-index: go to the SELECT∶∶NODROP-INDEX function.
-          (function)
-        • *note (setf nodrop-index): go to the SELECT∶∶❨SETF
-          NODROP-INDEX❩ function. (function)
-        • *note nodrop-p: go to the SELECT∶∶NODROP-P function.
-          (function)
-        • *note range-end: go to the SELECT∶∶RANGE-END function.
-          (function)
-        • *note (setf range-end): go to the SELECT∶∶❨SETF RANGE-END❩
-          function. (function)
-        • *note range-p: go to the SELECT∶∶RANGE-P function. (function)
-        • *note range-start: go to the SELECT∶∶RANGE-START function.
-          (function)
-        • *note (setf range-start): go to the SELECT∶∶❨SETF RANGE-START❩
-          function. (function)
-
-
-File: select.info,  Node: Definitions,  Next: Indexes,  Prev: Packages,  Up: Top
-
-4 Definitions
+5 Definitions
 *************
 
 Definitions are sorted by export status, category, package, and then by
@@ -592,71 +526,67 @@ lexicographic order.
 
 * Menu:
 
-* Exported definitions::
-* Internal definitions::
+* Public Interface::
+* Internals::
 
 
-File: select.info,  Node: Exported definitions,  Next: Internal definitions,  Prev: Definitions,  Up: Definitions
+File: select.info,  Node: Public Interface,  Next: Internals,  Prev: Definitions,  Up: Definitions
 
-4.1 Exported definitions
-========================
+5.1 Public Interface
+====================
 
 * Menu:
 
-* Exported macros::
-* Exported functions::
-* Exported generic functions::
-* Exported structures::
+* Public macros::
+* Public ordinary functions::
+* Public generic functions::
+* Public structures::
 
 
-File: select.info,  Node: Exported macros,  Next: Exported functions,  Prev: Exported definitions,  Up: Exported definitions
+File: select.info,  Node: Public macros,  Next: Public ordinary functions,  Prev: Public Interface,  Up: Public Interface
 
-4.1.1 Macros
+5.1.1 Macros
 ------------
 
- -- Macro: traverse-representations (SUBSCRIPTS REPRESENTATIONS &key
-          INDEX SETUP) &body BODY
+ -- Macro: traverse-representations ((subscripts representations &key
+          index setup) &body body)
      Loops over all possible subscripts in REPRESENTAITONS, making them
      available in SUBSCRIPTS during the execution of BODY. The iterator
      is constructed using the function SETUP (see for example
      ROW-MAJOR-SETUP). When INDEX is given, a variable with that name is
      provided, containing an index that counts iterations.
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
+          *note select-dev.lisp: ❨4❩.
 
 
-File: select.info,  Node: Exported functions,  Next: Exported generic functions,  Prev: Exported macros,  Up: Exported definitions
+File: select.info,  Node: Public ordinary functions,  Next: Public generic functions,  Prev: Public macros,  Up: Public Interface
 
-4.1.2 Functions
----------------
+5.1.2 Ordinary functions
+------------------------
 
- -- Function: all-singleton-representations? REPRESENTATIONS
+ -- Function: all-singleton-representations? (representations)
      Test if all canonical representations are singletons.
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: canonical-range START END
+          *note select-dev.lisp: ❨4❩.
+ -- Function: canonical-range (start end)
      Canonical representation of a contiguous set of array indices from
      START (inclusive) to END (exclusive).
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: canonical-representations AXES SELECTIONS
+          *note select-dev.lisp: ❨4❩.
+ -- Function: canonical-representations (axes selections)
      Return the canonical representations of SELECTIONS given the
      corresponding AXES, checking for matching length.
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: canonical-sequence SEQUENCE
+          *note select-dev.lisp: ❨4❩.
+ -- Function: canonical-sequence (sequence)
      Canonical representation of array indexes from canonical-sequence
      SEQUENCE.
 
@@ -664,108 +594,84 @@ File: select.info,  Node: Exported functions,  Next: Exported generic functions,
      ARRAY-INDEX (*)) are preferred for efficiency, otherwise they are
      coerced.
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: canonical-singleton INDEX
+          *note select-dev.lisp: ❨4❩.
+ -- Function: canonical-singleton (index)
      Canonical representation of a singleton index (a nonnegative
      integer, which is a valid array index).
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: column-major-setup REPRESENTATIONS TERMINATOR
+          *note select-dev.lisp: ❨4❩.
+ -- Function: column-major-setup (representations terminator)
      Return SUBSCRIPTS (a list) and ITERATOR (a closure, no arguments)
      that increments the contents of SUBSCRIPTS in column-major order.
      TERMINATOR is called when all subscripts have been visited.
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: head COUNT
-     First COUNT indexes.
-     *Package*
-          *note select: go to the SELECT package.
-     *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: including START END
+          *note select-dev.lisp: ❨4❩.
+ -- Function: including (start end)
      Range, including both ends.
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: nodrop INDEX
+          *note select.lisp: ❨5❩.
+ -- Function: nodrop (index)
      Select a single index, but do not drop a dimension.
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: range START END
+          *note select.lisp: ❨5❩.
+ -- Function: range (start end)
      Range, including START, excluding END.
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: representation-dimensions REPRESENTATIONS
+          *note select.lisp: ❨5❩.
+ -- Function: representation-dimensions (representations)
      Return a list for the dimensions of canonical representations,
      dropping singletons.
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: row-major-setup REPRESENTATIONS TERMINATOR
+          *note select-dev.lisp: ❨4❩.
+ -- Function: row-major-setup (representations terminator)
      Return SUBSCRIPTS (a list) and ITERATOR (a closure, no arguments)
      that increments the contents of SUBSCRIPTS in row-major order.
      TERMINATOR is called when all subscripts have been visited.
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: select-reserved-symbol? SYMBOL
+          *note select-dev.lisp: ❨4❩.
+ -- Function: select-reserved-symbol? (symbol)
      Test if SYMBOL has special semantics for SELECTION.
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: singleton-representation? REPRESENTATION
+          *note select-dev.lisp: ❨4❩.
+ -- Function: singleton-representation? (representation)
      Test if a canonical REPRESENTATION is a singleton.
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: tail COUNT
-     Last COUNT indexes.
-     *Package*
-          *note select: go to the SELECT package.
-     *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
+          *note select-dev.lisp: ❨4❩.
 
 
-File: select.info,  Node: Exported generic functions,  Next: Exported structures,  Prev: Exported functions,  Up: Exported definitions
+File: select.info,  Node: Public generic functions,  Next: Public structures,  Prev: Public ordinary functions,  Up: Public Interface
 
-4.1.3 Generic functions
+5.1.3 Generic functions
 -----------------------
 
- -- Generic Function: axis-dimension AXIS
+ -- Generic Function: axis-dimension (axis)
      Return the dimension of axis.  Needs to be defined for non-integer
      axes.
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
-     *Methods*
-           -- Method: axis-dimension (AXIS ordered-keys)
-               *Source*
-                    /src/data-frame/data-frame.lisp
- -- Generic Function: canonical-representation AXIS SELECTION
+          *note select-dev.lisp: ❨4❩.
+ -- Generic Function: canonical-representation (axis selection)
      Canonical representation of SELECTION, given information in AXIS.
      The default methods use dimensions as AXIS.
 
@@ -783,450 +689,429 @@ File: select.info,  Node: Exported generic functions,  Next: Exported structures
      latter.  Methods that resolve symbols should test them with
      SELECT-RESERVED-SYMBOL? and use CALL-NEXT-METHOD.
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
+          *note select-dev.lisp: ❨4❩.
      *Methods*
-           -- Method: canonical-representation (AXIS ordered-keys)
-                    (SLICE symbol)
-               *Source*
-                    /src/data-frame/data-frame.lisp
-           -- Method: canonical-representation AXIS (SELECTION nodrop)
+           -- Method: canonical-representation (axis (selection *note
+                    nodrop: ❨19❩.))
                The canonical representation for NODROP.
                *Source*
-                    *note select.lisp: go to the select/select․lisp
-                    file. (file)
-           -- Method: canonical-representation AXIS (SELECTION range)
+                    *note select.lisp: ❨5❩.
+           -- Method: canonical-representation (axis (selection *note
+                    range: ❨26❩.))
                The canonical representation for RANGE.
                *Source*
-                    *note select.lisp: go to the select/select․lisp
-                    file. (file)
-           -- Method: canonical-representation AXIS (SELECTION
-                    including)
+                    *note select.lisp: ❨5❩.
+           -- Method: canonical-representation (axis (selection *note
+                    including: ❨22❩.))
                The canonical representation for INCLUDING.
                *Source*
-                    *note select.lisp: go to the select/select․lisp
-                    file. (file)
-           -- Method: canonical-representation AXIS SELECTION
-           -- Method: canonical-representation AXIS (CANONICAL-RANGE
-                    canonical-range)
-           -- Method: canonical-representation AXIS (CANONICAL-SEQUENCE
-                    canonical-sequence)
-           -- Method: canonical-representation (AXIS integer) (SLICE
-                    null)
-           -- Method: canonical-representation (AXIS integer) (SELECTION
-                    integer)
-           -- Method: canonical-representation AXIS (SELECTION sequence)
-           -- Method: canonical-representation (AXIS integer) (SELECTION
-                    (eql t))
-           -- Method: canonical-representation AXIS (SELECTION
-                    bit-vector)
- -- Generic Function: mask SEQUENCE PREDICATE
+                    *note select.lisp: ❨5❩.
+           -- Method: canonical-representation (axis selection)
+           -- Method: canonical-representation (axis (canonical-range
+                    *note canonical-range: ❨53❩.))
+           -- Method: canonical-representation (axis (canonical-sequence
+                    *note canonical-sequence: ❨63❩.))
+           -- Method: canonical-representation ((axis integer) (slice
+                    null))
+           -- Method: canonical-representation ((axis integer)
+                    (selection integer))
+           -- Method: canonical-representation (axis (selection
+                    sequence))
+           -- Method: canonical-representation ((axis integer)
+                    (selection (eql t)))
+           -- Method: canonical-representation (axis (selection
+                    bit-vector))
+ -- Generic Function: mask (sequence predicate)
      Map sequence into a simple-bit-vector, using 1 when PREDICATE
      yields true, 0 otherwise.
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
+          *note select.lisp: ❨5❩.
      *Methods*
-           -- Method: mask (SEQUENCE sequence) PREDICATE
- -- Generic Function: ref OBJECT &rest SUBSCRIPTS
+           -- Method: mask ((sequence sequence) predicate)
+ -- Generic Function: ref (object &rest subscripts)
      Return the element of OBJECT specified by SUBSCRIPTS.
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
-     *Writer*
-          *note (setf ref): go to the SELECT∶∶❨SETF REF❩ generic
-          function. (generic function)
+          *note select.lisp: ❨5❩.
      *Methods*
-           -- Method: ref (ARRAY array) &rest SUBSCRIPTS
- -- Generic Function: (setf ref) VALUE OBJECT &rest SUBSCRIPTS
+           -- Method: ref ((array array) &rest subscripts)
+ -- Generic Function: (setf ref) (object &rest subscripts)
      Stores VALUE into the place specified by SUBSCRIPTS.
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
-     *Reader*
-          *note ref: go to the SELECT∶∶REF generic function. (generic
-          function)
+          *note select.lisp: ❨5❩.
      *Methods*
-           -- Method: (setf ref) VALUE (ARRAY array) &rest SUBSCRIPTS
- -- Generic Function: select OBJECT &rest SELECTIONS
+           -- Method: (setf ref) ((array array) &rest subscripts)
+ -- Generic Function: select (object &rest selections)
      Return the slices of OBJECT specified by SELECTIONS.
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
-     *Writer*
-          *note (setf select): go to the SELECT∶∶❨SETF SELECT❩ generic
-          function. (generic function)
+          *note select.lisp: ❨5❩.
      *Methods*
-           -- Method: select (DATA-FRAME data-frame) &rest SLICES
-               *Source*
-                    /src/data-frame/data-frame.lisp
-           -- Method: select (DATA-VECTOR data-vector) &rest SLICES
-               *Source*
-                    /src/data-frame/data-frame.lisp
-           -- Method: select (ORDERED-KEYS ordered-keys) &rest
-                    SELECTIONS
-               *Source*
-                    /src/data-frame/data-frame.lisp
-           -- Method: select (MATRIX0 hermitian-matrix) &rest SLICES
-               *Source*
-                    /src/num-utils/src/matrix.lisp
-           -- Method: select (MATRIX0 upper-triangular-matrix) &rest
-                    SLICES
-               *Source*
-                    /src/num-utils/src/matrix.lisp
-           -- Method: select (MATRIX0 lower-triangular-matrix) &rest
-                    SLICES
-               *Source*
-                    /src/num-utils/src/matrix.lisp
-           -- Method: select (LST list) &rest SELECTIONS
+           -- Method: select ((lst list) &rest selections)
                Select from LST the subscripts or range specified in
                SELECTIONS. SELECTIONS must be a VECTOR, LIST or RANGE.
-           -- Method: select (ARRAY array) &rest SELECTIONS
+           -- Method: select ((array array) &rest selections)
                Return the SELECTIONS in the given ARRAY.
- -- Generic Function: (setf select) VALUE OBJECT &rest SELECTIONS
+ -- Generic Function: (setf select) (object &rest selections)
      Stores VALUES into the locations given by SELECTIONS.
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
-     *Reader*
-          *note select: go to the SELECT∶∶SELECT generic function.
-          (generic function)
+          *note select.lisp: ❨5❩.
      *Methods*
-           -- Method: (setf select) VALUE (ARRAY array) &rest SELECTIONS
- -- Generic Function: which SEQUENCE &key PREDICATE
+           -- Method: (setf select) ((array array) &rest selections)
+           -- Method: (setf select) ((array array) &rest selections)
+ -- Generic Function: which (sequence &key predicate)
      Return an index of the positions in SEQUENCE which satisfy
      PREDICATE. Defaults to return non-NIL indices.
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
+          *note select.lisp: ❨5❩.
      *Methods*
-           -- Method: which (SEQUENCE sequence) &key PREDICATE
+           -- Method: which ((sequence sequence) &key predicate)
 
 
-File: select.info,  Node: Exported structures,  Prev: Exported generic functions,  Up: Exported definitions
+File: select.info,  Node: Public structures,  Prev: Public generic functions,  Up: Public Interface
 
-4.1.4 Structures
+5.1.4 Structures
 ----------------
 
- -- Structure: canonical-range ()
+ -- Structure: canonical-range
      Canonical representation of a contiguous set of array indices from
      START (inclusive) to END (exclusive).
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
+          *note select-dev.lisp: ❨4❩.
      *Direct superclasses*
-          structure-object (structure)
+          structure-object.
      *Direct methods*
-          *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT-DEV∶∶CANONICAL-RANGE method. (method)
+          *note canonical-representation: ❨72❩.
      *Direct slots*
            -- Slot: start
                *Type*
                     alexandria:array-index
                *Readers*
-                    *note canonical-range-start: go to the
-                    SELECT-DEV∶∶CANONICAL-RANGE-START function.
-                    (function)
+                    *note canonical-range-start: ❨94❩.
                *Writers*
-                    *note (setf canonical-range-start): go to the
-                    SELECT-DEV∶∶❨SETF CANONICAL-RANGE-START❩ function.
-                    (function)
+                    *note (setf canonical-range-start): ❨95❩.
            -- Slot: end
                *Type*
                     alexandria:array-index
                *Readers*
-                    *note canonical-range-end: go to the
-                    SELECT-DEV∶∶CANONICAL-RANGE-END function. (function)
+                    *note canonical-range-end: ❨89❩.
                *Writers*
-                    *note (setf canonical-range-end): go to the
-                    SELECT-DEV∶∶❨SETF CANONICAL-RANGE-END❩ function.
-                    (function)
- -- Structure: canonical-sequence ()
+                    *note (setf canonical-range-end): ❨90❩.
+ -- Structure: canonical-sequence
      Canonical representation of a sequence of array indexes.
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
+          *note select-dev.lisp: ❨4❩.
      *Direct superclasses*
-          structure-object (structure)
+          structure-object.
      *Direct methods*
-          *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT-DEV∶∶CANONICAL-SEQUENCE method. (method)
+          *note canonical-representation: ❨73❩.
      *Direct slots*
            -- Slot: vector
+               *Package*
+                    common-lisp.
                *Type*
                     (simple-array alexandria:array-index (*))
                *Readers*
-                    *note canonical-sequence-vector: go to the
-                    SELECT-DEV∶∶CANONICAL-SEQUENCE-VECTOR function.
-                    (function)
+                    *note canonical-sequence-vector: ❨86❩.
                *Writers*
-                    *note (setf canonical-sequence-vector): go to the
-                    SELECT-DEV∶∶❨SETF CANONICAL-SEQUENCE-VECTOR❩
-                    function. (function)
- -- Structure: including ()
+                    *note (setf canonical-sequence-vector): ❨87❩.
+ -- Structure: including
      Range, including both ends.
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
+          *note select.lisp: ❨5❩.
      *Direct superclasses*
-          structure-object (structure)
+          structure-object.
      *Direct methods*
-          *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT∶∶INCLUDING method. (method)
+          *note canonical-representation: ❨70❩.
      *Direct slots*
            -- Slot: start
                *Readers*
-                    *note including-start: go to the
-                    SELECT∶∶INCLUDING-START function. (function)
+                    *note including-start: ❨50❩.
                *Writers*
-                    *note (setf including-start): go to the
-                    SELECT∶∶❨SETF INCLUDING-START❩ function. (function)
+                    *note (setf including-start): ❨51❩.
            -- Slot: end
                *Readers*
-                    *note including-end: go to the SELECT∶∶INCLUDING-END
-                    function. (function)
+                    *note including-end: ❨42❩.
                *Writers*
-                    *note (setf including-end): go to the SELECT∶∶❨SETF
-                    INCLUDING-END❩ function. (function)
- -- Structure: nodrop ()
+                    *note (setf including-end): ❨43❩.
+ -- Structure: nodrop
      Select a single index, but don’t drop a dimension.
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
+          *note select.lisp: ❨5❩.
      *Direct superclasses*
-          structure-object (structure)
+          structure-object.
      *Direct methods*
-          *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT∶∶NODROP method. (method)
+          *note canonical-representation: ❨68❩.
      *Direct slots*
            -- Slot: index
                *Readers*
-                    *note nodrop-index: go to the SELECT∶∶NODROP-INDEX
-                    function. (function)
+                    *note nodrop-index: ❨40❩.
                *Writers*
-                    *note (setf nodrop-index): go to the SELECT∶∶❨SETF
-                    NODROP-INDEX❩ function. (function)
- -- Structure: range ()
+                    *note (setf nodrop-index): ❨41❩.
+ -- Structure: range
      Range, including start, excluding end.
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
+          *note select.lisp: ❨5❩.
      *Direct superclasses*
-          structure-object (structure)
+          structure-object.
      *Direct methods*
-          *note canonical-representation: go to the
-          SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T
-          SELECT∶∶RANGE method. (method)
+          *note canonical-representation: ❨69❩.
      *Direct slots*
            -- Slot: start
                *Readers*
-                    *note range-start: go to the SELECT∶∶RANGE-START
-                    function. (function)
+                    *note range-start: ❨34❩.
                *Writers*
-                    *note (setf range-start): go to the SELECT∶∶❨SETF
-                    RANGE-START❩ function. (function)
+                    *note (setf range-start): ❨35❩.
            -- Slot: end
                *Readers*
-                    *note range-end: go to the SELECT∶∶RANGE-END
-                    function. (function)
+                    *note range-end: ❨36❩.
                *Writers*
-                    *note (setf range-end): go to the SELECT∶∶❨SETF
-                    RANGE-END❩ function. (function)
+                    *note (setf range-end): ❨37❩.
 
 
-File: select.info,  Node: Internal definitions,  Prev: Exported definitions,  Up: Definitions
+File: select.info,  Node: Internals,  Prev: Public Interface,  Up: Definitions
 
-4.2 Internal definitions
-========================
+5.2 Internals
+=============
 
 * Menu:
 
-* Internal functions::
+* Private ordinary functions::
 
 
-File: select.info,  Node: Internal functions,  Prev: Internal definitions,  Up: Internal definitions
+File: select.info,  Node: Private ordinary functions,  Prev: Internals,  Up: Internals
 
-4.2.1 Functions
----------------
+5.2.1 Ordinary functions
+------------------------
 
- -- Function: canonical-range-end INSTANCE
- -- Function: (setf canonical-range-end) VALUE INSTANCE
+ -- Reader: canonical-range-end (instance)
+ -- Writer: (setf canonical-range-end) (instance)
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: canonical-range-p OBJECT
+          *note select-dev.lisp: ❨4❩.
+     *Target Slot*
+          *note end: ❨55❩.
+ -- Function: canonical-range-p (object)
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: canonical-range-start INSTANCE
- -- Function: (setf canonical-range-start) VALUE INSTANCE
+          *note select-dev.lisp: ❨4❩.
+ -- Reader: canonical-range-start (instance)
+ -- Writer: (setf canonical-range-start) (instance)
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: canonical-sequence-p OBJECT
+          *note select-dev.lisp: ❨4❩.
+     *Target Slot*
+          *note start: ❨54❩.
+ -- Function: canonical-sequence-p (object)
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: canonical-sequence-vector INSTANCE
- -- Function: (setf canonical-sequence-vector) VALUE INSTANCE
+          *note select-dev.lisp: ❨4❩.
+ -- Reader: canonical-sequence-vector (instance)
+ -- Writer: (setf canonical-sequence-vector) (instance)
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: copy-canonical-range INSTANCE
+          *note select-dev.lisp: ❨4❩.
+     *Target Slot*
+          *note vector: ❨64❩.
+ -- Function: copy-canonical-range (instance)
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: copy-canonical-sequence INSTANCE
+          *note select-dev.lisp: ❨4❩.
+ -- Function: copy-canonical-sequence (instance)
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: copy-including INSTANCE
+          *note select-dev.lisp: ❨4❩.
+ -- Function: copy-including (instance)
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: copy-nodrop INSTANCE
+          *note select.lisp: ❨5❩.
+ -- Function: copy-nodrop (instance)
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: copy-range INSTANCE
+          *note select.lisp: ❨5❩.
+ -- Function: copy-range (instance)
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: including-end INSTANCE
- -- Function: (setf including-end) VALUE INSTANCE
+          *note select.lisp: ❨5❩.
+ -- Reader: including-end (instance)
+ -- Writer: (setf including-end) (instance)
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: including-p OBJECT
+          *note select.lisp: ❨5❩.
+     *Target Slot*
+          *note end: ❨24❩.
+ -- Function: including-p (object)
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: including-start INSTANCE
- -- Function: (setf including-start) VALUE INSTANCE
+          *note select.lisp: ❨5❩.
+ -- Reader: including-start (instance)
+ -- Writer: (setf including-start) (instance)
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: make-canonical-range &key (START START) (END END)
+          *note select.lisp: ❨5❩.
+     *Target Slot*
+          *note start: ❨23❩.
+ -- Function: make-canonical-range (&key start end)
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: make-canonical-sequence &key (VECTOR VECTOR)
+          *note select-dev.lisp: ❨4❩.
+ -- Function: make-canonical-sequence (&key vector)
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: make-including &key (START START) (END END)
+          *note select-dev.lisp: ❨4❩.
+ -- Function: make-including (&key start end)
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: make-nodrop &key (INDEX INDEX)
+          *note select.lisp: ❨5❩.
+ -- Function: make-nodrop (&key index)
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: make-range &key (START START) (END END)
+          *note select.lisp: ❨5❩.
+ -- Function: make-range (&key start end)
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: nodrop-index INSTANCE
- -- Function: (setf nodrop-index) VALUE INSTANCE
+          *note select.lisp: ❨5❩.
+ -- Reader: nodrop-index (instance)
+ -- Writer: (setf nodrop-index) (instance)
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: nodrop-p OBJECT
+          *note select.lisp: ❨5❩.
+     *Target Slot*
+          *note index: ❨20❩.
+ -- Function: nodrop-p (object)
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: range-end INSTANCE
- -- Function: (setf range-end) VALUE INSTANCE
+          *note select.lisp: ❨5❩.
+ -- Reader: range-end (instance)
+ -- Writer: (setf range-end) (instance)
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: range-p OBJECT
+          *note select.lisp: ❨5❩.
+     *Target Slot*
+          *note end: ❨28❩.
+ -- Function: range-p (object)
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: range-start INSTANCE
- -- Function: (setf range-start) VALUE INSTANCE
+          *note select.lisp: ❨5❩.
+ -- Reader: range-start (instance)
+ -- Writer: (setf range-start) (instance)
      *Package*
-          *note select: go to the SELECT package.
+          *note select: ❨6❩.
      *Source*
-          *note select.lisp: go to the select/select․lisp file. (file)
- -- Function: representation-dimension REPRESENTATION
+          *note select.lisp: ❨5❩.
+     *Target Slot*
+          *note start: ❨27❩.
+ -- Function: representation-dimension (representation)
      Return the dimension of a canonical-representation, or NIL for
      singleton selections (they are dropped).
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: representation-initial-value REPRESENTATION
+          *note select-dev.lisp: ❨4❩.
+ -- Function: representation-initial-value (representation)
      Initial value for iteration.
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
- -- Function: representation-iterator REPRESENTATION CARRY CONS
+          *note select-dev.lisp: ❨4❩.
+ -- Function: representation-iterator (representation carry cons)
      Return a closure that sets the car of CONS to the next value each
      time it is called, resetting and calling CARRY when it reaches the
      end of its range.
      *Package*
-          *note select-dev: go to the SELECT-DEV package.
+          *note select-dev: ❨7❩.
      *Source*
-          *note select-dev.lisp: go to the select/select-dev․lisp file.
-          (file)
+          *note select-dev.lisp: ❨4❩.
 
 
-File: select.info,  Node: Indexes,  Prev: Definitions,  Up: Top
+File: select.info,  Node: Conclusion,  Next: Indexes,  Prev: Definitions,  Up: Top
+
+6 Conclusion
+************
+
+select was originally called slice (https://github.com/tpapp/cl-slice)
+and written by Tamas K. Papp.  Since it was abandoned in 2017
+(https://tpapp.github.io/post/orphaned-lisp-libraries/), I have taken it
+over to be part of a rebooted Common Lisp statistics library.  Changes
+in this version include:
+
+Documentation Improvements
+==========================
+
+   • Move to HTML based documentation system
+   • Docs now on github.io
+
+Test Improvements
+=================
+
+   • Ported to FiveAM and refactored
+   • Improved test coverage
+   • Added failure messages to aid debugging
+   • Added tests for selection iteration
+
+Enhancements
+============
+
+   • Renamed to ’cons’ to ’range’
+   • Range now handles (range x x) => nil
+   • Selections work identically on sequences; previously differed
+     between lists and vectors
+   • Selections may be specified using a list; previously could only be
+     a vector
+   • Sequence selections now honor fill-pointer, if any
+
+Bug Fixes
+=========
+
+   • Range now handles END = (length <sequence>)
+   • Selecting from a list no longer drops dimension
+
+
+File: select.info,  Node: Indexes,  Prev: Conclusion,  Up: Top
 
 Appendix A Indexes
 ******************
@@ -1244,31 +1129,6 @@ File: select.info,  Node: Concept index,  Next: Function index,  Prev: Indexes, 
 A.1 Concepts
 ============
 
- [index ]
-* Menu:
-
-* File, Lisp, select.asd:                The select․asd file.   (line 6)
-* File, Lisp, select/package.lisp:       The select/package․lisp file.
-                                                                (line 6)
-* File, Lisp, select/select-dev.lisp:    The select/select-dev․lisp file.
-                                                                (line 6)
-* File, Lisp, select/select.lisp:        The select/select․lisp file.
-                                                                (line 6)
-* Lisp File, select.asd:                 The select․asd file.   (line 6)
-* Lisp File, select/package.lisp:        The select/package․lisp file.
-                                                                (line 6)
-* Lisp File, select/select-dev.lisp:     The select/select-dev․lisp file.
-                                                                (line 6)
-* Lisp File, select/select.lisp:         The select/select․lisp file.
-                                                                (line 6)
-* select.asd:                            The select․asd file.   (line 6)
-* select/package.lisp:                   The select/package․lisp file.
-                                                                (line 6)
-* select/select-dev.lisp:                The select/select-dev․lisp file.
-                                                                (line 6)
-* select/select.lisp:                    The select/select․lisp file.
-                                                                (line 6)
-
 
 File: select.info,  Node: Function index,  Next: Variable index,  Prev: Concept index,  Up: Indexes
 
@@ -1278,244 +1138,304 @@ A.2 Functions
  [index ]
 * Menu:
 
-* (setf canonical-range-end):            Internal functions.  (line   7)
-* (setf canonical-range-start):          Internal functions.  (line  20)
-* (setf canonical-sequence-vector):      Internal functions.  (line  33)
-* (setf including-end):                  Internal functions.  (line  67)
-* (setf including-start):                Internal functions.  (line  78)
-* (setf nodrop-index):                   Internal functions.  (line 111)
-* (setf range-end):                      Internal functions.  (line 122)
-* (setf range-start):                    Internal functions.  (line 133)
-* (setf ref):                            Exported generic functions.
-                                                              (line  95)
-* (setf ref) <1>:                        Exported generic functions.
-                                                              (line 105)
-* (setf select):                         Exported generic functions.
-                                                              (line 142)
-* (setf select) <1>:                     Exported generic functions.
-                                                              (line 152)
-* all-singleton-representations?:        Exported functions.  (line   6)
-* axis-dimension:                        Exported generic functions.
-                                                              (line   6)
-* axis-dimension <1>:                    Exported generic functions.
-                                                              (line  15)
-* canonical-range:                       Exported functions.  (line  13)
-* canonical-range-end:                   Internal functions.  (line   6)
-* canonical-range-p:                     Internal functions.  (line  13)
-* canonical-range-start:                 Internal functions.  (line  19)
-* canonical-representation:              Exported generic functions.
-                                                              (line  18)
-* canonical-representation <1>:          Exported generic functions.
-                                                              (line  41)
-* canonical-representation <2>:          Exported generic functions.
-                                                              (line  45)
-* canonical-representation <3>:          Exported generic functions.
-                                                              (line  50)
-* canonical-representation <4>:          Exported generic functions.
-                                                              (line  55)
-* canonical-representation <5>:          Exported generic functions.
-                                                              (line  61)
-* canonical-representation <6>:          Exported generic functions.
-                                                              (line  62)
-* canonical-representation <7>:          Exported generic functions.
-                                                              (line  64)
-* canonical-representation <8>:          Exported generic functions.
-                                                              (line  66)
-* canonical-representation <9>:          Exported generic functions.
-                                                              (line  68)
-* canonical-representation <10>:         Exported generic functions.
-                                                              (line  70)
-* canonical-representation <11>:         Exported generic functions.
-                                                              (line  71)
-* canonical-representation <12>:         Exported generic functions.
-                                                              (line  73)
-* canonical-representations:             Exported functions.  (line  21)
-* canonical-sequence:                    Exported functions.  (line  29)
-* canonical-sequence-p:                  Internal functions.  (line  26)
-* canonical-sequence-vector:             Internal functions.  (line  32)
-* canonical-singleton:                   Exported functions.  (line  41)
-* column-major-setup:                    Exported functions.  (line  49)
-* copy-canonical-range:                  Internal functions.  (line  39)
-* copy-canonical-sequence:               Internal functions.  (line  45)
-* copy-including:                        Internal functions.  (line  51)
-* copy-nodrop:                           Internal functions.  (line  56)
-* copy-range:                            Internal functions.  (line  61)
-* Function, (setf canonical-range-end):  Internal functions.  (line   8)
-* Function, (setf canonical-range-start): Internal functions. (line  21)
-* Function, (setf canonical-sequence-vector): Internal functions.
-                                                              (line  34)
-* Function, (setf including-end):        Internal functions.  (line  68)
-* Function, (setf including-start):      Internal functions.  (line  79)
-* Function, (setf nodrop-index):         Internal functions.  (line 112)
-* Function, (setf range-end):            Internal functions.  (line 123)
-* Function, (setf range-start):          Internal functions.  (line 134)
-* Function, all-singleton-representations?: Exported functions.
+* (setf canonical-range-end):            Private ordinary functions.
                                                               (line   7)
-* Function, canonical-range:             Exported functions.  (line  14)
-* Function, canonical-range-end:         Internal functions.  (line   7)
-* Function, canonical-range-p:           Internal functions.  (line  14)
-* Function, canonical-range-start:       Internal functions.  (line  20)
-* Function, canonical-representations:   Exported functions.  (line  22)
-* Function, canonical-sequence:          Exported functions.  (line  30)
-* Function, canonical-sequence-p:        Internal functions.  (line  27)
-* Function, canonical-sequence-vector:   Internal functions.  (line  33)
-* Function, canonical-singleton:         Exported functions.  (line  42)
-* Function, column-major-setup:          Exported functions.  (line  50)
-* Function, copy-canonical-range:        Internal functions.  (line  40)
-* Function, copy-canonical-sequence:     Internal functions.  (line  46)
-* Function, copy-including:              Internal functions.  (line  52)
-* Function, copy-nodrop:                 Internal functions.  (line  57)
-* Function, copy-range:                  Internal functions.  (line  62)
-* Function, head:                        Exported functions.  (line  59)
-* Function, including:                   Exported functions.  (line  65)
-* Function, including-end:               Internal functions.  (line  67)
-* Function, including-p:                 Internal functions.  (line  73)
-* Function, including-start:             Internal functions.  (line  78)
-* Function, make-canonical-range:        Internal functions.  (line  84)
-* Function, make-canonical-sequence:     Internal functions.  (line  90)
-* Function, make-including:              Internal functions.  (line  96)
-* Function, make-nodrop:                 Internal functions.  (line 101)
-* Function, make-range:                  Internal functions.  (line 106)
-* Function, nodrop:                      Exported functions.  (line  71)
-* Function, nodrop-index:                Internal functions.  (line 111)
-* Function, nodrop-p:                    Internal functions.  (line 117)
-* Function, range:                       Exported functions.  (line  77)
-* Function, range-end:                   Internal functions.  (line 122)
-* Function, range-p:                     Internal functions.  (line 128)
-* Function, range-start:                 Internal functions.  (line 133)
-* Function, representation-dimension:    Internal functions.  (line 139)
-* Function, representation-dimensions:   Exported functions.  (line  83)
-* Function, representation-initial-value: Internal functions. (line 147)
-* Function, representation-iterator:     Internal functions.  (line 154)
-* Function, row-major-setup:             Exported functions.  (line  91)
-* Function, select-reserved-symbol?:     Exported functions.  (line 100)
-* Function, singleton-representation?:   Exported functions.  (line 107)
-* Function, tail:                        Exported functions.  (line 114)
-* Generic Function, (setf ref):          Exported generic functions.
-                                                              (line  96)
-* Generic Function, (setf select):       Exported generic functions.
-                                                              (line 143)
-* Generic Function, axis-dimension:      Exported generic functions.
-                                                              (line   7)
-* Generic Function, canonical-representation: Exported generic functions.
-                                                              (line  19)
-* Generic Function, mask:                Exported generic functions.
-                                                              (line  76)
-* Generic Function, ref:                 Exported generic functions.
-                                                              (line  85)
-* Generic Function, select:              Exported generic functions.
-                                                              (line 107)
-* Generic Function, which:               Exported generic functions.
-                                                              (line 154)
-* head:                                  Exported functions.  (line  58)
-* including:                             Exported functions.  (line  64)
-* including-end:                         Internal functions.  (line  66)
-* including-p:                           Internal functions.  (line  72)
-* including-start:                       Internal functions.  (line  77)
-* Macro, traverse-representations:       Exported macros.     (line   8)
-* make-canonical-range:                  Internal functions.  (line  83)
-* make-canonical-sequence:               Internal functions.  (line  89)
-* make-including:                        Internal functions.  (line  95)
-* make-nodrop:                           Internal functions.  (line 100)
-* make-range:                            Internal functions.  (line 105)
-* mask:                                  Exported generic functions.
-                                                              (line  75)
-* mask <1>:                              Exported generic functions.
-                                                              (line  83)
-* Method, (setf ref):                    Exported generic functions.
-                                                              (line 106)
-* Method, (setf select):                 Exported generic functions.
-                                                              (line 153)
-* Method, axis-dimension:                Exported generic functions.
-                                                              (line  16)
-* Method, canonical-representation:      Exported generic functions.
-                                                              (line  43)
-* Method, canonical-representation <1>:  Exported generic functions.
-                                                              (line  46)
-* Method, canonical-representation <2>:  Exported generic functions.
-                                                              (line  51)
-* Method, canonical-representation <3>:  Exported generic functions.
-                                                              (line  57)
-* Method, canonical-representation <4>:  Exported generic functions.
-                                                              (line  62)
-* Method, canonical-representation <5>:  Exported generic functions.
-                                                              (line  64)
-* Method, canonical-representation <6>:  Exported generic functions.
+* (setf canonical-range-start):          Private ordinary functions.
+                                                              (line  20)
+* (setf canonical-sequence-vector):      Private ordinary functions.
+                                                              (line  33)
+* (setf including-end):                  Private ordinary functions.
                                                               (line  66)
-* Method, canonical-representation <7>:  Exported generic functions.
-                                                              (line  68)
-* Method, canonical-representation <8>:  Exported generic functions.
-                                                              (line  70)
-* Method, canonical-representation <9>:  Exported generic functions.
-                                                              (line  71)
-* Method, canonical-representation <10>: Exported generic functions.
-                                                              (line  73)
-* Method, canonical-representation <11>: Exported generic functions.
-                                                              (line  75)
-* Method, mask:                          Exported generic functions.
-                                                              (line  84)
-* Method, ref:                           Exported generic functions.
-                                                              (line  95)
-* Method, select:                        Exported generic functions.
-                                                              (line 117)
-* Method, select <1>:                    Exported generic functions.
-                                                              (line 120)
-* Method, select <2>:                    Exported generic functions.
-                                                              (line 124)
-* Method, select <3>:                    Exported generic functions.
-                                                              (line 127)
-* Method, select <4>:                    Exported generic functions.
-                                                              (line 131)
-* Method, select <5>:                    Exported generic functions.
-                                                              (line 135)
-* Method, select <6>:                    Exported generic functions.
+* (setf including-start):                Private ordinary functions.
+                                                              (line  79)
+* (setf nodrop-index):                   Private ordinary functions.
+                                                              (line 112)
+* (setf range-end):                      Private ordinary functions.
+                                                              (line 125)
+* (setf range-start):                    Private ordinary functions.
                                                               (line 138)
-* Method, select <7>:                    Exported generic functions.
-                                                              (line 141)
-* Method, which:                         Exported generic functions.
-                                                              (line 162)
-* nodrop:                                Exported functions.  (line  70)
-* nodrop-index:                          Internal functions.  (line 110)
-* nodrop-p:                              Internal functions.  (line 116)
-* range:                                 Exported functions.  (line  76)
-* range-end:                             Internal functions.  (line 121)
-* range-p:                               Internal functions.  (line 127)
-* range-start:                           Internal functions.  (line 132)
-* ref:                                   Exported generic functions.
-                                                              (line  84)
-* ref <1>:                               Exported generic functions.
-                                                              (line  94)
-* representation-dimension:              Internal functions.  (line 138)
-* representation-dimensions:             Exported functions.  (line  82)
-* representation-initial-value:          Internal functions.  (line 146)
-* representation-iterator:               Internal functions.  (line 153)
-* row-major-setup:                       Exported functions.  (line  90)
-* select:                                Exported generic functions.
-                                                              (line 106)
-* select <1>:                            Exported generic functions.
-                                                              (line 116)
-* select <2>:                            Exported generic functions.
-                                                              (line 119)
-* select <3>:                            Exported generic functions.
-                                                              (line 122)
-* select <4>:                            Exported generic functions.
+* (setf ref):                            Public generic functions.
+                                                              (line  82)
+* (setf ref) <1>:                        Public generic functions.
+                                                              (line  89)
+* (setf select):                         Public generic functions.
+                                                              (line 102)
+* (setf select) <1>:                     Public generic functions.
+                                                              (line 109)
+* (setf select) <2>:                     Public generic functions.
+                                                              (line 110)
+* all-singleton-representations?:        Public ordinary functions.
+                                                              (line   6)
+* axis-dimension:                        Public generic functions.
+                                                              (line   6)
+* canonical-range:                       Public ordinary functions.
+                                                              (line  12)
+* canonical-range-end:                   Private ordinary functions.
+                                                              (line   6)
+* canonical-range-p:                     Private ordinary functions.
+                                                              (line  14)
+* canonical-range-start:                 Private ordinary functions.
+                                                              (line  19)
+* canonical-representation:              Public generic functions.
+                                                              (line  13)
+* canonical-representation <1>:          Public generic functions.
+                                                              (line  35)
+* canonical-representation <2>:          Public generic functions.
+                                                              (line  40)
+* canonical-representation <3>:          Public generic functions.
+                                                              (line  45)
+* canonical-representation <4>:          Public generic functions.
+                                                              (line  50)
+* canonical-representation <5>:          Public generic functions.
+                                                              (line  51)
+* canonical-representation <6>:          Public generic functions.
+                                                              (line  53)
+* canonical-representation <7>:          Public generic functions.
+                                                              (line  55)
+* canonical-representation <8>:          Public generic functions.
+                                                              (line  57)
+* canonical-representation <9>:          Public generic functions.
+                                                              (line  59)
+* canonical-representation <10>:         Public generic functions.
+                                                              (line  61)
+* canonical-representation <11>:         Public generic functions.
+                                                              (line  63)
+* canonical-representations:             Public ordinary functions.
+                                                              (line  19)
+* canonical-sequence:                    Public ordinary functions.
+                                                              (line  26)
+* canonical-sequence-p:                  Private ordinary functions.
+                                                              (line  27)
+* canonical-sequence-vector:             Private ordinary functions.
+                                                              (line  32)
+* canonical-singleton:                   Public ordinary functions.
+                                                              (line  37)
+* column-major-setup:                    Public ordinary functions.
+                                                              (line  44)
+* copy-canonical-range:                  Private ordinary functions.
+                                                              (line  40)
+* copy-canonical-sequence:               Private ordinary functions.
+                                                              (line  45)
+* copy-including:                        Private ordinary functions.
+                                                              (line  50)
+* copy-nodrop:                           Private ordinary functions.
+                                                              (line  55)
+* copy-range:                            Private ordinary functions.
+                                                              (line  60)
+* Function, (setf canonical-range-end):  Private ordinary functions.
+                                                              (line   8)
+* Function, (setf canonical-range-start): Private ordinary functions.
+                                                              (line  21)
+* Function, (setf canonical-sequence-vector): Private ordinary functions.
+                                                              (line  34)
+* Function, (setf including-end):        Private ordinary functions.
+                                                              (line  67)
+* Function, (setf including-start):      Private ordinary functions.
+                                                              (line  80)
+* Function, (setf nodrop-index):         Private ordinary functions.
+                                                              (line 113)
+* Function, (setf range-end):            Private ordinary functions.
                                                               (line 126)
-* select <5>:                            Exported generic functions.
-                                                              (line 129)
-* select <6>:                            Exported generic functions.
+* Function, (setf range-start):          Private ordinary functions.
+                                                              (line 139)
+* Function, all-singleton-representations?: Public ordinary functions.
+                                                              (line   7)
+* Function, canonical-range:             Public ordinary functions.
+                                                              (line  13)
+* Function, canonical-range-end:         Private ordinary functions.
+                                                              (line   7)
+* Function, canonical-range-p:           Private ordinary functions.
+                                                              (line  15)
+* Function, canonical-range-start:       Private ordinary functions.
+                                                              (line  20)
+* Function, canonical-representations:   Public ordinary functions.
+                                                              (line  20)
+* Function, canonical-sequence:          Public ordinary functions.
+                                                              (line  27)
+* Function, canonical-sequence-p:        Private ordinary functions.
+                                                              (line  28)
+* Function, canonical-sequence-vector:   Private ordinary functions.
+                                                              (line  33)
+* Function, canonical-singleton:         Public ordinary functions.
+                                                              (line  38)
+* Function, column-major-setup:          Public ordinary functions.
+                                                              (line  45)
+* Function, copy-canonical-range:        Private ordinary functions.
+                                                              (line  41)
+* Function, copy-canonical-sequence:     Private ordinary functions.
+                                                              (line  46)
+* Function, copy-including:              Private ordinary functions.
+                                                              (line  51)
+* Function, copy-nodrop:                 Private ordinary functions.
+                                                              (line  56)
+* Function, copy-range:                  Private ordinary functions.
+                                                              (line  61)
+* Function, including:                   Public ordinary functions.
+                                                              (line  53)
+* Function, including-end:               Private ordinary functions.
+                                                              (line  66)
+* Function, including-p:                 Private ordinary functions.
+                                                              (line  74)
+* Function, including-start:             Private ordinary functions.
+                                                              (line  79)
+* Function, make-canonical-range:        Private ordinary functions.
+                                                              (line  87)
+* Function, make-canonical-sequence:     Private ordinary functions.
+                                                              (line  92)
+* Function, make-including:              Private ordinary functions.
+                                                              (line  97)
+* Function, make-nodrop:                 Private ordinary functions.
+                                                              (line 102)
+* Function, make-range:                  Private ordinary functions.
+                                                              (line 107)
+* Function, nodrop:                      Public ordinary functions.
+                                                              (line  59)
+* Function, nodrop-index:                Private ordinary functions.
+                                                              (line 112)
+* Function, nodrop-p:                    Private ordinary functions.
+                                                              (line 120)
+* Function, range:                       Public ordinary functions.
+                                                              (line  65)
+* Function, range-end:                   Private ordinary functions.
+                                                              (line 125)
+* Function, range-p:                     Private ordinary functions.
                                                               (line 133)
-* select <7>:                            Exported generic functions.
-                                                              (line 137)
-* select <8>:                            Exported generic functions.
-                                                              (line 140)
-* select-reserved-symbol?:               Exported functions.  (line  99)
-* singleton-representation?:             Exported functions.  (line 106)
-* tail:                                  Exported functions.  (line 113)
-* traverse-representations:              Exported macros.     (line   6)
-* which:                                 Exported generic functions.
+* Function, range-start:                 Private ordinary functions.
+                                                              (line 138)
+* Function, representation-dimension:    Private ordinary functions.
+                                                              (line 146)
+* Function, representation-dimensions:   Public ordinary functions.
+                                                              (line  71)
+* Function, representation-initial-value: Private ordinary functions.
                                                               (line 153)
-* which <1>:                             Exported generic functions.
-                                                              (line 161)
+* Function, representation-iterator:     Private ordinary functions.
+                                                              (line 159)
+* Function, row-major-setup:             Public ordinary functions.
+                                                              (line  78)
+* Function, select-reserved-symbol?:     Public ordinary functions.
+                                                              (line  86)
+* Function, singleton-representation?:   Public ordinary functions.
+                                                              (line  92)
+* Generic Function, (setf ref):          Public generic functions.
+                                                              (line  83)
+* Generic Function, (setf select):       Public generic functions.
+                                                              (line 103)
+* Generic Function, axis-dimension:      Public generic functions.
+                                                              (line   7)
+* Generic Function, canonical-representation: Public generic functions.
+                                                              (line  14)
+* Generic Function, mask:                Public generic functions.
+                                                              (line  66)
+* Generic Function, ref:                 Public generic functions.
+                                                              (line  75)
+* Generic Function, select:              Public generic functions.
+                                                              (line  91)
+* Generic Function, which:               Public generic functions.
+                                                              (line 112)
+* including:                             Public ordinary functions.
+                                                              (line  52)
+* including-end:                         Private ordinary functions.
+                                                              (line  65)
+* including-p:                           Private ordinary functions.
+                                                              (line  73)
+* including-start:                       Private ordinary functions.
+                                                              (line  78)
+* Macro, traverse-representations:       Public macros.       (line   8)
+* make-canonical-range:                  Private ordinary functions.
+                                                              (line  86)
+* make-canonical-sequence:               Private ordinary functions.
+                                                              (line  91)
+* make-including:                        Private ordinary functions.
+                                                              (line  96)
+* make-nodrop:                           Private ordinary functions.
+                                                              (line 101)
+* make-range:                            Private ordinary functions.
+                                                              (line 106)
+* mask:                                  Public generic functions.
+                                                              (line  65)
+* mask <1>:                              Public generic functions.
+                                                              (line  73)
+* Method, (setf ref):                    Public generic functions.
+                                                              (line  90)
+* Method, (setf select):                 Public generic functions.
+                                                              (line 110)
+* Method, (setf select) <1>:             Public generic functions.
+                                                              (line 111)
+* Method, canonical-representation:      Public generic functions.
+                                                              (line  37)
+* Method, canonical-representation <1>:  Public generic functions.
+                                                              (line  42)
+* Method, canonical-representation <2>:  Public generic functions.
+                                                              (line  47)
+* Method, canonical-representation <3>:  Public generic functions.
+                                                              (line  51)
+* Method, canonical-representation <4>:  Public generic functions.
+                                                              (line  53)
+* Method, canonical-representation <5>:  Public generic functions.
+                                                              (line  55)
+* Method, canonical-representation <6>:  Public generic functions.
+                                                              (line  57)
+* Method, canonical-representation <7>:  Public generic functions.
+                                                              (line  59)
+* Method, canonical-representation <8>:  Public generic functions.
+                                                              (line  61)
+* Method, canonical-representation <9>:  Public generic functions.
+                                                              (line  63)
+* Method, canonical-representation <10>: Public generic functions.
+                                                              (line  65)
+* Method, mask:                          Public generic functions.
+                                                              (line  74)
+* Method, ref:                           Public generic functions.
+                                                              (line  82)
+* Method, select:                        Public generic functions.
+                                                              (line  98)
+* Method, select <1>:                    Public generic functions.
+                                                              (line 101)
+* Method, which:                         Public generic functions.
+                                                              (line 120)
+* nodrop:                                Public ordinary functions.
+                                                              (line  58)
+* nodrop-index:                          Private ordinary functions.
+                                                              (line 111)
+* nodrop-p:                              Private ordinary functions.
+                                                              (line 119)
+* range:                                 Public ordinary functions.
+                                                              (line  64)
+* range-end:                             Private ordinary functions.
+                                                              (line 124)
+* range-p:                               Private ordinary functions.
+                                                              (line 132)
+* range-start:                           Private ordinary functions.
+                                                              (line 137)
+* ref:                                   Public generic functions.
+                                                              (line  74)
+* ref <1>:                               Public generic functions.
+                                                              (line  81)
+* representation-dimension:              Private ordinary functions.
+                                                              (line 145)
+* representation-dimensions:             Public ordinary functions.
+                                                              (line  70)
+* representation-initial-value:          Private ordinary functions.
+                                                              (line 152)
+* representation-iterator:               Private ordinary functions.
+                                                              (line 158)
+* row-major-setup:                       Public ordinary functions.
+                                                              (line  77)
+* select:                                Public generic functions.
+                                                              (line  90)
+* select <1>:                            Public generic functions.
+                                                              (line  97)
+* select <2>:                            Public generic functions.
+                                                              (line 100)
+* select-reserved-symbol?:               Public ordinary functions.
+                                                              (line  85)
+* singleton-representation?:             Public ordinary functions.
+                                                              (line  91)
+* traverse-representations:              Public macros.       (line   6)
+* which:                                 Public generic functions.
+                                                              (line 111)
+* which <1>:                             Public generic functions.
+                                                              (line 119)
 
 
 File: select.info,  Node: Variable index,  Next: Data type index,  Prev: Function index,  Up: Indexes
@@ -1526,22 +1446,22 @@ A.3 Variables
  [index ]
 * Menu:
 
-* end:                                   Exported structures. (line  32)
-* end <1>:                               Exported structures. (line  87)
-* end <2>:                               Exported structures. (line 134)
-* index:                                 Exported structures. (line 107)
-* Slot, end:                             Exported structures. (line  33)
-* Slot, end <1>:                         Exported structures. (line  88)
-* Slot, end <2>:                         Exported structures. (line 135)
-* Slot, index:                           Exported structures. (line 108)
-* Slot, start:                           Exported structures. (line  22)
-* Slot, start <1>:                       Exported structures. (line  81)
-* Slot, start <2>:                       Exported structures. (line 128)
-* Slot, vector:                          Exported structures. (line  57)
-* start:                                 Exported structures. (line  21)
-* start <1>:                             Exported structures. (line  80)
-* start <2>:                             Exported structures. (line 127)
-* vector:                                Exported structures. (line  56)
+* end:                                   Public structures.   (line  25)
+* end <1>:                               Public structures.   (line  68)
+* end <2>:                               Public structures.   (line 105)
+* index:                                 Public structures.   (line  84)
+* Slot, end:                             Public structures.   (line  26)
+* Slot, end <1>:                         Public structures.   (line  69)
+* Slot, end <2>:                         Public structures.   (line 106)
+* Slot, index:                           Public structures.   (line  85)
+* Slot, start:                           Public structures.   (line  19)
+* Slot, start <1>:                       Public structures.   (line  64)
+* Slot, start <2>:                       Public structures.   (line 101)
+* Slot, vector:                          Public structures.   (line  44)
+* start:                                 Public structures.   (line  18)
+* start <1>:                             Public structures.   (line  63)
+* start <2>:                             Public structures.   (line 100)
+* vector:                                Public structures.   (line  43)
 
 
 File: select.info,  Node: Data type index,  Prev: Variable index,  Up: Indexes
@@ -1552,149 +1472,167 @@ A.4 Data types
  [index ]
 * Menu:
 
-* canonical-range:                       Exported structures. (line   6)
-* canonical-sequence:                    Exported structures. (line  42)
-* including:                             Exported structures. (line  67)
-* nodrop:                                Exported structures. (line  94)
-* Package, select:                       The select package.  (line   6)
+* canonical-range:                       Public structures.    (line  6)
+* canonical-sequence:                    Public structures.    (line 32)
+* File, package.lisp:                    The select/package․lisp file.
+                                                               (line  6)
+* File, select-dev.lisp:                 The select/select-dev․lisp file.
+                                                               (line  6)
+* File, select.asd:                      The select/select․asd file.
+                                                               (line  6)
+* File, select.lisp:                     The select/select․lisp file.
+                                                               (line  6)
+* including:                             Public structures.    (line 52)
+* nodrop:                                Public structures.    (line 73)
+* Package, select:                       The select package.   (line  6)
 * Package, select-dev:                   The select-dev package.
-                                                              (line   6)
-* range:                                 Exported structures. (line 114)
-* select:                                The select system.   (line   6)
-* select <1>:                            The select package.  (line   6)
+                                                               (line  6)
+* package.lisp:                          The select/package․lisp file.
+                                                               (line  6)
+* range:                                 Public structures.    (line 89)
+* select:                                The select system.    (line  6)
+* select <1>:                            The select package.   (line  6)
 * select-dev:                            The select-dev package.
-                                                              (line   6)
-* Structure, canonical-range:            Exported structures. (line   7)
-* Structure, canonical-sequence:         Exported structures. (line  43)
-* Structure, including:                  Exported structures. (line  68)
-* Structure, nodrop:                     Exported structures. (line  95)
-* Structure, range:                      Exported structures. (line 115)
-* System, select:                        The select system.   (line   6)
+                                                               (line  6)
+* select-dev.lisp:                       The select/select-dev․lisp file.
+                                                               (line  6)
+* select.asd:                            The select/select․asd file.
+                                                               (line  6)
+* select.lisp:                           The select/select․lisp file.
+                                                               (line  6)
+* Structure, canonical-range:            Public structures.    (line  7)
+* Structure, canonical-sequence:         Public structures.    (line 33)
+* Structure, including:                  Public structures.    (line 53)
+* Structure, nodrop:                     Public structures.    (line 74)
+* Structure, range:                      Public structures.    (line 90)
+* System, select:                        The select system.    (line  6)
 
 
 
 Tag Table:
-Node: Top202
-Node: Systems607
-Node: The select system803
-Ref: go to the select system903
-Node: Files2424
-Node: Lisp files2633
-Node: The select․asd file2970
-Ref: go to the select․asd file3131
-Node: The select/package․lisp file3222
-Ref: go to the select/package․lisp file3424
-Node: The select/select-dev․lisp file3639
-Ref: go to the select/select-dev․lisp file3855
-Node: The select/select․lisp file9247
-Ref: go to the select/select․lisp file9416
-Node: Packages14156
-Node: The select-dev package14363
-Ref: go to the SELECT-DEV package14505
-Node: The select package20905
-Ref: go to the SELECT package21022
-Node: Definitions26213
-Node: Exported definitions26480
-Node: Exported macros26756
-Ref: go to the SELECT-DEV∶∶TRAVERSE-REPRESENTATIONS macro27014
-Node: Exported functions27531
-Ref: go to the SELECT-DEV∶∶ALL-SINGLETON-REPRESENTATIONS? function27759
-Ref: go to the SELECT-DEV∶∶CANONICAL-RANGE function28036
-Ref: go to the SELECT-DEV∶∶CANONICAL-REPRESENTATIONS function28385
-Ref: go to the SELECT-DEV∶∶CANONICAL-SEQUENCE function28726
-Ref: go to the SELECT-DEV∶∶CANONICAL-SINGLETON function29189
-Ref: go to the SELECT-DEV∶∶COLUMN-MAJOR-SETUP function29538
-Ref: go to the SELECT∶∶HEAD function29948
-Ref: go to the SELECT∶∶INCLUDING function30160
-Ref: go to the SELECT∶∶NODROP function30372
-Ref: go to the SELECT∶∶RANGE function30611
-Ref: go to the SELECT-DEV∶∶REPRESENTATION-DIMENSIONS function30863
-Ref: go to the SELECT-DEV∶∶ROW-MAJOR-SETUP function31192
-Ref: go to the SELECT-DEV∶∶SELECT-RESERVED-SYMBOL? function31619
-Ref: go to the SELECT-DEV∶∶SINGLETON-REPRESENTATION? function31909
-Ref: go to the SELECT∶∶TAIL function32168
-Node: Exported generic functions32346
-Ref: go to the SELECT-DEV∶∶AXIS-DIMENSION generic function32575
-Ref: go to the SELECT-DEV∶∶AXIS-DIMENSION DATA-FRAME∶∶ORDERED-KEYS method32908
-Ref: go to the SELECT-DEV∶∶CANONICAL-REPRESENTATION generic function33046
-Ref: go to the SELECT-DEV∶∶CANONICAL-REPRESENTATION DATA-FRAME∶∶ORDERED-KEYS COMMON-LISP∶∶SYMBOL method34127
-Ref: go to the SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T SELECT∶∶NODROP method34274
-Ref: go to the SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T SELECT∶∶RANGE method34527
-Ref: go to the SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T SELECT∶∶INCLUDING method34803
-Ref: go to the SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T COMMON-LISP∶∶T method35051
-Ref: go to the SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T SELECT-DEV∶∶CANONICAL-RANGE method35157
-Ref: go to the SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T SELECT-DEV∶∶CANONICAL-SEQUENCE method35269
-Ref: go to the SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶INTEGER COMMON-LISP∶∶NULL method35364
-Ref: go to the SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶INTEGER COMMON-LISP∶∶INTEGER method35466
-Ref: go to the SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T COMMON-LISP∶∶SEQUENCE method35539
-Ref: go to the SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶INTEGER ❨eql COMMON-LISP∶∶T❩ method35641
-Ref: go to the SELECT-DEV∶∶CANONICAL-REPRESENTATION COMMON-LISP∶∶T COMMON-LISP∶∶BIT-VECTOR method35736
-Ref: go to the SELECT∶∶MASK generic function35782
-Ref: go to the SELECT∶∶MASK COMMON-LISP∶∶SEQUENCE COMMON-LISP∶∶T method36104
-Ref: go to the SELECT∶∶REF generic function36154
-Ref: go to the SELECT∶∶REF COMMON-LISP∶∶ARRAY method36563
-Ref: go to the SELECT∶∶❨SETF REF❩ generic function36626
-Ref: go to the SELECT∶∶❨SETF REF❩ COMMON-LISP∶∶T COMMON-LISP∶∶ARRAY method37029
-Ref: go to the SELECT∶∶SELECT generic function37082
-Ref: go to the SELECT∶∶SELECT DATA-FRAME∶∶DATA-FRAME method37505
-Ref: go to the SELECT∶∶SELECT DATA-FRAME∶∶DATA-VECTOR method37649
-Ref: go to the SELECT∶∶SELECT DATA-FRAME∶∶ORDERED-KEYS method37819
-Ref: go to the SELECT∶∶SELECT NUM-UTILS․MATRIX∶∶HERMITIAN-MATRIX method37964
-Ref: go to the SELECT∶∶SELECT NUM-UTILS․MATRIX∶∶UPPER-TRIANGULAR-MATRIX method38135
-Ref: go to the SELECT∶∶SELECT NUM-UTILS․MATRIX∶∶LOWER-TRIANGULAR-MATRIX method38306
-Ref: go to the SELECT∶∶SELECT COMMON-LISP∶∶LIST method38438
-Ref: go to the SELECT∶∶SELECT COMMON-LISP∶∶ARRAY method38637
-Ref: go to the SELECT∶∶❨SETF SELECT❩ generic function38760
-Ref: go to the SELECT∶∶❨SETF SELECT❩ COMMON-LISP∶∶T COMMON-LISP∶∶ARRAY method39173
-Ref: go to the SELECT∶∶WHICH generic function39225
-Ref: go to the SELECT∶∶WHICH COMMON-LISP∶∶SEQUENCE method39571
-Node: Exported structures39572
-Ref: go to the SELECT-DEV∶∶CANONICAL-RANGE structure39752
-Ref: go to the SELECT-DEV∶∶CANONICAL-SEQUENCE structure41291
-Ref: go to the SELECT∶∶INCLUDING structure42362
-Ref: go to the SELECT∶∶NODROP structure43517
-Ref: go to the SELECT∶∶RANGE structure44353
-Node: Internal definitions45459
-Node: Internal functions45640
-Ref: go to the SELECT-DEV∶∶CANONICAL-RANGE-END function45820
-Ref: go to the SELECT-DEV∶∶❨SETF CANONICAL-RANGE-END❩ function45876
-Ref: go to the SELECT-DEV∶∶CANONICAL-RANGE-P function46093
-Ref: go to the SELECT-DEV∶∶CANONICAL-RANGE-START function46316
-Ref: go to the SELECT-DEV∶∶❨SETF CANONICAL-RANGE-START❩ function46374
-Ref: go to the SELECT-DEV∶∶CANONICAL-SEQUENCE-P function46594
-Ref: go to the SELECT-DEV∶∶CANONICAL-SEQUENCE-VECTOR function46821
-Ref: go to the SELECT-DEV∶∶❨SETF CANONICAL-SEQUENCE-VECTOR❩ function46883
-Ref: go to the SELECT-DEV∶∶COPY-CANONICAL-RANGE function47105
-Ref: go to the SELECT-DEV∶∶COPY-CANONICAL-SEQUENCE function47330
-Ref: go to the SELECT∶∶COPY-INCLUDING function47546
-Ref: go to the SELECT∶∶COPY-NODROP function47733
-Ref: go to the SELECT∶∶COPY-RANGE function47919
-Ref: go to the SELECT∶∶INCLUDING-END function48108
-Ref: go to the SELECT∶∶❨SETF INCLUDING-END❩ function48158
-Ref: go to the SELECT∶∶INCLUDING-P function48343
-Ref: go to the SELECT∶∶INCLUDING-START function48534
-Ref: go to the SELECT∶∶❨SETF INCLUDING-START❩ function48586
-Ref: go to the SELECT-DEV∶∶MAKE-CANONICAL-RANGE function48802
-Ref: go to the SELECT-DEV∶∶MAKE-CANONICAL-SEQUENCE function49039
-Ref: go to the SELECT∶∶MAKE-INCLUDING function49275
-Ref: go to the SELECT∶∶MAKE-NODROP function49472
-Ref: go to the SELECT∶∶MAKE-RANGE function49678
-Ref: go to the SELECT∶∶NODROP-INDEX function49866
-Ref: go to the SELECT∶∶❨SETF NODROP-INDEX❩ function49915
-Ref: go to the SELECT∶∶NODROP-P function50097
-Ref: go to the SELECT∶∶RANGE-END function50282
-Ref: go to the SELECT∶∶❨SETF RANGE-END❩ function50328
-Ref: go to the SELECT∶∶RANGE-P function50509
-Ref: go to the SELECT∶∶RANGE-START function50696
-Ref: go to the SELECT∶∶❨SETF RANGE-START❩ function50744
-Ref: go to the SELECT-DEV∶∶REPRESENTATION-DIMENSION function50950
-Ref: go to the SELECT-DEV∶∶REPRESENTATION-INITIAL-VALUE function51300
-Ref: go to the SELECT-DEV∶∶REPRESENTATION-ITERATOR function51576
-Node: Indexes51921
-Node: Concept index52113
-Node: Function index53803
-Node: Variable index71048
-Node: Data type index72372
+Node: Top890
+Node: Copying2138
+Node: Introduction2323
+Node: Systems7083
+Node: The select system7288
+Ref: ❨1❩7388
+Node: Files8869
+Node: Lisp files9078
+Node: The select/select․asd file9313
+Ref: ❨2❩9495
+Node: The select/package․lisp file9637
+Ref: ❨3❩9846
+Node: The select/select-dev․lisp file10030
+Ref: ❨4❩10246
+Node: The select/select․lisp file12351
+Ref: ❨5❩12520
+Node: Packages14564
+Node: The select package14771
+Ref: ❨6❩14905
+Node: The select-dev package16968
+Ref: ❨7❩17093
+Node: Definitions19354
+Node: Public Interface19609
+Node: Public macros19863
+Ref: ❨56❩20120
+Node: Public ordinary functions20567
+Ref: ❨60❩20814
+Ref: ❨52❩21023
+Ref: ❨59❩21304
+Ref: ❨62❩21577
+Ref: ❨65❩21972
+Ref: ❨58❩22253
+Ref: ❨21❩22604
+Ref: ❨18❩22766
+Ref: ❨25❩22955
+Ref: ❨80❩23157
+Ref: ❨79❩23418
+Ref: ❨57❩23777
+Ref: ❨61❩23999
+Node: Public generic functions24164
+Ref: ❨66❩24394
+Ref: ❨67❩24649
+Ref: ❨68❩25668
+Ref: ❨69❩25905
+Ref: ❨70❩26145
+Ref: ❨71❩26340
+Ref: ❨72❩26465
+Ref: ❨73❩26596
+Ref: ❨74❩26693
+Ref: ❨75❩26797
+Ref: ❨76❩26892
+Ref: ❨77❩26996
+Ref: ❨78❩27093
+Ref: ❨31❩27141
+Ref: ❨32❩27413
+Ref: ❨8❩27465
+Ref: ❨9❩27698
+Ref: ❨10❩27757
+Ref: ❨11❩27996
+Ref: ❨12❩28051
+Ref: ❨13❩28283
+Ref: ❨14❩28484
+Ref: ❨15❩28603
+Ref: ❨16❩28846
+Ref: ❨17❩28915
+Ref: ❨29❩28969
+Ref: ❨30❩29265
+Node: Public structures29266
+Ref: ❨53❩29435
+Ref: ❨54❩29833
+Ref: ❨55❩30097
+Ref: ❨63❩30367
+Ref: ❨64❩30713
+Ref: ❨22❩31063
+Ref: ❨23❩31371
+Ref: ❨24❩31558
+Ref: ❨19❩31739
+Ref: ❨20❩32072
+Ref: ❨26❩32250
+Ref: ❨27❩32569
+Ref: ❨28❩32748
+Node: Internals32900
+Node: Private ordinary functions33052
+Ref: ❨89❩33236
+Ref: ❨90❩33286
+Ref: ❨85❩33485
+Ref: ❨94❩33638
+Ref: ❨95❩33690
+Ref: ❨81❩33894
+Ref: ❨86❩34051
+Ref: ❨87❩34107
+Ref: ❨83❩34314
+Ref: ❨93❩34471
+Ref: ❨38❩34619
+Ref: ❨45❩34756
+Ref: ❨46❩34892
+Ref: ❨42❩35029
+Ref: ❨43❩35073
+Ref: ❨33❩35258
+Ref: ❨50❩35397
+Ref: ❨51❩35443
+Ref: ❨82❩35647
+Ref: ❨91❩35807
+Ref: ❨47❩35961
+Ref: ❨48❩36100
+Ref: ❨39❩36242
+Ref: ❨40❩36378
+Ref: ❨41❩36421
+Ref: ❨49❩36605
+Ref: ❨36❩36738
+Ref: ❨37❩36778
+Ref: ❨44❩36959
+Ref: ❨34❩37094
+Ref: ❨35❩37136
+Ref: ❨92❩37344
+Ref: ❨88❩37626
+Ref: ❨84❩37834
+Node: Conclusion38109
+Node: Indexes39344
+Node: Concept index39535
+Node: Function index39658
+Node: Variable index60855
+Node: Data type index62179
 
 End Tag Table
 
