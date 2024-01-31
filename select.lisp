@@ -1,7 +1,7 @@
 ;;; -*- Mode: LISP; Base: 10; Syntax: Ansi-Common-Lisp; Package: SLCT -*-
 ;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
-;;; Copyright (c) 2018-2021 by Symbolics Pte. Ltd. All rights reserved.
-
+;;; Copyright (c) 2018-2021, 2024 by Symbolics Pte. Ltd. All rights reserved.
+;;; SPDX-License-identifier: MS-PL
 (in-package :slct)
 
 ;;;
@@ -70,12 +70,12 @@
   "The canonical representation for NODROP."
   (let ((start (canonical-representation axis (nodrop-index selection))))
     (canonical-range start (1+ start))))
-#+nil
+
 (defun head (count)
   "First COUNT indexes."
   (check-type count alexandria:array-index)
   (range 0 count))
-#+nil
+
 (defun tail (count)
   "Last COUNT indexes."
   (check-type count alexandria:array-index)

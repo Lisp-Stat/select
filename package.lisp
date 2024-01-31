@@ -1,6 +1,7 @@
 ;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: CL-USER -*-
 ;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
-;;; Copyright (c) 2018-2020 by Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2018-2020, 2024 by Symbolics Pte. Ltd. All rights reserved.
+;;; SPDX-License-identifier: MS-PL
 
 (uiop:define-package #:select-dev
     (:use #:cl #:alexandria #:anaphora #:let-plus)
@@ -29,8 +30,8 @@
 	   #:ref
 	   #:including
 	   #:nodrop
-	   ;; #:head
-	   ;; #:tail
+	   ;; #:head			;return a representation for the first n selections
+	   ;; #:tail			;return a representation for the last n selections
 	   #:range
 	   #:mask
 	   #:which)
