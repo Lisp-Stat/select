@@ -4,7 +4,7 @@
 ;;; SPDX-License-identifier: MS-PL
 
 (uiop:define-package #:select-dev
-    (:use #:cl #:alexandria #:anaphora #:let-plus)
+    (:use #:cl #:alexandria #:alexandria+ #:anaphora #:let-plus)
   (:export
    ;; resolving slices into canonical representations
    #:canonical-singleton
@@ -25,7 +25,7 @@
 
 (uiop:define-package #:select
   (:nicknames #:slct)
-  (:use #:cl #:alexandria #:anaphora #:select-dev #:let-plus)
+  (:use #:cl #:alexandria #:alexandria+ #:anaphora #:select-dev #:let-plus)
   (:export #:select
 	   #:ref
 	   #:including
@@ -34,6 +34,7 @@
 	   ;; #:tail			;return a representation for the last n selections
 	   #:range
 	   #:mask
-	   #:which)
+	   #:which
+	   #:sample)
   (:documentation "SELECT is a facility for selecting portions of sequences or arrays."))
 

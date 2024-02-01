@@ -1,7 +1,7 @@
-;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: SLCT -*-
+;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: SELECT-DEV -*-
 ;;; Copyright (c) 2012 by Tamas K. Papp <tkpapp@gmail.com>
-;;; Copyright (c) 2018-2020 by Symbolics Pte. Ltd. All rights reserved.
-
+;;; Copyright (c) 2018-2020, 2024 by Symbolics Pte. Ltd. All rights reserved.
+;;; SPDX-License-identifier: MS-PL
 (in-package #:select-dev)
 
 ;;;
